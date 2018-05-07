@@ -1,0 +1,5 @@
+<me> <rel> <you> .
+<me> <rdf:type> <person> .
+<you> <rel> <other> .
+<you> <rdf:type> <child> .
+<other> <any> <john> .

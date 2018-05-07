@@ -1,0 +1,62 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ewe-smarttv: <http://gsi.dit.upm.es/ontologies/ewe-connected-home-smarttv/ns/> .
+@prefix ex: <http://example.org/ex#> .
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe-connected-home-smarttv/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe-smarttv:SmartTv a owl:Class ;    
+    rdfs:label "Connected door-lock"@en ;
+    rdfs:comment "This channel represents a simplified smarttv with simple capabilities" ;
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+# This channel has not events
+
+    
+###################################
+# Actions definition
+###################################
+
+ewe-smarttv:SwitchOn a owl:Class ;
+    rdfs:label "Swith on"@en ;
+    rdfs:comment "This action will switch on the TV."@en ;
+    rdfs:subclassOf ewe:Action ;
+    rdfs:domain ewe-smarttv:SmartTv .
+
+ewe-smarttv:SwitchOff a owl:Class ;
+    rdfs:label "Swith off"@en ;
+    rdfs:comment "This action will switch off the TV."@en ;
+    rdfs:subclassOf ewe:Action ;
+    rdfs:domain ewe-smarttv:SmartTv .
+
+ewe-smarttv:DisplayImage a owl:Class ;
+    rdfs:label "Display image"@en ;
+    rdfs:comment "This action will display an image on the screen."@en ;
+    rdfs:subclassOf ewe:Action ;
+    rdfs:domain ewe-smarttv:SmartTv .
+
+
+
+###################################
+# Example of instances
+###################################
+
+ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+
+ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+    ewe:generatedBy ex:samsungtv ;
+    ewe:time "2016-01-19T15:10:00Z" .
+
+# Generated facts 
+
+ex:labdoor1 rdf:type dogont:DoorActuator .
