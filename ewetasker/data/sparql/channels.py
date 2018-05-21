@@ -8,13 +8,13 @@ from rdflib.plugins.serializers.n3 import N3Serializer
 import json
 
 def get_all_channels():
-    #Define the Stardog store
+
+    #Define the SparQL store
     endpoint = 'http://localhost:3030/ewetaskerdataset/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
-    #Identify a named graph where we will be adding our instances.
-    #default_graph = Graph()
-    #ng = Graph(store, identifier='default')
+
+    # Get channels
     rq = """
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/>
@@ -30,18 +30,15 @@ def get_all_channels():
         
         OPTIONAL {?subject foaf:logo ?logo }
         }
-        LIMIT 25
     """
 
     channels = { "channels" : []}
-    for s, l, c, lo in store.query(rq):
-        channels["channels"].append({"@id" : s.n3(), "rdf:label" : l.n3()})
-        print(s)
-        print(l)
-        print(c)
-        print(lo)
+    channels_result = store.query(rq)
+    for s, l, c, lo in channels_result:
+        # TODO: get channel logo
+        channels["channels"].append({"@id" : s.n3(), "rdfs:label" : l.n3(), "rdfs:comment" : c.n3()})
+        # TODO: get events and actions
 
-
-    print(channels)
+    #print(channels)
     #print(store.query(rq).serialize(format='json-ld', indent=4))
-    return ""
+    return json.dumps(channels)
