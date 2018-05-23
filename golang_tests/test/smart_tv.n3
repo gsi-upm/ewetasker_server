@@ -30,19 +30,19 @@ ewe-smarttv:SmartTv a owl:Class ;
 ewe-smarttv:SwitchOn a owl:Class ;
     rdfs:label "Swith on"@en ;
     rdfs:comment "This action will switch on the TV."@en ;
-    rdfs:subclassOf ewe:Action ;
+    rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe-smarttv:SmartTv .
 
 ewe-smarttv:SwitchOff a owl:Class ;
     rdfs:label "Swith off"@en ;
     rdfs:comment "This action will switch off the TV."@en ;
-    rdfs:subclassOf ewe:Action ;
+    rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe-smarttv:SmartTv .
 
 ewe-smarttv:DisplayImage a owl:Class ;
     rdfs:label "Display image"@en ;
     rdfs:comment "This action will display an image on the screen."@en ;
-    rdfs:subclassOf ewe:Action ;
+    rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe-smarttv:SmartTv .
 
 
