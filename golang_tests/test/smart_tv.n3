@@ -28,13 +28,13 @@ ewe-smarttv:SmartTv a owl:Class ;
 ###################################
 
 ewe-smarttv:SwitchOn a owl:Class ;
-    rdfs:label "Swith on"@en ;
+    rdfs:label "Switch on"@en ;
     rdfs:comment "This action will switch on the TV."@en ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe-smarttv:SmartTv .
 
 ewe-smarttv:SwitchOff a owl:Class ;
-    rdfs:label "Swith off"@en ;
+    rdfs:label "Switch off"@en ;
     rdfs:comment "This action will switch off the TV."@en ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe-smarttv:SmartTv .
@@ -45,18 +45,32 @@ ewe-smarttv:DisplayImage a owl:Class ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe-smarttv:SmartTv .
 
+###################################
+# Parameters definition
+###################################
 
+ewe-smarttv:LocalIP a owl:Class ;
+    rdfs:label "Local IP"@en ;
+    rdfs:comment "This parameter represents the local IP of the TV."@en ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-smarttv:SmartTv .
+
+ewe-smarttv:PublicIP a owl:Class ;
+    rdfs:label "Public IP"@en ;
+    rdfs:comment "This parameter represents the public IP of the TV."@en ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-smarttv:SmartTv .
 
 ###################################
 # Example of instances
 ###################################
 
-ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+#ex:samsungtv rdf:type ewe-smarttv:SmartTv .
 
-ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
-    ewe:generatedBy ex:samsungtv ;
-    ewe:time "2016-01-19T15:10:00Z" .
+#ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+#    ewe:generatedBy ex:samsungtv ;
+#    ewe:time "2016-01-19T15:10:00Z" .
 
 # Generated facts 
 
-ex:labdoor1 rdf:type dogont:DoorActuator .
+#ex:labdoor1 rdf:type dogont:DoorActuator .

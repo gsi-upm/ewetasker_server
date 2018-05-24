@@ -38,7 +38,7 @@ def get_all_channels():
     index = 0
     for uri, label, comment, logo in channels_result:
         # TODO: get channel logo
-        channels["channels"].append({"@id" : uri, "rdfs:label" : label.n3(), "rdfs:comment" : comment.n3(), "events" : [], "actions" : []})
+        channels["channels"].append({"@id" : uri, "rdfs:label" : label.n3(), "rdfs:comment" : comment.n3(), "events" : [], "actions" : [], "parameters" : []})
         
         # TODO: get actions and channels parameters
         
@@ -75,6 +75,22 @@ def get_all_channels():
         events_result = store.query(get_events_query)
         for event_uri, event_label, event_comment in events_result:
             channels["channels"][index]["events"].append({"@id" : event_uri, "rdfs:label" : event_label.n3(), "rdfs:comment" : event_comment.n3()})
+
+        get_parameters_query = """
+            PREFIX ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/>
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+            SELECT ?parameter ?label ?comment
+            WHERE {
+            ?parameter rdfs:subClassOf ewe:Parameter ;
+                        rdfs:domain %s;
+                        rdfs:label ?label ;
+                        rdfs:comment ?comment .
+            }
+        """ % (uri.n3())
+        parameters_result = store.query(get_parameters_query)
+        for param_uri, param_label, param_comment in parameters_result:
+            channels["channels"][index]["parameters"].append({"@id" : param_uri, "rdfs:label" : param_label.n3(), "rdfs:comment" : param_comment.n3()})
 
         index+=1
     #print(channels)
