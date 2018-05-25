@@ -1,3 +1,3 @@
 FROM tiangolo/uwsgi-nginx-flask:flask
 
-COPY ./ewetasker /ewetasker
+COPY ./ewetasker /ewetasker 
