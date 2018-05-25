@@ -12,8 +12,11 @@
 # Channel definition
 ###################################
 ewe-smarttv:SmartTv a owl:Class ;    
-    rdfs:label "Connected door-lock"@en ;
+    rdfs:label "Connected smart tv"@en ;
     rdfs:comment "This channel represents a simplified smarttv with simple capabilities" ;
+    ewe:providesAction ewe-smarttv:SwitchOn ;
+    ewe:providesAction ewe-smarttv:SwitchOff ;
+    ewe:providesAction ewe-smarttv:DisplayImage ;
     rdfs:subClassOf ewe:Channel .
 
 
@@ -30,18 +33,24 @@ ewe-smarttv:SmartTv a owl:Class ;
 ewe-smarttv:SwitchOn a owl:Class ;
     rdfs:label "Switch on"@en ;
     rdfs:comment "This action will switch on the TV."@en ;
+    ewe:hasInputParameter ewe-smarttv:LocalIP ;
+    ewe:hasInputParameter ewe-smarttv:PublicIP ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe-smarttv:SmartTv .
 
 ewe-smarttv:SwitchOff a owl:Class ;
     rdfs:label "Switch off"@en ;
     rdfs:comment "This action will switch off the TV."@en ;
+    ewe:hasInputParameter ewe-smarttv:LocalIP ;
+    ewe:hasInputParameter ewe-smarttv:PublicIP ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe-smarttv:SmartTv .
 
 ewe-smarttv:DisplayImage a owl:Class ;
     rdfs:label "Display image"@en ;
     rdfs:comment "This action will display an image on the screen."@en ;
+    ewe:hasInputParameter ewe-smarttv:LocalIP ;
+    ewe:hasInputParameter ewe-smarttv:PublicIP ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe-smarttv:SmartTv .
 
