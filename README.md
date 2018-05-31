@@ -9,9 +9,12 @@ This repository contains EWE Tasker Server module, written in Golang.
 | /channels  | GET  | Get a list of base channels available at the platform  |
 | /channels/user/{userID}  | GET  |  Get a list of channels available for the specified user |
 | /channels/place/{placeID}  | GET  | Get a list of channels available at the platform associated to a certain place |
+| /channels/new  | POST  | Create a new channel |
 | /rules  | GET  | Get a list of rules available at the platform  |
 | /rules/user/{userID}  | GET  | Get a list of rules available at the platform for the specified user |
+| /rules/new | POST  | Create a new rule |
 | /rules/place/{placeID}  | GET  | Get a list of rules available at the platform associated to a certain place |
+| /event/evaluate  | POST  | Evaluate an event |
 
 ## Get Channels
 
