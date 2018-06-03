@@ -1,10 +1,14 @@
 from rdflib.plugins.stores import sparqlstore
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config/config.ini')
 
 
 def get_input_parameters(actionevent_uri, uri):
 
     #Define the SparQL store
-    endpoint = 'http://localhost:3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -31,7 +35,7 @@ def get_input_parameters(actionevent_uri, uri):
 def get_output_parameters(actionevent_uri, uri):
 
     #Define the SparQL store
-    endpoint = 'http://localhost:3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -57,7 +61,7 @@ def get_output_parameters(actionevent_uri, uri):
 
 def get_channel_parameters(uri):
     #Define the SparQL store
-    endpoint = 'http://localhost:3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -79,3 +83,27 @@ def get_channel_parameters(uri):
     store.close()
     return parameters
 
+def get_custom_channel_parameters(uri):
+    #Define the SparQL store
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    store = sparqlstore.SPARQLUpdateStore()
+    store.open((endpoint, endpoint))
+
+    get_parameters_query = """
+        PREFIX ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+        SELECT ?parameter ?label ?value
+        WHERE {
+            %s ewe:hasParameter ?parameter .
+            ?parameter rdf:type ?baseParameter ;
+                        rdf:value ?value .
+            ?baseParameter rdfs:label ?label .
+        }
+    """ % (uri.n3())
+
+    parameters = store.query(get_parameters_query)
+
+    store.close()
+    return parameters
