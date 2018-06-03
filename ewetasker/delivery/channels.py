@@ -64,4 +64,4 @@ def get_channels():
         index+=1
     #print(channels)
     #print(store.query(rq).serialize(format='json-ld', indent=4))
-    return json.dumps(channels)
+    return json.dumps(channels).replace('\\"', "")
