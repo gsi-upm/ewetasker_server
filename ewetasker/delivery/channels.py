@@ -171,3 +171,6 @@ def import_new_channel(channel_json):
     channel_parameters = channel_json["parameters"]
 
     return create_channel(channel_base, channel_label.replace(" ", "").lower(), channel_type, channel_label, channel_comment, channel_parameters)
+
+def delete_custom_channel_with_uri(uri):
+    return delete_custom_channel(uri)
