@@ -63,6 +63,64 @@ def get_all_custom_channels():
     store.close()
     return channels
 
+def get_all_custom_category_channels(category_uri):
+    #Define the SparQL store
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    store = sparqlstore.SPARQLUpdateStore()
+    store.open((endpoint, endpoint))
+
+    # Get channels
+    get_channels_query = """
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+
+        SELECT ?channel ?label ?comment ?baseChannel ?logo
+        WHERE {
+            ?baseChannel rdfs:subClassOf ewe:Channel ;
+                    foaf:logo ?logo ;
+                    ewe:hasCategory <%s> .
+            ?channel rdf:type ?baseChannel ;
+                    rdfs:label ?label ;
+                    rdfs:comment ?comment .
+        
+        }
+    """ % (category_uri)
+    
+    channels = store.query(get_channels_query)
+    store.close()
+    return channels
+
+def get_all_category_channels(category_uri):
+    #Define the SparQL store
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    store = sparqlstore.SPARQLUpdateStore()
+    store.open((endpoint, endpoint))
+
+    # Get channels
+    get_channels_query = """
+        PREFIX ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+        SELECT ?channel ?label ?comment ?logo
+        WHERE {
+            ?channel rdfs:subClassOf ewe:Channel ;
+                rdfs:label ?label ;
+                rdfs:comment ?comment ;
+                foaf:logo ?logo ;
+                ewe:hasCategory <%s> .
+        }
+    """ % (category_uri)
+    
+    channels = store.query(get_channels_query)
+    store.close()
+    return channels
+
 
 def create_channel(base, name, c_type, label, comment, parameters):
 

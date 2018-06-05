@@ -14,10 +14,18 @@ def base_channels():
 def custom_channels():
     return get_custom_channels()
 
+@app.route("/channels/custom/category/<path:uri>")
+def custom_category_channels(uri):
+    return get_custom_category_channels(uri)
+
+@app.route("/channels/category/<path:uri>")
+def category_channels(uri):
+    return get_category_channels(uri)
+
 @app.route("/channels/import", methods = ['POST'])
 def import_channel():
     channel = request.get_json()
     return import_new_channel(channel)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="localhost", debug=True)
