@@ -185,3 +185,35 @@ def create_channel_with_triples(triples):
     store.close()
 
     return ""
+
+def delete_custom_channel(uri):
+
+    #Define the SparQL store
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/update'
+    store = sparqlstore.SPARQLUpdateStore()
+    store.open((endpoint, endpoint))
+
+    # Delete channel and parameters
+    delete_channels_query = """
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+        DELETE
+        {
+            <%s> ?b ?c .
+            ?param ?d ?e
+        }
+        WHERE
+        {
+            <%s> ?b ?c;
+                ewe:hasParameter ?param .
+            ?param ?d ?e
+        }
+    """ % (uri, uri)
+
+    channels = store.update(delete_channels_query)
+    store.close()
+
+    return ""

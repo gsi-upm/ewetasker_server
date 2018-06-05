@@ -27,5 +27,9 @@ def import_channel():
     channel = request.get_json()
     return import_new_channel(channel)
 
+@app.route("/channels/custom/delete/<path:uri>")
+def delete_custom_channel(uri):
+    return delete_custom_channel_with_uri(uri)
+
 if __name__ == '__main__':
     app.run(host="localhost", debug=True)
