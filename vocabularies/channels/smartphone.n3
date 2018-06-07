@@ -2,7 +2,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix ewe-smarttv: <http://gsi.dit.upm.es/ontologies/ewe-smartphone/ns/> .
+@prefix ewe-smartphone: <http://gsi.dit.upm.es/ontologies/ewe-smartphone/ns/> .
 @prefix ex: <http://example.org/ex#> .
 @prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
@@ -118,30 +118,6 @@ ewe-smartphone:TurnOffWifi a owl:Class ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe-smartphone:SmartPhone .
 
-###################################
-# Parameters definition
-###################################
-
-ewe-smarttv:LocalIP a owl:Class ;
-    rdfs:label "Local IP" ;
-    rdfs:comment "This parameter represents the local IP of the TV." ;
-    rdf:datatype xsd:string ;
-    rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-smarttv:SmartTv .
-
-ewe-smarttv:PublicIP a owl:Class ;
-    rdfs:label "Public IP" ;
-    rdfs:comment "This parameter represents the public IP of the TV." ;
-    rdf:datatype xsd:string ;
-    rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-smarttv:SmartTv .
-
-ewe-smarttv:Image a owl:Class ;
-    rdfs:label "Image to display" ;
-    rdfs:comment "This parameter represents the image to display on the TV." ;
-    rdf:datatype xsd:string ;
-    rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-smarttv:SmartTv .
 
 ###################################
 # Example of instances
