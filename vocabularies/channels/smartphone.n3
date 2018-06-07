@@ -25,11 +25,11 @@ ewe-smartphone:SmartPhone a owl:Class ;
     ewe:providesAction ewe-smartphone:ShowToastNotification ;
     ewe:providesAction ewe-smartphone:TurnOnWifi ;
     ewe:providesAction ewe-smartphone:TurnOffWifi ;
-    ewe:generatesEvent ewe-smartphone:TurnOnBluetooth ;
-    ewe:generatesEvent ewe-smartphone:TurnOffBluetooth ;
-    ewe:generatesEvent ewe-smartphone:StartEventCalendar ;
-    ewe:generatesEvent ewe-smartphone:TurnOnWifi ;
-    ewe:generatesEvent ewe-smartphone:TurnOffWifi ;
+    ewe:generatesEvent ewe-smartphone:BluetoothTurnedOn ;
+    ewe:generatesEvent ewe-smartphone:BluetoothTurnedOff ;
+    ewe:generatesEvent ewe-smartphone:EventCalendarStarted ;
+    ewe:generatesEvent ewe-smartphone:WifiTurnedOn ;
+    ewe:generatesEvent ewe-smartphone:WifiTurnedOff ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 
@@ -38,33 +38,33 @@ ewe-smartphone:SmartPhone a owl:Class ;
 # Events definition
 ###################################
 
-ewe-smartphone:TurnOnBluetooth a owl:Class ;
-    rdfs:label "Turn on Bluetooth" ;
+ewe-smartphone:BluetoothTurnedOn a owl:Class ;
+    rdfs:label "Bluetooth turned on" ;
     rdfs:comment "This event will be triggered when Bluetooth turns on." ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe-smartphone:SmartPhone .
 
-ewe-smartphone:TurnOffBluetooth a owl:Class ;
-    rdfs:label "Turn off Bluetooth" ;
+ewe-smartphone:BluetoothTurnedOff a owl:Class ;
+    rdfs:label "Bluetooth turned off" ;
     rdfs:comment "This event will be triggered when Bluetooth turns off" ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe-smartphone:SmartPhone .
 
-ewe-smartphone:StartEventCalendar a owl:Class ;
-    rdfs:label "Start event calendar" ;
+ewe-smartphone:EventCalendarStarted a owl:Class ;
+    rdfs:label "Event calendar started" ;
     rdfs:comment "This event will be triggered when a calendar event starts." ;
     ewe:hasOutputParameter ewe-smartphone:EventCalendar ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe-smartphone:SmartPhone .
 
-ewe-smartphone:TurnOnWifi a owl:Class ;
-    rdfs:label "Turn on Wifi" ;
+ewe-smartphone:WifiTurnedOn a owl:Class ;
+    rdfs:label "Wifi turned on" ;
     rdfs:comment "This event will be triggered when Wifi turns on." ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe-smartphone:SmartPhone .
 
-ewe-smartphone:TurnOffWifi a owl:Class ;
-    rdfs:label "Turn off Wifi" ;
+ewe-smartphone:WifiTurnedOff a owl:Class ;
+    rdfs:label "Wifi turned off" ;
     rdfs:comment "This event will be triggered when Wifi turns off" ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe-smartphone:SmartPhone .

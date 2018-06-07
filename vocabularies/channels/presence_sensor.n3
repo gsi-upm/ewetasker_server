@@ -1,0 +1,99 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ewe-presence-sensor: <http://gsi.dit.upm.es/ontologies/ewe-presence-sensor/ns/> .
+@prefix ex: <http://example.org/ex#> .
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe-presence-sensor/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe-presence-sensor:PresenceSensor a owl:Class ;    
+    rdfs:label "Presence sensor" ;
+    rdfs:comment "This channel represents a presence sensor" ;
+    foaf:logo "fa fa-street-view" ;
+    ewe:generatesEvent ewe-presence-sensor::PresenceDetectedAtDistanceLessThan ;
+    ewe:generatesEvent ewe-presence-sensor::PresenceDetectedAtDistanceGreaterThan ;
+    ewe:generatesEvent ewe-presence-sensor::PresenceNotDetectedInTime ;
+    ewe:hasCategory ewe-device:Device ;
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+ewe-presence-sensor:PresenceDetectedAtDistanceLessThan a owl:Class ;
+    rdfs:label "Presence detected at distance less than the specified parameter" ;
+    rdfs:comment "This event will be triggered when presence sensor detects a user closer than the specified distance." ;
+    ewe:hasOutputParameter ewe-presence-sensor:SensorID ;
+    ewe:hasOutputParameter ewe-presence-sensor:Distance ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe-presence-sensor:PresenceSensor .
+
+ewe-presence-sensor:PresenceNotDetectedInTime a owl:Class ;
+    rdfs:label "Presence not detected during the specified parameter" ;
+    rdfs:comment "This event will be triggered when presence sensor is not detected a user during an specified time." ;
+    ewe:hasOutputParameter ewe-presence-sensor:SensorID ;
+    ewe:hasOutputParameter ewe-presence-sensor:Time ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe-presence-sensor:PresenceSensor .
+
+ewe-presence-sensor:PresenceDetectedAtDistanceGreaterThan a owl:Class ;
+    rdfs:label "Presence detected at distance greater than the specified parameter" ;
+    rdfs:comment "This event will be triggered when presence sensor detects a user far than the specified distance." ;
+    ewe:hasOutputParameter ewe-presence-sensor:SensorID ;
+    ewe:hasOutputParameter ewe-presence-sensor:Distance ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe-presence-sensor:PresenceSensor .
+
+    
+###################################
+# Actions definition
+###################################
+# This channel has not actions
+
+
+###################################
+# Parameters definition
+###################################
+
+ewe-presence-sensor:SensorID a owl:Class ;
+    rdfs:label "Sensor ID" ;
+    rdfs:comment "This parameter represents sensor ID." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-presence-sensor:PresenceSensor .
+
+ewe-presence-sensor:Distance a owl:Class ;
+    rdfs:label "Distance in meters" ;
+    rdfs:comment "This parameter represents the distance measured by the sensor." ;
+    rdf:datatype xsd:math ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-presence-sensor:PresenceSensor .
+
+ewe-presence-sensor:Time a owl:Class ;
+    rdfs:label "Time in seconds" ;
+    rdfs:comment "This parameter represents the period of time measured." ;
+    rdf:datatype xsd:math ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-presence-sensor:PresenceSensor .
+
+###################################
+# Example of instances
+###################################
+
+#ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+
+#ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+#    ewe:generatedBy ex:samsungtv ;
+#    ewe:time "2016-01-19T15:10:00Z" .
+
+# Generated facts 
+
+#ex:labdoor1 rdf:type dogont:DoorActuator .
