@@ -21,15 +21,15 @@ ewe-smartphone:SmartPhone a owl:Class ;
     ewe:providesAction ewe-smartphone:Silence ;
     ewe:providesAction ewe-smartphone:Vibration ;
     ewe:providesAction ewe-smartphone:Normal ;
+    ewe:providesAction ewe-smartphone:ShowNavbarNotification ;
+    ewe:providesAction ewe-smartphone:ShowToastNotification ;
+    ewe:providesAction ewe-smartphone:TurnOnWifi ;
+    ewe:providesAction ewe-smartphone:TurnOffWifi ;
     ewe:generatesEvent ewe-smartphone:TurnOnBluetooth ;
     ewe:generatesEvent ewe-smartphone:TurnOffBluetooth ;
     ewe:generatesEvent ewe-smartphone:StartEventCalendar ;
-    ewe:providesAction ewe-smartphone:ShowNavbarNotification ;
-    ewe:providesAction ewe-smartphone:ShowToastNotification ;
     ewe:generatesEvent ewe-smartphone:TurnOnWifi ;
     ewe:generatesEvent ewe-smartphone:TurnOffWifi ;
-    ewe:providesAction ewe-smartphone:TurnOnWifi ;
-    ewe:providesAction ewe-smartphone:TurnOffWifi ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 
@@ -116,6 +116,32 @@ ewe-smartphone:TurnOffWifi a owl:Class ;
     rdfs:label "Turn off Wifi" ;
     rdfs:comment "This action will turn off Wifi." ;
     rdfs:subClassOf ewe:Action ;
+    rdfs:domain ewe-smartphone:SmartPhone .
+ 
+
+###################################
+# Parameters definition
+###################################
+
+ewe-smartphone:EventCalendar a owl:Class ;
+    rdfs:label "Event calendar" ;
+    rdfs:comment "This parameter represents the event name." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-smartphone:SmartPhone .
+
+ewe-smartphone:ToastNotification a owl:Class ;
+    rdfs:label "Toast notification" ;
+    rdfs:comment "This parameter represents a toast notification." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-smartphone:SmartPhone .
+
+ewe-smartphone:NavbarNotification a owl:Class ;
+    rdfs:label "Navbar notification" ;
+    rdfs:comment "This parameter represents a navbar notification." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe-smartphone:SmartPhone .
 
 
