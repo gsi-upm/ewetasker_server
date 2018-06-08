@@ -40,16 +40,16 @@ ewe-email:NewMessageReceived a owl:Class ;
     rdfs:domain ewe-email:Email .
 
 ewe-email:MessageReceivedAbout a owl:Class ;
-    rdfs:label "New message received about a determinate subject" ;
-    rdfs:comment "This event will be triggered when a new email message about a concrete subject is received." ;
+    rdfs:label "New message received about a certain subject" ;
+    rdfs:comment "This event will be triggered when a new email message about a certain subject is received." ;
     ewe:hasInputParameter ewe-email:EmailAddress ;
     ewe:hasOutputParameter ewe-email:Subject ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe-email:Email .
 
 ewe-email:MessageReceivedFrom a owl:Class ;
-    rdfs:label "New message received from a determinate contact" ;
-    rdfs:comment "This event will be triggered when a new email message from a concrete contact is received." ;
+    rdfs:label "New message received from a certain contact" ;
+    rdfs:comment "This event will be triggered when a new email message from a certain contact is received." ;
     ewe:hasInputParameter ewe-email:EmailAddress ;
     ewe:hasOutputParameter ewe-email:RecipientAddress ;
     rdfs:subClassOf ewe:Event ;

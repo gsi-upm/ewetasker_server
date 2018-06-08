@@ -45,12 +45,12 @@ def get_base_channels():
             # get input parameters
             input_params_result = get_input_parameters(event_uri, uri)
             for input_param_uri, input_param_label, input_param_comment, input_param_datatype in input_params_result:
-                channels["channels"][index]["events"][action_index]["input_parameters"].append({"@id" : input_param_uri, "rdfs:label" : input_param_label.n3(), "rdfs:comment" : input_param_comment.n3(), "rdf:datatype" : input_param_datatype})
+                channels["channels"][index]["events"][event_index]["input_parameters"].append({"@id" : input_param_uri, "rdfs:label" : input_param_label.n3(), "rdfs:comment" : input_param_comment.n3(), "rdf:datatype" : input_param_datatype})
 
             # get output parameters
             output_params_result = get_output_parameters(event_uri, uri)
             for output_param_uri, output_param_label, output_param_comment, output_param_datatype in output_params_result:
-                channels["channels"][index]["events"][action_index]["output_parameters"].append({"@id" : output_param_uri, "rdfs:label" : output_param_label.n3(), "rdfs:comment" : output_param_comment.n3(), "rdf:datatype" : output_param_datatype})
+                channels["channels"][index]["events"][event_index]["output_parameters"].append({"@id" : output_param_uri, "rdfs:label" : output_param_label.n3(), "rdfs:comment" : output_param_comment.n3(), "rdf:datatype" : output_param_datatype})
 
             event_index+=1
 
@@ -144,12 +144,12 @@ def get_category_channels(category_uri):
             # get input parameters
             input_params_result = get_input_parameters(event_uri, uri)
             for input_param_uri, input_param_label, input_param_comment, input_param_datatype in input_params_result:
-                channels["channels"][index]["events"][action_index]["input_parameters"].append({"@id" : input_param_uri, "rdfs:label" : input_param_label.n3(), "rdfs:comment" : input_param_comment.n3(), "rdf:datatype" : input_param_datatype})
+                channels["channels"][index]["events"][event_index]["input_parameters"].append({"@id" : input_param_uri, "rdfs:label" : input_param_label.n3(), "rdfs:comment" : input_param_comment.n3(), "rdf:datatype" : input_param_datatype})
 
             # get output parameters
             output_params_result = get_output_parameters(event_uri, uri)
             for output_param_uri, output_param_label, output_param_comment, output_param_datatype in output_params_result:
-                channels["channels"][index]["events"][action_index]["output_parameters"].append({"@id" : output_param_uri, "rdfs:label" : output_param_label.n3(), "rdfs:comment" : output_param_comment.n3(), "rdf:datatype" : output_param_datatype})
+                channels["channels"][index]["events"][event_index]["output_parameters"].append({"@id" : output_param_uri, "rdfs:label" : output_param_label.n3(), "rdfs:comment" : output_param_comment.n3(), "rdf:datatype" : output_param_datatype})
 
             event_index+=1
 
