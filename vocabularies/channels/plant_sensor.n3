@@ -1,0 +1,159 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ewe-plant-sensor: <http://gsi.dit.upm.es/ontologies/ewe-plant-sensor/ns/> .
+@prefix ex: <http://example.org/ex#> .
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe-plant-sensor/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe-plant-sensor:plantSensor a owl:Class ;    
+    rdfs:label "plant sensor" ;
+    rdfs:comment "This channel represents a plant sensor" ;
+    foaf:logo "fa fa-tree" ;
+    ewe:generatesEvent ewe-plant-sensor::PlantMoistureLowerThan ;
+    ewe:generatesEvent ewe-plant-sensor::PlantMoistureGreaterThan ;
+    ewe:generatesEvent ewe-plant-sensor::PlantLightLowerThan ;
+    ewe:generatesEvent ewe-plant-sensor::PlantLightGreaterThan ;
+    ewe:generatesEvent ewe-plant-sensor::PlantTemperatureLowerThan ;
+    ewe:generatesEvent ewe-plant-sensor::PlantTemperatureGreaterThan ;
+    ewe:generatesEvent ewe-plant-sensor::PlantConductivityLowerThan ;
+    ewe:generatesEvent ewe-plant-sensor::PlantConductivityGreaterThan ;
+    ewe:hasCategory ewe-device:Device ;
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+
+ewe-plant-sensor:PlantMoistureLowerThan a owl:Class ;
+    rdfs:label "Plant moisture detected lower than the specified parameter" ;
+    rdfs:comment "This event will be triggered when the plant does not exceed the specified moisture." ;
+    ewe:hasOutputParameter ewe-plant-sensor:SensorID ;
+    ewe:hasOutputParameter ewe-plant-sensor:Moisture ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe-plant-sensor:plantSensor .
+
+ewe-plant-sensor:PlantMoistureGreaterThan a owl:Class ;
+    rdfs:label "Plant moisture detected greater than the specified parameter" ;
+    rdfs:comment "This event will be triggered when the plant exceeds the specified moisture." ;
+    ewe:hasOutputParameter ewe-plant-sensor:SensorID ;
+    ewe:hasOutputParameter ewe-plant-sensor:Moisture ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe-plant-sensor:plantSensor .
+
+ewe-plant-sensor:PlantLightLowerThan a owl:Class ;
+    rdfs:label "Plant luminosity detected lower than the specified parameter" ;
+    rdfs:comment "This event will be triggered when the plant does not exceed the specified luminosity." ;
+    ewe:hasOutputParameter ewe-plant-sensor:SensorID ;
+    ewe:hasOutputParameter ewe-plant-sensor:Light ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe-plant-sensor:plantSensor .
+
+ewe-plant-sensor:PlantLightGreaterThan a owl:Class ;
+    rdfs:label "Plant luminosity detected greater than the specified parameter" ;
+    rdfs:comment "This event will be triggered when the plant exceeds the specified luminosity." ;
+    ewe:hasOutputParameter ewe-plant-sensor:SensorID ;
+    ewe:hasOutputParameter ewe-plant-sensor:Light ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe-plant-sensor:plantSensor .
+
+ewe-plant-sensor:PlantTemperatureLowerThan a owl:Class ;
+    rdfs:label "Plant temperature detected lower than the specified parameter" ;
+    rdfs:comment "This event will be triggered when the plant does not exceed the specified temperature." ;
+    ewe:hasOutputParameter ewe-plant-sensor:SensorID ;
+    ewe:hasOutputParameter ewe-plant-sensor:Temperature ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe-plant-sensor:plantSensor .
+
+ewe-plant-sensor:PlantTemperatureGreaterThan a owl:Class ;
+    rdfs:label "Plant temperature detected greater than the specified parameter" ;
+    rdfs:comment "This event will be triggered when the plant exceeds the specified temperature." ;
+    ewe:hasOutputParameter ewe-plant-sensor:SensorID ;
+    ewe:hasOutputParameter ewe-plant-sensor:Temperature ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe-plant-sensor:plantSensor .
+
+ewe-plant-sensor:PlantConductivityLowerThan a owl:Class ;
+    rdfs:label "Plant soil conductivity detected lower than the specified parameter" ;
+    rdfs:comment "This event will be triggered when the plant does not exceed the specified soil conductivity." ;
+    ewe:hasOutputParameter ewe-plant-sensor:SensorID ;
+    ewe:hasOutputParameter ewe-plant-sensor:Conductivity ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe-plant-sensor:plantSensor .
+
+ewe-plant-sensor:PlantConductivityGreaterThan a owl:Class ;
+    rdfs:label "Plant soil conductivity detected greater than the specified parameter" ;
+    rdfs:comment "This event will be triggered when the plant exceeds the specified soil conductivity." ;
+    ewe:hasOutputParameter ewe-plant-sensor:SensorID ;
+    ewe:hasOutputParameter ewe-plant-sensor:Conductivity ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe-plant-sensor:plantSensor .
+    
+###################################
+# Actions definition
+###################################
+# This channel has not actions
+
+
+###################################
+# Parameters definition
+###################################
+
+ewe-plant-sensor:SensorID a owl:Class ;
+    rdfs:label "Sensor ID" ;
+    rdfs:comment "This parameter represents sensor ID." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-plant-sensor:plantSensor .
+
+ewe-plant-sensor:Moisture a owl:Class ;
+    rdfs:label "Plant moisture measured" ;
+    rdfs:comment "This parameter represents the moisture measured by the sensor." ;
+    rdf:datatype xsd:math ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-plant-sensor:plantSensor .
+
+ewe-plant-sensor:Light a owl:Class ;
+    rdfs:label "Plant luminosity measured" ;
+    rdfs:comment "This parameter represents the luminosity measured by the sensor." ;
+    rdf:datatype xsd:math ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-plant-sensor:plantSensor .
+
+ewe-plant-sensor:Temperature a owl:Class ;
+    rdfs:label "Plant temperature measured" ;
+    rdfs:comment "This parameter represents the temperature measured by the sensor." ;
+    rdf:datatype xsd:math ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-plant-sensor:plantSensor .
+
+ewe-plant-sensor:Conductivity a owl:Class ;
+    rdfs:label "Plant soil conductivity measured" ;
+    rdfs:comment "This parameter represents the soil conductivity measured by the sensor." ;
+    rdf:datatype xsd:math ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-plant-sensor:plantSensor .
+
+
+###################################
+# Example of instances
+###################################
+
+#ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+
+#ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+#    ewe:generatedBy ex:samsungtv ;
+#    ewe:time "2016-01-19T15:10:00Z" .
+
+# Generated facts 
+
+#ex:labdoor1 rdf:type dogont:DoorActuator .
