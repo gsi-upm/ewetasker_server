@@ -18,14 +18,14 @@ ewe-plant-sensor:plantSensor a owl:Class ;
     rdfs:label "plant sensor" ;
     rdfs:comment "This channel represents a plant sensor" ;
     foaf:logo "fa fa-tree" ;
-    ewe:generatesEvent ewe-plant-sensor::PlantMoistureLowerThan ;
-    ewe:generatesEvent ewe-plant-sensor::PlantMoistureGreaterThan ;
-    ewe:generatesEvent ewe-plant-sensor::PlantLightLowerThan ;
-    ewe:generatesEvent ewe-plant-sensor::PlantLightGreaterThan ;
-    ewe:generatesEvent ewe-plant-sensor::PlantTemperatureLowerThan ;
-    ewe:generatesEvent ewe-plant-sensor::PlantTemperatureGreaterThan ;
-    ewe:generatesEvent ewe-plant-sensor::PlantConductivityLowerThan ;
-    ewe:generatesEvent ewe-plant-sensor::PlantConductivityGreaterThan ;
+    ewe:generatesEvent ewe-plant-sensor:PlantMoistureLowerThan ;
+    ewe:generatesEvent ewe-plant-sensor:PlantMoistureGreaterThan ;
+    ewe:generatesEvent ewe-plant-sensor:PlantLightLowerThan ;
+    ewe:generatesEvent ewe-plant-sensor:PlantLightGreaterThan ;
+    ewe:generatesEvent ewe-plant-sensor:PlantTemperatureLowerThan ;
+    ewe:generatesEvent ewe-plant-sensor:PlantTemperatureGreaterThan ;
+    ewe:generatesEvent ewe-plant-sensor:PlantConductivityLowerThan ;
+    ewe:generatesEvent ewe-plant-sensor:PlantConductivityGreaterThan ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 

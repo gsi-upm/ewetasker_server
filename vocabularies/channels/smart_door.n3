@@ -19,8 +19,8 @@ ewe-smartdoor:SmartDoor a owl:Class ;
     rdfs:comment "This channel represents a simplified smart door with simple capabilities" ;
     foaf:logo "fa fa-lock" ;
     ewe:providesAction ewe-smartdoor:OpenDoor ;
-    ewe:generatesEvent ewe-smartdoor::DoorOpened ;
-    ewe:generatesEvent ewe-smartdoor::DoorClosed ;
+    ewe:generatesEvent ewe-smartdoor:DoorOpened ;
+    ewe:generatesEvent ewe-smartdoor:DoorClosed ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 

@@ -18,8 +18,8 @@ ewe-temperature-sensor:TemperatureSensor a owl:Class ;
     rdfs:label "Temperature sensor" ;
     rdfs:comment "This channel represents a temperature sensor" ;
     foaf:logo "fa fa-thermometer-three-quarters" ;
-    ewe:generatesEvent ewe-temperature-sensor::TemperatureLowerThan ;
-    ewe:generatesEvent ewe-temperature-sensor::TemperatureGreaterThan ;
+    ewe:generatesEvent ewe-temperature-sensor:TemperatureLowerThan ;
+    ewe:generatesEvent ewe-temperature-sensor:TemperatureGreaterThan ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 

@@ -18,7 +18,7 @@ ewe-empatica-band:EmpaticaBand a owl:Class ;
     rdfs:label "Empatica smart band" ;
     rdfs:comment "This channel represents a Empatica smart band" ;
     foaf:logo "fa fa-heart-o" ;
-    ewe:generatesEvent ewe-empatica-band::EmotionDetected ;
+    ewe:generatesEvent ewe-empatica-band:EmotionDetected ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 

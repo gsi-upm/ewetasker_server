@@ -18,9 +18,9 @@ ewe-presence-sensor:PresenceSensor a owl:Class ;
     rdfs:label "Presence sensor" ;
     rdfs:comment "This channel represents a presence sensor" ;
     foaf:logo "fa fa-street-view" ;
-    ewe:generatesEvent ewe-presence-sensor::PresenceDetectedAtDistanceLessThan ;
-    ewe:generatesEvent ewe-presence-sensor::PresenceDetectedAtDistanceGreaterThan ;
-    ewe:generatesEvent ewe-presence-sensor::PresenceNotDetectedInTime ;
+    ewe:generatesEvent ewe-presence-sensor:PresenceDetectedAtDistanceLessThan ;
+    ewe:generatesEvent ewe-presence-sensor:PresenceDetectedAtDistanceGreaterThan ;
+    ewe:generatesEvent ewe-presence-sensor:PresenceNotDetectedInTime ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 

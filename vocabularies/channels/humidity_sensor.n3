@@ -18,8 +18,8 @@ ewe-humidity-sensor:HumiditySensor a owl:Class ;
     rdfs:label "Humidity sensor" ;
     rdfs:comment "This channel represents a humidity sensor" ;
     foaf:logo "fa fa-thermometer-three-quarters" ;
-    ewe:generatesEvent ewe-humidity-sensor::HumidityLowerThan ;
-    ewe:generatesEvent ewe-humidity-sensor::HumidityGreaterThan ;
+    ewe:generatesEvent ewe-humidity-sensor:HumidityLowerThan ;
+    ewe:generatesEvent ewe-humidity-sensor:HumidityGreaterThan ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 
