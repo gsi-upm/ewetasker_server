@@ -45,12 +45,12 @@ def get_base_channels():
             # get input parameters
             input_params_result = get_input_parameters(event_uri, uri)
             for input_param_uri, input_param_label, input_param_comment, input_param_datatype in input_params_result:
-                channels["channels"][index]["events"][action_index]["input_parameters"].append({"@id" : input_param_uri, "rdfs:label" : input_param_label.n3(), "rdfs:comment" : input_param_comment.n3(), "rdf:datatype" : input_param_datatype})
+                channels["channels"][index]["events"][event_index]["input_parameters"].append({"@id" : input_param_uri, "rdfs:label" : input_param_label.n3(), "rdfs:comment" : input_param_comment.n3(), "rdf:datatype" : input_param_datatype})
 
             # get output parameters
             output_params_result = get_output_parameters(event_uri, uri)
             for output_param_uri, output_param_label, output_param_comment, output_param_datatype in output_params_result:
-                channels["channels"][index]["events"][action_index]["output_parameters"].append({"@id" : output_param_uri, "rdfs:label" : output_param_label.n3(), "rdfs:comment" : output_param_comment.n3(), "rdf:datatype" : output_param_datatype})
+                channels["channels"][index]["events"][event_index]["output_parameters"].append({"@id" : output_param_uri, "rdfs:label" : output_param_label.n3(), "rdfs:comment" : output_param_comment.n3(), "rdf:datatype" : output_param_datatype})
 
             event_index+=1
 
@@ -104,7 +104,27 @@ def get_custom_category_channels(category_uri):
     
     return json.dumps(channels).replace('\\"', "")
 
-# get channels of a certaing category
+# get subchannels of channel
+def get_subchannels_of_channel(channel_uri):
+
+    channels = {"@context": { "@vocab" : "http://www.gsi.dit.upm.es/ontologies/ewe#"}, "channels" : []}
+    channels_result = get_all_subchannels(channel_uri)
+
+    index = 0
+    for uri, label, comment in channels_result:
+
+        channels["channels"].append({"@id" : uri, "rdfs:label" : label.n3(), "rdfs:comment" : comment.n3(), "parameters" : []})
+
+        parameters_result = get_custom_channel_parameters(uri)
+        for param_uri, param_label, param_value, param_datatype in parameters_result:
+            channels["channels"][index]["parameters"].append({"@id" : param_uri, "rdfs:label" : param_label.n3(), "rdf:value" : param_value.n3(), "rdf:datatype" : param_datatype})
+
+        index+=1
+    
+    
+    return json.dumps(channels).replace('\\"', "")
+
+# get channels of a certain category
 def get_category_channels(category_uri):
     
     channels = {"@context": { "@vocab" : "http://www.gsi.dit.upm.es/ontologies/ewe#"}, "channels" : []}
@@ -144,12 +164,12 @@ def get_category_channels(category_uri):
             # get input parameters
             input_params_result = get_input_parameters(event_uri, uri)
             for input_param_uri, input_param_label, input_param_comment, input_param_datatype in input_params_result:
-                channels["channels"][index]["events"][action_index]["input_parameters"].append({"@id" : input_param_uri, "rdfs:label" : input_param_label.n3(), "rdfs:comment" : input_param_comment.n3(), "rdf:datatype" : input_param_datatype})
+                channels["channels"][index]["events"][event_index]["input_parameters"].append({"@id" : input_param_uri, "rdfs:label" : input_param_label.n3(), "rdfs:comment" : input_param_comment.n3(), "rdf:datatype" : input_param_datatype})
 
             # get output parameters
             output_params_result = get_output_parameters(event_uri, uri)
             for output_param_uri, output_param_label, output_param_comment, output_param_datatype in output_params_result:
-                channels["channels"][index]["events"][action_index]["output_parameters"].append({"@id" : output_param_uri, "rdfs:label" : output_param_label.n3(), "rdfs:comment" : output_param_comment.n3(), "rdf:datatype" : output_param_datatype})
+                channels["channels"][index]["events"][event_index]["output_parameters"].append({"@id" : output_param_uri, "rdfs:label" : output_param_label.n3(), "rdfs:comment" : output_param_comment.n3(), "rdf:datatype" : output_param_datatype})
 
             event_index+=1
 

@@ -22,6 +22,10 @@ def custom_category_channels(uri):
 def category_channels(uri):
     return get_category_channels(uri)
 
+@app.route("/channels/custom/base_channel/<path:uri>")
+def subchannels_of_channel(uri):
+    return get_subchannels_of_channel(uri)
+
 @app.route("/channels/import", methods = ['POST'])
 def import_channel():
     channel = request.get_json()
