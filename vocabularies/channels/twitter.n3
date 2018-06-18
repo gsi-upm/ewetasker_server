@@ -1,0 +1,76 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ewe-twitter: <http://gsi.dit.upm.es/ontologies/ewe-twitter/ns/> .
+@prefix ex: <http://example.org/ex#> .
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ewe-service: <http://gsi.dit.upm.es/ontologies/ewe-service/ns/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe-twitter/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe-twitter:Twitter a owl:Class ;    
+    rdfs:label "Twitter" ;
+    rdfs:comment "This channel represents Twitter service" ;
+    foaf:logo "fa fa-twitter" ;
+    ewe:providesAction ewe-twitter:PostTweet ;
+    ewe:hasCategory ewe-service:Service ;
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+# This channel has not events
+
+    
+###################################
+# Actions definition
+###################################
+
+ewe-twitter:PostTweet a owl:Class ;
+    rdfs:label "Post tweet" ;
+    rdfs:comment "This action will post a tweet." ;
+    ewe:hasInputParameter ewe-twitter:Username ;
+    ewe:hasOutputParameter ewe-twitter:Tweet ;
+    rdfs:subClassOf ewe:Action ;
+    rdfs:domain ewe-twitter:Twitter .
+
+
+###################################
+# Parameters definition
+###################################
+
+ewe-twitter:Username a owl:Class ;
+    rdfs:label "Twitter username" ;
+    rdfs:comment "This parameter represents Twitter username." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-twitter:Twitter .
+
+ewe-twitter:Tweet a owl:Class ;
+    rdfs:label "Tweet content" ;
+    rdfs:comment "This parameter represents the content of the tweet." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-twitter:Twitter .
+
+
+###################################
+# Example of instances
+###################################
+
+#ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+
+#ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+#    ewe:generatedBy ex:samsungtv ;
+#    ewe:time "2016-01-19T15:10:00Z" .
+
+# Generated facts 
+
+#ex:labdoor1 rdf:type dogont:DoorActuator .

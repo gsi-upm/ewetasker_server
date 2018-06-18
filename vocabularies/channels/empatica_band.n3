@@ -1,0 +1,68 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ewe-empatica-band: <http://gsi.dit.upm.es/ontologies/ewe-empatica-band/ns/> .
+@prefix ex: <http://example.org/ex#> .
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe-empatica-band/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe-empatica-band:EmpaticaBand a owl:Class ;    
+    rdfs:label "Empatica smart band" ;
+    rdfs:comment "This channel represents a Empatica smart band" ;
+    foaf:logo "fa fa-heart-o" ;
+    ewe:generatesEvent ewe-empatica-band:EmotionDetected ;
+    ewe:hasCategory ewe-device:Device ;
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+ewe-empatica-band:EmotionDetected a owl:Class ;
+    rdfs:label "The emotion is the same than the specified parameter" ;
+    rdfs:comment "This event will be triggered when a determinate emotion is detected." ;
+    ewe:hasOutputParameter ewe-empatica-band:Emotion ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe-empatica-band:EmpaticaBand .
+
+    
+###################################
+# Actions definition
+###################################
+# This channel has not actions
+
+
+###################################
+# Parameters definition
+###################################
+
+ewe-empatica-band:Emotion a owl:Class ;
+    rdfs:label "Emotion" ;
+    rdfs:comment "This parameter represents the emotion detected." ;
+    rdf:datatype xsd:math ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-empatica-band:EmpaticaBand .
+
+
+
+###################################
+# Example of instances
+###################################
+
+#ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+
+#ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+#    ewe:generatedBy ex:samsungtv ;
+#    ewe:time "2016-01-19T15:10:00Z" .
+
+# Generated facts 
+
+#ex:labdoor1 rdf:type dogont:DoorActuator .

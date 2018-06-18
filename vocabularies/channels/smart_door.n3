@@ -1,0 +1,103 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ewe-smartdoor: <http://gsi.dit.upm.es/ontologies/ewe-connected-home-smartdoor/ns/> .
+@prefix ex: <http://example.org/ex#> .
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe-connected-home-smartdoor/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe-smartdoor:SmartDoor a owl:Class ;    
+    rdfs:label "Connected smart door" ;
+    rdfs:comment "This channel represents a simplified smart door with simple capabilities" ;
+    foaf:logo "fa fa-lock" ;
+    ewe:providesAction ewe-smartdoor:OpenDoor ;
+    ewe:generatesEvent ewe-smartdoor:DoorOpened ;
+    ewe:generatesEvent ewe-smartdoor:DoorClosed ;
+    ewe:hasCategory ewe-device:Device ;
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+
+ewe-smartdoor:DoorOpened a owl:Class ;
+    rdfs:label "Door opened" ;
+    rdfs:comment "This event will be triggered when door opens." ;
+    ewe:hasInputParameter ewe-smartdoor:LocalIP ;
+    ewe:hasInputParameter ewe-smartdoor:PublicIP ;
+    ewe:hasOutputParameter ewe-smartdoor:DoorID ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe-smartdoor:DoorOpened .
+
+ewe-smartdoor:DoorClosed a owl:Class ;
+    rdfs:label "Door closed" ;
+    rdfs:comment "This event will be triggered when door closes." ;
+    ewe:hasInputParameter ewe-smartdoor:LocalIP ;
+    ewe:hasInputParameter ewe-smartdoor:PublicIP ;
+    ewe:hasOutputParameter ewe-smartdoor:DoorID ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe-smartdoor:DoorOpened .
+
+    
+###################################
+# Actions definition
+###################################
+
+ewe-smartdoor:OpenDoor a owl:Class ;
+    rdfs:label "Open door" ;
+    rdfs:comment "This action will open the door." ;
+    ewe:hasInputParameter ewe-smartdoor:LocalIP ;
+    ewe:hasInputParameter ewe-smartdoor:PublicIP ;
+    ewe:hasOutputParameter ewe-smartdoor:DoorID ;
+    rdfs:subClassOf ewe:Action ;
+    rdfs:domain ewe-smartdoor:SmartDoor .
+
+
+###################################
+# Parameters definition
+###################################
+
+ewe-smartdoor:LocalIP a owl:Class ;
+    rdfs:label "Api token" ;
+    rdfs:comment "This parameter represents the local IP of the smart door." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-smartdoor:SmartDoor .
+
+ewe-smartdoor:PublicIP a owl:Class ;
+    rdfs:label "Public IP" ;
+    rdfs:comment "This parameter represents the public IP of the smart door." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-smartdoor:SmartDoor .
+
+ewe-smartdoor:DoorID a owl:Class ;
+    rdfs:label "Door ID" ;
+    rdfs:comment "This parameter represents the smart door ID." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-smartdoor:Smartdoor .
+
+
+###################################
+# Example of instances
+###################################
+
+#ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+
+#ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+#    ewe:generatedBy ex:samsungtv ;
+#    ewe:time "2016-01-19T15:10:00Z" .
+
+# Generated facts 
+
+#ex:labdoor1 rdf:type dogont:DoorActuator .

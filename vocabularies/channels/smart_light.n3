@@ -1,0 +1,145 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ewe-smartlight: <http://gsi.dit.upm.es/ontologies/ewe-connected-home-smartlight/ns/> .
+@prefix ex: <http://example.org/ex#> .
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe-connected-home-smartlight/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe-smartlight:SmartLight a owl:Class ;    
+    rdfs:label "Connected smart light" ;
+    rdfs:comment "This channel represents a simplified smart light with simple capabilities" ;
+    foaf:logo "fa fa-lightbulb-o" ;
+    ewe:providesAction ewe-smartlight:SwitchOn ;
+    ewe:providesAction ewe-smartlight:SwitchOff ;
+    ewe:providesAction ewe-smartlight:SetBrightness ;
+    ewe:providesAction ewe-smartlight:SetRGB ;
+    ewe:hasCategory ewe-device:Device ;
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+# This channel has not events
+
+    
+###################################
+# Actions definition
+###################################
+
+ewe-smartlight:SwitchOn a owl:Class ;
+    rdfs:label "Switch on" ;
+    rdfs:comment "This action will switch on the light." ;
+    ewe:hasInputParameter ewe-smartlight:ApiToken ;
+    ewe:hasInputParameter ewe-smartlight:PublicIP ;
+    ewe:hasOutputParameter ewe-smartlight:LightID ;
+    rdfs:subClassOf ewe:Action ;
+    rdfs:domain ewe-smartlight:SmartLight .
+
+ewe-smartlight:SwitchOff a owl:Class ;
+    rdfs:label "Switch off" ;
+    rdfs:comment "This action will switch off the light." ;
+    ewe:hasInputParameter ewe-smartlight:ApiToken ;
+    ewe:hasInputParameter ewe-smartlight:PublicIP ;
+    ewe:hasOutputParameter ewe-smartlight:LightID ;
+    rdfs:subClassOf ewe:Action ;
+    rdfs:domain ewe-smartlight:SmartLight .
+
+ewe-smartlight:SetBrightness a owl:Class ;
+    rdfs:label "Set brightness" ;
+    rdfs:comment "This action will set brightness level on the light." ;
+    ewe:hasInputParameter ewe-smartlight:ApiToken ;
+    ewe:hasInputParameter ewe-smartlight:PublicIP ;
+    ewe:hasOutputParameter ewe-smartlight:LightID ;
+    ewe:hasOutputParameter ewe-smartlight:Brightness ;
+    rdfs:subClassOf ewe:Action ;
+    rdfs:domain ewe-smartlight:SmartLight .
+
+ewe-smartlight:SetRGB a owl:Class ;
+    rdfs:label "Set RGB" ;
+    rdfs:comment "This action will set RGB color values on the light." ;
+    ewe:hasInputParameter ewe-smartlight:ApiToken ;
+    ewe:hasInputParameter ewe-smartlight:PublicIP ;
+    ewe:hasOutputParameter ewe-smartlight:LightID ;
+    ewe:hasOutputParameter ewe-smartlight:Red ;
+    ewe:hasOutputParameter ewe-smartlight:Green ;
+    ewe:hasOutputParameter ewe-smartlight:Blue ;
+    rdfs:subClassOf ewe:Action ;
+    rdfs:domain ewe-smartlight:SmartLight .
+
+###################################
+# Parameters definition
+###################################
+
+ewe-smartlight:ApiToken a owl:Class ;
+    rdfs:label "Api token" ;
+    rdfs:comment "This parameter represents the Api token of the smart light." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-smartlight:SmartLight .
+
+ewe-smartlight:PublicIP a owl:Class ;
+    rdfs:label "Public IP" ;
+    rdfs:comment "This parameter represents the public IP of the smart light." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-smartlight:SmartLight .
+
+ewe-smartlight:LightID a owl:Class ;
+    rdfs:label "Light ID" ;
+    rdfs:comment "This parameter represents the smart light ID." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-smartlight:SmartLight .
+
+ewe-smartlight:Brightness a owl:Class ;
+    rdfs:label "Brightness level" ;
+    rdfs:comment "This parameter represents the brightness level of the smart light." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-smartlight:SmartLight .
+
+ewe-smartlight:Red a owl:Class ;
+    rdfs:label "Red level" ;
+    rdfs:comment "This parameter represents the Red level of the smart light." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-smartlight:SmartLight .
+
+ewe-smartlight:Green a owl:Class ;
+    rdfs:label "Green level" ;
+    rdfs:comment "This parameter represents the Green level of the smart light." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-smartlight:SmartLight .
+
+ewe-smartlight:Blue a owl:Class ;
+    rdfs:label "Blue level" ;
+    rdfs:comment "This parameter represents the Blue level of the smart light." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe-smartlight:SmartLight .
+
+
+###################################
+# Example of instances
+###################################
+
+#ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+
+#ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+#    ewe:generatedBy ex:samsungtv ;
+#    ewe:time "2016-01-19T15:10:00Z" .
+
+# Generated facts 
+
+#ex:labdoor1 rdf:type dogont:DoorActuator .
