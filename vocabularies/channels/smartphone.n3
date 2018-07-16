@@ -2,34 +2,33 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix ewe-smartphone: <http://gsi.dit.upm.es/ontologies/ewe-smartphone/ns/> .
 @prefix ex: <http://example.org/ex#> .
 @prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@base  <http://gsi.dit.upm.es/ontologies/ewe-smartphone/ns/> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
 ###################################
 # Channel definition
 ###################################
-ewe-smartphone:SmartPhone a owl:Class ;    
+ewe:SmartPhone a owl:Class ;    
     rdfs:label "Smartphone" ;
-    rdfs:comment "This channel represents a simplified smartphone with multiple functions" ;
+    rdfs:comment "This channel represents a simplified smartphone with multiple functions." ;
     foaf:logo "fa fa-mobile-phone" ;
-    ewe:providesAction ewe-smartphone:Silence ;
-    ewe:providesAction ewe-smartphone:Vibration ;
-    ewe:providesAction ewe-smartphone:Normal ;
-    ewe:providesAction ewe-smartphone:ShowNavbarNotification ;
-    ewe:providesAction ewe-smartphone:ShowToastNotification ;
-    ewe:providesAction ewe-smartphone:TurnOnWifi ;
-    ewe:providesAction ewe-smartphone:TurnOffWifi ;
-    ewe:generatesEvent ewe-smartphone:BluetoothTurnedOn ;
-    ewe:generatesEvent ewe-smartphone:BluetoothTurnedOff ;
-    ewe:generatesEvent ewe-smartphone:EventCalendarStarted ;
-    ewe:generatesEvent ewe-smartphone:WifiTurnedOn ;
-    ewe:generatesEvent ewe-smartphone:WifiTurnedOff ;
+    ewe:providesAction ewe:Silence ;
+    ewe:providesAction ewe:Vibration ;
+    ewe:providesAction ewe:Normal ;
+    ewe:providesAction ewe:ShowNavbarNotification ;
+    ewe:providesAction ewe:ShowToastNotification ;
+    ewe:providesAction ewe:TurnOnWifi ;
+    ewe:providesAction ewe:TurnOffWifi ;
+    ewe:generatesEvent ewe:BluetoothTurnedOn ;
+    ewe:generatesEvent ewe:BluetoothTurnedOff ;
+    ewe:generatesEvent ewe:EventCalendarStarted ;
+    ewe:generatesEvent ewe:WifiTurnedOn ;
+    ewe:generatesEvent ewe:WifiTurnedOff ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 
@@ -38,111 +37,111 @@ ewe-smartphone:SmartPhone a owl:Class ;
 # Events definition
 ###################################
 
-ewe-smartphone:BluetoothTurnedOn a owl:Class ;
+ewe:BluetoothTurnedOn a owl:Class ;
     rdfs:label "Bluetooth turned on" ;
     rdfs:comment "This event will be triggered when Bluetooth turns on." ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe-smartphone:SmartPhone .
+    rdfs:domain ewe:SmartPhone .
 
-ewe-smartphone:BluetoothTurnedOff a owl:Class ;
+ewe:BluetoothTurnedOff a owl:Class ;
     rdfs:label "Bluetooth turned off" ;
     rdfs:comment "This event will be triggered when Bluetooth turns off" ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe-smartphone:SmartPhone .
+    rdfs:domain ewe:SmartPhone .
 
-ewe-smartphone:EventCalendarStarted a owl:Class ;
+ewe:EventCalendarStarted a owl:Class ;
     rdfs:label "Event calendar started" ;
     rdfs:comment "This event will be triggered when a calendar event starts." ;
-    ewe:hasOutputParameter ewe-smartphone:EventCalendar ;
+    ewe:hasOutputParameter ewe:EventCalendar ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe-smartphone:SmartPhone .
+    rdfs:domain ewe:SmartPhone .
 
-ewe-smartphone:WifiTurnedOn a owl:Class ;
+ewe:WifiTurnedOn a owl:Class ;
     rdfs:label "Wifi turned on" ;
     rdfs:comment "This event will be triggered when Wifi turns on." ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe-smartphone:SmartPhone .
+    rdfs:domain ewe:SmartPhone .
 
-ewe-smartphone:WifiTurnedOff a owl:Class ;
+ewe:WifiTurnedOff a owl:Class ;
     rdfs:label "Wifi turned off" ;
     rdfs:comment "This event will be triggered when Wifi turns off" ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe-smartphone:SmartPhone .
+    rdfs:domain ewe:SmartPhone .
 
 
 ###################################
 # Actions definition
 ###################################
 
-ewe-smartphone:Silence a owl:Class ;
+ewe:Silence a owl:Class ;
     rdfs:label "Silence" ;
     rdfs:comment "This action will silence the smartphone." ;
     rdfs:subClassOf ewe:Action ;
-    rdfs:domain ewe-smartphone:SmartPhone .
+    rdfs:domain ewe:SmartPhone .
 
-ewe-smartphone:Vibration a owl:Class ;
+ewe:Vibration a owl:Class ;
     rdfs:label "Vibration" ;
     rdfs:comment "This action will set the smartphone on vibration." ;
     rdfs:subClassOf ewe:Action ;
-    rdfs:domain ewe-smartphone:SmartPhone .
+    rdfs:domain ewe:SmartPhone .
 
-ewe-smartphone:Normal a owl:Class ;
+ewe:Normal a owl:Class ;
     rdfs:label "Normal" ;
     rdfs:comment "This action will set the smartphone on normal mode." ;
     rdfs:subClassOf ewe:Action ;
-    rdfs:domain ewe-smartphone:SmartPhone .
+    rdfs:domain ewe:SmartPhone .
 
-ewe-smartphone:ShowNavbarNotification a owl:Class ;
+ewe:ShowNavbarNotification a owl:Class ;
     rdfs:label "Show navbar notification" ;
     rdfs:comment "This action will show a notification on the navbar." ;
-    ewe:hasOutputParameter ewe-smartphone:NavbarNotification ;
+    ewe:hasOutputParameter ewe:NavbarNotification ;
     rdfs:subClassOf ewe:Action ;
-    rdfs:domain ewe-smartphone:SmartPhone .
+    rdfs:domain ewe:SmartPhone .
 
-ewe-smartphone:ShowToastNotification a owl:Class ;
+ewe:ShowToastNotification a owl:Class ;
     rdfs:label "Show toast notification" ;
     rdfs:comment "This action will show a toast notification." ;
-    ewe:hasOutputParameter ewe-smartphone:ToastNotification ;
+    ewe:hasOutputParameter ewe:ToastNotification ;
     rdfs:subClassOf ewe:Action ;
-    rdfs:domain ewe-smartphone:SmartPhone .
+    rdfs:domain ewe:SmartPhone .
 
-ewe-smartphone:TurnOnWifi a owl:Class ;
+ewe:TurnOnWifi a owl:Class ;
     rdfs:label "Turn on Wifi" ;
     rdfs:comment "This action will turn on Wifi." ;
     rdfs:subClassOf ewe:Action ;
-    rdfs:domain ewe-smartphone:SmartPhone .
+    rdfs:domain ewe:SmartPhone .
 
-ewe-smartphone:TurnOffWifi a owl:Class ;
+ewe:TurnOffWifi a owl:Class ;
     rdfs:label "Turn off Wifi" ;
     rdfs:comment "This action will turn off Wifi." ;
     rdfs:subClassOf ewe:Action ;
-    rdfs:domain ewe-smartphone:SmartPhone .
+    rdfs:domain ewe:SmartPhone .
  
 
 ###################################
 # Parameters definition
 ###################################
 
-ewe-smartphone:EventCalendar a owl:Class ;
+ewe:EventCalendar a owl:Class ;
     rdfs:label "Event calendar" ;
     rdfs:comment "This parameter represents the event name." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-smartphone:SmartPhone .
+    rdfs:domain ewe:SmartPhone .
 
-ewe-smartphone:ToastNotification a owl:Class ;
+ewe:ToastNotification a owl:Class ;
     rdfs:label "Toast notification" ;
     rdfs:comment "This parameter represents a toast notification." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-smartphone:SmartPhone .
+    rdfs:domain ewe:SmartPhone .
 
-ewe-smartphone:NavbarNotification a owl:Class ;
+ewe:NavbarNotification a owl:Class ;
     rdfs:label "Navbar notification" ;
     rdfs:comment "This parameter represents a navbar notification." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-smartphone:SmartPhone .
+    rdfs:domain ewe:SmartPhone .
 
 
 ###################################

@@ -14,11 +14,12 @@
 ###################################
 # Channel definition
 ###################################
-ewe:EmotionSensor a owl:Class ;    
-    rdfs:label "Emotion sensor" ;
-    rdfs:comment "This channel represents a Emotion sensor." ;
-    foaf:logo "fa fa-heart-o" ;
+ewe:Senpy a owl:Class ;    
+    rdfs:label "Senpy" ;
+    rdfs:comment "This channel represents Senpy, a framework for sentiment and emotion analysis services." ;
+    foaf:logo "fa fa-comments" ;
     ewe:generatesEvent ewe:EmotionDetected ;
+    ewe:generatesEvent ewe:SentimentDetected ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 
@@ -31,7 +32,14 @@ ewe:EmotionDetected a owl:Class ;
     rdfs:comment "This event will be triggered when a certain emotion is detected." ;
     ewe:hasOutputParameter ewe:Emotion ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe:EmotionSensor .
+    rdfs:domain ewe:Senpy .
+
+ewe:SentimentDetected a owl:Class ;
+    rdfs:label "Sentiment detected" ;
+    rdfs:comment "This event will be triggered when a certain sentiment is detected." ;
+    ewe:hasOutputParameter ewe:Sentiment ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe:Senpy .
 
     
 ###################################
@@ -50,8 +58,15 @@ ewe:Emotion a owl:Class ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:subClassOf onyx:Emotion ;
-    rdfs:domain ewe:EmotionSensor .
+    rdfs:domain ewe:Senpy .
 
+ewe:Sentiment a owl:Class ;
+    rdfs:label "Detected sentiment" ;
+    rdfs:comment "This parameter represents the sentiment detected." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:subClassOf onyx:Sentiment ;
+    rdfs:domain ewe:Senpy .
 
 
 ###################################

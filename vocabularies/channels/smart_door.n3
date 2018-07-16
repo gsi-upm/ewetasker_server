@@ -2,25 +2,24 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix ewe-smartdoor: <http://gsi.dit.upm.es/ontologies/ewe-connected-home-smartdoor/ns/> .
 @prefix ex: <http://example.org/ex#> .
 @prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@base  <http://gsi.dit.upm.es/ontologies/ewe-connected-home-smartdoor/ns/> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
 ###################################
 # Channel definition
 ###################################
-ewe-smartdoor:SmartDoor a owl:Class ;    
+ewe:SmartDoor a owl:Class ;    
     rdfs:label "Connected smart door" ;
     rdfs:comment "This channel represents a simplified smart door with simple capabilities" ;
     foaf:logo "fa fa-lock" ;
-    ewe:providesAction ewe-smartdoor:OpenDoor ;
-    ewe:generatesEvent ewe-smartdoor:DoorOpened ;
-    ewe:generatesEvent ewe-smartdoor:DoorClosed ;
+    ewe:providesAction ewe:OpenDoor ;
+    ewe:generatesEvent ewe:DoorOpened ;
+    ewe:generatesEvent ewe:DoorClosed ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 
@@ -29,63 +28,63 @@ ewe-smartdoor:SmartDoor a owl:Class ;
 # Events definition
 ###################################
 
-ewe-smartdoor:DoorOpened a owl:Class ;
+ewe:DoorOpened a owl:Class ;
     rdfs:label "Door opened" ;
     rdfs:comment "This event will be triggered when door opens." ;
-    ewe:hasInputParameter ewe-smartdoor:LocalIP ;
-    ewe:hasInputParameter ewe-smartdoor:PublicIP ;
-    ewe:hasOutputParameter ewe-smartdoor:DoorID ;
+    ewe:hasInputParameter ewe:LocalIP ;
+    ewe:hasInputParameter ewe:PublicIP ;
+    ewe:hasOutputParameter ewe:DoorID ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe-smartdoor:DoorOpened .
+    rdfs:domain ewe:DoorOpened .
 
-ewe-smartdoor:DoorClosed a owl:Class ;
+ewe:DoorClosed a owl:Class ;
     rdfs:label "Door closed" ;
     rdfs:comment "This event will be triggered when door closes." ;
-    ewe:hasInputParameter ewe-smartdoor:LocalIP ;
-    ewe:hasInputParameter ewe-smartdoor:PublicIP ;
-    ewe:hasOutputParameter ewe-smartdoor:DoorID ;
+    ewe:hasInputParameter ewe:LocalIP ;
+    ewe:hasInputParameter ewe:PublicIP ;
+    ewe:hasOutputParameter ewe:DoorID ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe-smartdoor:DoorOpened .
+    rdfs:domain ewe:DoorOpened .
 
     
 ###################################
 # Actions definition
 ###################################
 
-ewe-smartdoor:OpenDoor a owl:Class ;
+ewe:OpenDoor a owl:Class ;
     rdfs:label "Open door" ;
     rdfs:comment "This action will open the door." ;
-    ewe:hasInputParameter ewe-smartdoor:LocalIP ;
-    ewe:hasInputParameter ewe-smartdoor:PublicIP ;
-    ewe:hasOutputParameter ewe-smartdoor:DoorID ;
+    ewe:hasInputParameter ewe:LocalIP ;
+    ewe:hasInputParameter ewe:PublicIP ;
+    ewe:hasOutputParameter ewe:DoorID ;
     rdfs:subClassOf ewe:Action ;
-    rdfs:domain ewe-smartdoor:SmartDoor .
+    rdfs:domain ewe:SmartDoor .
 
 
 ###################################
 # Parameters definition
 ###################################
 
-ewe-smartdoor:LocalIP a owl:Class ;
+ewe:LocalIP a owl:Class ;
     rdfs:label "Api token" ;
     rdfs:comment "This parameter represents the local IP of the smart door." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-smartdoor:SmartDoor .
+    rdfs:domain ewe:SmartDoor .
 
-ewe-smartdoor:PublicIP a owl:Class ;
+ewe:PublicIP a owl:Class ;
     rdfs:label "Public IP" ;
     rdfs:comment "This parameter represents the public IP of the smart door." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-smartdoor:SmartDoor .
+    rdfs:domain ewe:SmartDoor .
 
-ewe-smartdoor:DoorID a owl:Class ;
+ewe:DoorID a owl:Class ;
     rdfs:label "Door ID" ;
     rdfs:comment "This parameter represents the smart door ID." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-smartdoor:Smartdoor .
+    rdfs:domain ewe:Smartdoor .
 
 
 ###################################

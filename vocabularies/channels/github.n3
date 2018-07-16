@@ -2,23 +2,22 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix ewe-github: <http://gsi.dit.upm.es/ontologies/ewe-github/ns/> .
 @prefix ex: <http://example.org/ex#> .
 @prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix ewe-service: <http://gsi.dit.upm.es/ontologies/ewe-service/ns/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@base  <http://gsi.dit.upm.es/ontologies/ewe-github/ns/> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
 ###################################
 # Channel definition
 ###################################
-ewe-github:Github a owl:Class ;    
+ewe:Github a owl:Class ;    
     rdfs:label "Github" ;
-    rdfs:comment "This channel represents Github service" ;
+    rdfs:comment "This channel represents Github service." ;
     foaf:logo "fa fa-github" ;
-    ewe:generatesEvent ewe-github:CommitPushed ;
+    ewe:generatesEvent ewe:CommitPushed ;
     ewe:hasCategory ewe-service:Service ;
     rdfs:subClassOf ewe:Channel .
 
@@ -27,13 +26,13 @@ ewe-github:Github a owl:Class ;
 # Events definition
 ###################################
 
-ewe-github:CommitPushed a owl:Class ;
+ewe:CommitPushed a owl:Class ;
     rdfs:label "Commit pushed" ;
     rdfs:comment "This event will be triggered when user push a commit on the specified repository." ;
-    ewe:hasInputParameter ewe-github:Username ;
-    ewe:hasOutputParameter ewe-github:Repository ;
+    ewe:hasInputParameter ewe:Username ;
+    ewe:hasOutputParameter ewe:Repository ;
     rdfs:subClassOf ewe:Action ;
-    rdfs:domain ewe-github:Github .
+    rdfs:domain ewe:Github .
 
 
     
@@ -48,19 +47,19 @@ ewe-github:CommitPushed a owl:Class ;
 # Parameters definition
 ###################################
 
-ewe-github:Username a owl:Class ;
+ewe:Username a owl:Class ;
     rdfs:label "Github username" ;
     rdfs:comment "This parameter represents Github username." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-github:Github .
+    rdfs:domain ewe:Github .
 
-ewe-github:Repository a owl:Class ;
+ewe:Repository a owl:Class ;
     rdfs:label "Repository name" ;
     rdfs:comment "This parameter represents the repository name." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-github:Github .
+    rdfs:domain ewe:Github .
 
 
 ###################################

@@ -2,25 +2,24 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix ewe-presence-sensor: <http://gsi.dit.upm.es/ontologies/ewe-presence-sensor/ns/> .
 @prefix ex: <http://example.org/ex#> .
 @prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@base  <http://gsi.dit.upm.es/ontologies/ewe-presence-sensor/ns/> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
 ###################################
 # Channel definition
 ###################################
-ewe-presence-sensor:PresenceSensor a owl:Class ;    
+ewe:PresenceSensor a owl:Class ;    
     rdfs:label "Presence sensor" ;
-    rdfs:comment "This channel represents a presence sensor" ;
+    rdfs:comment "This channel represents a presence sensor." ;
     foaf:logo "fa fa-street-view" ;
-    ewe:generatesEvent ewe-presence-sensor:PresenceDetectedAtDistanceLessThan ;
-    ewe:generatesEvent ewe-presence-sensor:PresenceDetectedAtDistanceGreaterThan ;
-    ewe:generatesEvent ewe-presence-sensor:PresenceNotDetectedInTime ;
+    ewe:generatesEvent ewe:PresenceDetectedAtDistanceLessThan ;
+    ewe:generatesEvent ewe:PresenceDetectedAtDistanceGreaterThan ;
+    ewe:generatesEvent ewe:PresenceNotDetectedInTime ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 
@@ -28,29 +27,29 @@ ewe-presence-sensor:PresenceSensor a owl:Class ;
 ###################################
 # Events definition
 ###################################
-ewe-presence-sensor:PresenceDetectedAtDistanceLessThan a owl:Class ;
+ewe:PresenceDetectedAtDistanceLessThan a owl:Class ;
     rdfs:label "Presence detected at distance less than the specified parameter" ;
     rdfs:comment "This event will be triggered when presence sensor detects a user closer than the specified distance." ;
-    ewe:hasOutputParameter ewe-presence-sensor:SensorID ;
-    ewe:hasOutputParameter ewe-presence-sensor:Distance ;
+    ewe:hasOutputParameter ewe:SensorID ;
+    ewe:hasOutputParameter ewe:Distance ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe-presence-sensor:PresenceSensor .
+    rdfs:domain ewe:PresenceSensor .
 
-ewe-presence-sensor:PresenceNotDetectedInTime a owl:Class ;
+ewe:PresenceNotDetectedInTime a owl:Class ;
     rdfs:label "Presence not detected during the specified parameter" ;
     rdfs:comment "This event will be triggered when presence sensor is not detected a user during an specified time." ;
-    ewe:hasOutputParameter ewe-presence-sensor:SensorID ;
-    ewe:hasOutputParameter ewe-presence-sensor:Time ;
+    ewe:hasOutputParameter ewe:SensorID ;
+    ewe:hasOutputParameter ewe:Time ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe-presence-sensor:PresenceSensor .
+    rdfs:domain ewe:PresenceSensor .
 
-ewe-presence-sensor:PresenceDetectedAtDistanceGreaterThan a owl:Class ;
+ewe:PresenceDetectedAtDistanceGreaterThan a owl:Class ;
     rdfs:label "Presence detected at distance greater than the specified parameter" ;
     rdfs:comment "This event will be triggered when presence sensor detects a user far than the specified distance." ;
-    ewe:hasOutputParameter ewe-presence-sensor:SensorID ;
-    ewe:hasOutputParameter ewe-presence-sensor:Distance ;
+    ewe:hasOutputParameter ewe:SensorID ;
+    ewe:hasOutputParameter ewe:Distance ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe-presence-sensor:PresenceSensor .
+    rdfs:domain ewe:PresenceSensor .
 
     
 ###################################
@@ -63,26 +62,26 @@ ewe-presence-sensor:PresenceDetectedAtDistanceGreaterThan a owl:Class ;
 # Parameters definition
 ###################################
 
-ewe-presence-sensor:SensorID a owl:Class ;
+ewe:SensorID a owl:Class ;
     rdfs:label "Sensor ID" ;
     rdfs:comment "This parameter represents sensor ID." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-presence-sensor:PresenceSensor .
+    rdfs:domain ewe:PresenceSensor .
 
-ewe-presence-sensor:Distance a owl:Class ;
+ewe:Distance a owl:Class ;
     rdfs:label "Distance in meters" ;
     rdfs:comment "This parameter represents the distance measured by the sensor." ;
     rdf:datatype xsd:math ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-presence-sensor:PresenceSensor .
+    rdfs:domain ewe:PresenceSensor .
 
-ewe-presence-sensor:Time a owl:Class ;
+ewe:Time a owl:Class ;
     rdfs:label "Time in seconds" ;
     rdfs:comment "This parameter represents the period of time measured." ;
     rdf:datatype xsd:math ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-presence-sensor:PresenceSensor .
+    rdfs:domain ewe:PresenceSensor .
 
 ###################################
 # Example of instances

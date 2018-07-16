@@ -15,7 +15,7 @@
 ###################################
 ewe:SmartTv a owl:Class ;    
     rdfs:label "Connected smart tv" ;
-    rdfs:comment "This channel represents a simplified smarttv with simple capabilities" ;
+    rdfs:comment "This channel represents a simplified smarttv with simple capabilities." ;
     foaf:logo "fa fa-tv" ;
     ewe:providesAction ewe:SwitchOn ;
     ewe:providesAction ewe:SwitchOff ;

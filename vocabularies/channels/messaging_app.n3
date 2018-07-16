@@ -2,23 +2,22 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix ewe-messaging-app: <http://gsi.dit.upm.es/ontologies/ewe-messaging-app/ns/> .
 @prefix ex: <http://example.org/ex#> .
 @prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix ewe-service: <http://gsi.dit.upm.es/ontologies/ewe-service/ns/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@base  <http://gsi.dit.upm.es/ontologies/ewe-messaging-app/ns/> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
 ###################################
 # Channel definition
 ###################################
-ewe-messaging-app:MessagingApp a owl:Class ;    
+ewe:MessagingApp a owl:Class ;    
     rdfs:label "Messaging app" ;
-    rdfs:comment "This channel represents a messaging app with basic functions" ;
+    rdfs:comment "This channel represents a messaging app with basic functions." ;
     foaf:logo "fa fa-whatsapp" ;
-    ewe:providesAction ewe-messaging-app:SendMessage ;
+    ewe:providesAction ewe:SendMessage ;
     ewe:hasCategory ewe-service:Service ;
     rdfs:subClassOf ewe:Channel .
 
@@ -33,32 +32,32 @@ ewe-messaging-app:MessagingApp a owl:Class ;
 # Actions definition
 ###################################
 
-ewe-messaging-app:SendMessage a owl:Class ;
+ewe:SendMessage a owl:Class ;
     rdfs:label "Send message" ;
     rdfs:comment "This action will send a text message to user's messaging app." ;
-    ewe:hasInputParameter ewe-messaging-app:UserID ;
-    ewe:hasOutputParameter ewe-messaging-app:Message ;
+    ewe:hasInputParameter ewe:UserID ;
+    ewe:hasOutputParameter ewe:Message ;
     rdfs:subClassOf ewe:Action ;
-    rdfs:domain ewe-messaging-app:MessagingApp .
+    rdfs:domain ewe:MessagingApp .
 
 
 ###################################
 # Parameters definition
 ###################################
 
-ewe-messaging-app:UserID a owl:Class ;
+ewe:UserID a owl:Class ;
     rdfs:label "User's messaging app ID" ;
     rdfs:comment "This parameter represents user's messaging app ID." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-messaging-app:MessagingApp .
+    rdfs:domain ewe:MessagingApp .
 
-ewe-messaging-app:Message a owl:Class ;
+ewe:Message a owl:Class ;
     rdfs:label "Message content" ;
     rdfs:comment "This parameter represents the content of the text message." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-messaging-app:MessagingApp .
+    rdfs:domain ewe:MessagingApp .
 
 
 ###################################
