@@ -2,13 +2,12 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
-@base  <http://gsi.dit.upm.es/ontologies/ewe-service/ns/> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 ###################################
 # Category definition
 ###################################
-ewe-device:Device a owl:Class ;
+ewe:Device a owl:Class ;
     rdfs:label "Device" ;
     rdfs:comment "This category represents any device (sensors or actuators)." ;
     rdfs:subClassOf ewe:Category .

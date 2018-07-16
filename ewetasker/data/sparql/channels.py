@@ -151,7 +151,7 @@ def get_all_subchannels(channel_uri):
 
 def create_channel(base, name, c_type, label, comment, parameters):
 
-    timestamp = str(round(time.time()*1000))
+    timestamp = str(int(round(time.time())))
     #Define the SparQL store
     endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/update'
     store = sparqlstore.SPARQLUpdateStore()
@@ -161,10 +161,10 @@ def create_channel(base, name, c_type, label, comment, parameters):
     # Create parameters
     for param in parameters:
         triples = triples + """
-            <%s%s> rdf:type <%s> ;
+            ewe:%s rdf:type <%s> ;
                     rdf:value '%s' .
             <%s%s> ewe:hasParameter <%s%s> .
-        """ % (base, param["rdfs:label"].replace(" ", "").lower() + timestamp, param["rdf:type"], param["rdf:value"], base, name + timestamp, base, param["rdfs:label"].replace(" ", "").lower() + timestamp)
+        """ % (param["rdfs:label"].replace(" ", "").lower() + timestamp, param["rdf:type"], param["rdf:value"], base, name + timestamp, base, param["rdfs:label"].replace(" ", "").lower() + timestamp)
     # Create channel
     get_channels_query = """
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -174,12 +174,12 @@ def create_channel(base, name, c_type, label, comment, parameters):
 
         INSERT DATA
         {
-            <%s%s> rdf:type <%s> ;
+            ewe:%s rdf:type <%s> ;
                 rdfs:label '%s';
                 rdfs:comment '%s'.
             %s
         }
-    """ % (base, name + timestamp, c_type, label, comment, triples)
+    """ % (name + timestamp, c_type, label, comment, triples)
 
     channels = store.update(get_channels_query)
     store.close()
@@ -207,7 +207,7 @@ def create_channel_with_triples(triples):
             %s
         }
     """ % (triples_query)
-    print(get_channels_query)
+
     channels = store.update(get_channels_query)
     store.close()
 

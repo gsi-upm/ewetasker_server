@@ -2,25 +2,24 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix ewe-smarttv: <http://gsi.dit.upm.es/ontologies/ewe-connected-home-smarttv/ns/> .
 @prefix ex: <http://example.org/ex#> .
 @prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@base  <http://gsi.dit.upm.es/ontologies/ewe-connected-home-smarttv/ns/> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
 ###################################
 # Channel definition
 ###################################
-ewe-smarttv:SmartTv a owl:Class ;    
+ewe:SmartTv a owl:Class ;    
     rdfs:label "Connected smart tv" ;
     rdfs:comment "This channel represents a simplified smarttv with simple capabilities" ;
     foaf:logo "fa fa-tv" ;
-    ewe:providesAction ewe-smarttv:SwitchOn ;
-    ewe:providesAction ewe-smarttv:SwitchOff ;
-    ewe:providesAction ewe-smarttv:DisplayImage ;
+    ewe:providesAction ewe:SwitchOn ;
+    ewe:providesAction ewe:SwitchOff ;
+    ewe:providesAction ewe:DisplayImage ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 
@@ -35,63 +34,63 @@ ewe-smarttv:SmartTv a owl:Class ;
 # Actions definition
 ###################################
 
-ewe-smarttv:SwitchOn a owl:Class ;
+ewe:SwitchOn a owl:Class ;
     rdfs:label "Switch on" ;
     rdfs:comment "This action will switch on the TV." ;
-    ewe:hasInputParameter ewe-smarttv:LocalIP ;
-    ewe:hasInputParameter ewe-smarttv:PublicIP ;
+    ewe:hasInputParameter ewe:LocalIP ;
+    ewe:hasInputParameter ewe:PublicIP ;
     rdfs:subClassOf ewe:Action ;
-    rdfs:domain ewe-smarttv:SmartTv .
+    rdfs:domain ewe:SmartTv .
 
-ewe-smarttv:SwitchOff a owl:Class ;
+ewe:SwitchOff a owl:Class ;
     rdfs:label "Switch off" ;
     rdfs:comment "This action will switch off the TV." ;
-    ewe:hasInputParameter ewe-smarttv:LocalIP ;
-    ewe:hasInputParameter ewe-smarttv:PublicIP ;
+    ewe:hasInputParameter ewe:LocalIP ;
+    ewe:hasInputParameter ewe:PublicIP ;
     rdfs:subClassOf ewe:Action ;
-    rdfs:domain ewe-smarttv:SmartTv .
+    rdfs:domain ewe:SmartTv .
 
-ewe-smarttv:DisplayImage a owl:Class ;
+ewe:DisplayImage a owl:Class ;
     rdfs:label "Display image" ;
     rdfs:comment "This action will display an image on the screen." ;
-    ewe:hasInputParameter ewe-smarttv:LocalIP ;
-    ewe:hasInputParameter ewe-smarttv:PublicIP ;
-    ewe:hasOutputParameter ewe-smarttv:Image ;
+    ewe:hasInputParameter ewe:LocalIP ;
+    ewe:hasInputParameter ewe:PublicIP ;
+    ewe:hasOutputParameter ewe:Image ;
     rdfs:subClassOf ewe:Action ;
-    rdfs:domain ewe-smarttv:SmartTv .
+    rdfs:domain ewe:SmartTv .
 
 ###################################
 # Parameters definition
 ###################################
 
-ewe-smarttv:LocalIP a owl:Class ;
+ewe:LocalIP a owl:Class ;
     rdfs:label "Local IP" ;
     rdfs:comment "This parameter represents the local IP of the TV." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-smarttv:SmartTv .
+    rdfs:domain ewe:SmartTv .
 
-ewe-smarttv:PublicIP a owl:Class ;
+ewe:PublicIP a owl:Class ;
     rdfs:label "Public IP" ;
     rdfs:comment "This parameter represents the public IP of the TV." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-smarttv:SmartTv .
+    rdfs:domain ewe:SmartTv .
 
-ewe-smarttv:Image a owl:Class ;
+ewe:Image a owl:Class ;
     rdfs:label "Image to display" ;
     rdfs:comment "This parameter represents the image to display on the TV." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe-smarttv:SmartTv .
+    rdfs:domain ewe:SmartTv .
 
 ###################################
 # Example of instances
 ###################################
 
-#ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+#ex:samsungtv rdf:type ewe:SmartTv .
 
-#ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+#ex:showimg1 rdf:type ewe:DisplayImage ;
 #    ewe:generatedBy ex:samsungtv ;
 #    ewe:time "2016-01-19T15:10:00Z" .
 

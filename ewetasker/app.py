@@ -1,5 +1,6 @@
 from flask import Flask
-from delivery.channels import *
+from delivery.channels import get_base_channels, get_custom_channels, get_custom_category_channels, get_category_channels, get_subchannels_of_channel, import_new_channel, delete_custom_channel_with_uri
+from delivery.rules import create_rule
 from flask_cors import CORS
 from flask import request
 
@@ -34,6 +35,14 @@ def import_channel():
 @app.route("/channels/custom/delete/<path:uri>", methods = ['DELETE'])
 def delete_custom_channel(uri):
     return delete_custom_channel_with_uri(uri)
+
+#@app.route("/rules")
+#def base_rules():
+#    return get_base_channels()
+@app.route("/rules/new", methods = ['POST'])
+def post_create_rule():
+    rule = request.get_json()
+    return create_rule(rule)
 
 if __name__ == '__main__':
     app.run(host="localhost", debug=True)

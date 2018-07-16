@@ -96,7 +96,7 @@ def get_custom_category_channels(category_uri):
         channels["channels"].append({"@id" : uri, "rdfs:label" : label.n3(), "rdfs:comment" : comment.n3(), "foaf:logo" : logo.n3(), "rdf:type" : baseChannel, "parameters" : []})
 
         parameters_result = get_custom_channel_parameters(uri)
-        for param_uri, param_label, param_value, param_datatype in parameters_result:
+        for param_uri, param_label, param_value, param_datatype, param_base in parameters_result:
             channels["channels"][index]["parameters"].append({"@id" : param_uri, "rdfs:label" : param_label.n3(), "rdf:value" : param_value.n3(), "rdf:datatype" : param_datatype})
 
         index+=1
@@ -116,8 +116,8 @@ def get_subchannels_of_channel(channel_uri):
         channels["channels"].append({"@id" : uri, "rdfs:label" : label.n3(), "rdfs:comment" : comment.n3(), "parameters" : []})
 
         parameters_result = get_custom_channel_parameters(uri)
-        for param_uri, param_label, param_value, param_datatype in parameters_result:
-            channels["channels"][index]["parameters"].append({"@id" : param_uri, "rdfs:label" : param_label.n3(), "rdf:value" : param_value.n3(), "rdf:datatype" : param_datatype})
+        for param_uri, param_label, param_value, param_datatype, param_base in parameters_result:
+            channels["channels"][index]["parameters"].append({"@id" : param_uri, "rdfs:label" : param_label.n3(), "rdf:value" : param_value.n3(), "rdf:type" : param_base})
 
         index+=1
     

@@ -1,0 +1,69 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ex: <http://example.org/ex#> .
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix onyx: <http://gsi.dit.upm.es/ontologies/onyx/ns/> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe:EmotionSensor a owl:Class ;    
+    rdfs:label "Emotion sensor" ;
+    rdfs:comment "This channel represents a Emotion sensor" ;
+    foaf:logo "fa fa-heart-o" ;
+    ewe:generatesEvent ewe:EmotionDetected ;
+    ewe:hasCategory ewe-device:Device ;
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+ewe:EmotionDetected a owl:Class ;
+    rdfs:label "Emotion detected" ;
+    rdfs:comment "This event will be triggered when a certain emotion is detected." ;
+    ewe:hasOutputParameter ewe:Emotion ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe:EmotionSensor .
+
+    
+###################################
+# Actions definition
+###################################
+# This channel has not actions
+
+
+###################################
+# Parameters definition
+###################################
+
+ewe:Emotion a owl:Class ;
+    rdfs:label "Detected emotion" ;
+    rdfs:comment "This parameter represents the emotion detected." ;
+    rdf:datatype xsd:string ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:subClassOf onyx:Emotion ;
+    rdfs:domain ewe:EmotionSensor .
+
+
+
+###################################
+# Example of instances
+###################################
+
+#ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+
+#ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+#    ewe:generatedBy ex:samsungtv ;
+#    ewe:time "2016-01-19T15:10:00Z" .
+
+# Generated facts 
+
+#ex:labdoor1 rdf:type dogont:DoorActuator .
