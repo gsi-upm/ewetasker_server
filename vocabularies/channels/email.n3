@@ -17,10 +17,10 @@ ewe:Email a owl:Class ;
     rdfs:label "Email service" ;
     rdfs:comment "This channel represents an email service with basic functions." ;
     foaf:logo "fa fa-envelope" ;
-    ewe:providesAction ewe:SendMessage ;
-    ewe:generatesEvent ewe:NewMessageReceived ;
-    ewe:generatesEvent ewe:MessageAbout ;
-    ewe:generatesEvent ewe:MessageReceivedFrom ;
+    ewe:providesAction ewe:SendEmailMessage ;
+    ewe:generatesEvent ewe:NewEmailMessageReceived ;
+    ewe:generatesEvent ewe:EmailMessageAbout ;
+    ewe:generatesEvent ewe:EmailMessageReceivedFrom ;
     ewe:hasCategory ewe-service:Service ;
     rdfs:subClassOf ewe:Channel .
 
@@ -28,7 +28,7 @@ ewe:Email a owl:Class ;
 ###################################
 # Events definition
 ###################################
-ewe:NewMessageReceived a owl:Class ;
+ewe:NewEmailMessageReceived a owl:Class ;
     rdfs:label "New message received" ;
     rdfs:comment "This event will be triggered when a new email message is received." ;
     ewe:hasInputParameter ewe:EmailAddress ;
@@ -38,7 +38,7 @@ ewe:NewMessageReceived a owl:Class ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe:Email .
 
-ewe:MessageReceivedAbout a owl:Class ;
+ewe:EmailMessageReceivedAbout a owl:Class ;
     rdfs:label "New message received about a certain subject" ;
     rdfs:comment "This event will be triggered when a new email message about a certain subject is received." ;
     ewe:hasInputParameter ewe:EmailAddress ;
@@ -46,7 +46,7 @@ ewe:MessageReceivedAbout a owl:Class ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe:Email .
 
-ewe:MessageReceivedFrom a owl:Class ;
+ewe:EmailMessageReceivedFrom a owl:Class ;
     rdfs:label "New message received from a certain contact" ;
     rdfs:comment "This event will be triggered when a new email message from a certain contact is received." ;
     ewe:hasInputParameter ewe:EmailAddress ;
@@ -59,7 +59,7 @@ ewe:MessageReceivedFrom a owl:Class ;
 # Actions definition
 ###################################
 
-ewe:SendMessage a owl:Class ;
+ewe:SendEmailMessage a owl:Class ;
     rdfs:label "Send message" ;
     rdfs:comment "This action will send a email message." ;
     ewe:hasInputParameter ewe:EmailAddress ;

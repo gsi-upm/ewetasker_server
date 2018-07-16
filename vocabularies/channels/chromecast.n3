@@ -17,7 +17,7 @@ ewe:Chromecast a owl:Class ;
     rdfs:label "Chromecast" ;
     rdfs:comment "This channel represents a chromecast device with simple capabilities." ;
     foaf:logo "fa fa-chrome" ;
-    ewe:providesAction ewe:PlayVideo ;
+    ewe:providesAction ewe:PlayVideoChromecast ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 
@@ -32,12 +32,12 @@ ewe:Chromecast a owl:Class ;
 # Actions definition
 ###################################
 
-ewe:PlayVideo a owl:Class ;
+ewe:PlayVideoChromecast a owl:Class ;
     rdfs:label "Play video" ;
     rdfs:comment "This action will play a video on chromecast." ;
-    ewe:hasInputParameter ewe:LocalIP ;
-    ewe:hasInputParameter ewe:PublicIP ;
-    ewe:hasOutputParameter ewe:VideoUrl ;
+    ewe:hasInputParameter ewe:ChromecastLocalIP ;
+    ewe:hasInputParameter ewe:ChromecastPublicIP ;
+    ewe:hasOutputParameter ewe:ChromecastVideoUrl ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:Chromecast .
 
@@ -45,21 +45,21 @@ ewe:PlayVideo a owl:Class ;
 # Parameters definition
 ###################################
 
-ewe:LocalIP a owl:Class ;
+ewe:ChromecastLocalIP a owl:Class ;
     rdfs:label "Local IP" ;
     rdfs:comment "This parameter represents the local IP of the Chromecast." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:Chromecast .
 
-ewe:PublicIP a owl:Class ;
+ewe:ChromecastPublicIP a owl:Class ;
     rdfs:label "Public IP" ;
     rdfs:comment "This parameter represents the public IP of the Chromecast." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:Chromecast .
 
-ewe:VideoUrl a owl:Class ;
+ewe:ChromecastVideoUrl a owl:Class ;
     rdfs:label "Youtube video url" ;
     rdfs:comment "This parameter represents the youtube video url to be reproduced." ;
     rdf:datatype xsd:string ;

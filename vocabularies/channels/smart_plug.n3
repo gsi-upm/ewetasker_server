@@ -17,8 +17,8 @@ ewe:SmartPlug a owl:Class ;
     rdfs:label "Connected smart plug" ;
     rdfs:comment "This channel represents a simplified smart plug with simple capabilities." ;
     foaf:logo "fa fa-plug" ;
-    ewe:providesAction ewe:SwitchOn ;
-    ewe:providesAction ewe:SwitchOff ;
+    ewe:providesAction ewe:SwitchOnPlug ;
+    ewe:providesAction ewe:SwitchOffPlug ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 
@@ -33,20 +33,20 @@ ewe:SmartPlug a owl:Class ;
 # Actions definition
 ###################################
 
-ewe:SwitchOn a owl:Class ;
+ewe:SwitchOnPlug a owl:Class ;
     rdfs:label "Switch on" ;
     rdfs:comment "This action will switch on the plug." ;
-    ewe:hasInputParameter ewe:ApiToken ;
-    ewe:hasInputParameter ewe:PublicIP ;
+    ewe:hasInputParameter ewe:PlugApiToken ;
+    ewe:hasInputParameter ewe:PlugPublicIP ;
     ewe:hasOutputParameter ewe:PlugID ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:SmartPlug .
 
-ewe:SwitchOff a owl:Class ;
+ewe:SwitchOffPlug a owl:Class ;
     rdfs:label "Switch off" ;
     rdfs:comment "This action will switch off the plug." ;
-    ewe:hasInputParameter ewe:ApiToken ;
-    ewe:hasInputParameter ewe:PublicIP ;
+    ewe:hasInputParameter ewe:PlugApiToken ;
+    ewe:hasInputParameter ewe:PlugPublicIP ;
     ewe:hasOutputParameter ewe:PlugID ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:SmartPlug .
@@ -56,14 +56,14 @@ ewe:SwitchOff a owl:Class ;
 # Parameters definition
 ###################################
 
-ewe:ApiToken a owl:Class ;
+ewe:PlugApiToken a owl:Class ;
     rdfs:label "Api token" ;
     rdfs:comment "This parameter represents the Api token of the smart plug." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartPlug .
 
-ewe:PublicIP a owl:Class ;
+ewe:PlugPublicIP a owl:Class ;
     rdfs:label "Public IP" ;
     rdfs:comment "This parameter represents the public IP of the smart plug." ;
     rdf:datatype xsd:string ;

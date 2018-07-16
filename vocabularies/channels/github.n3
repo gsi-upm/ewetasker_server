@@ -17,7 +17,7 @@ ewe:Github a owl:Class ;
     rdfs:label "Github" ;
     rdfs:comment "This channel represents Github service." ;
     foaf:logo "fa fa-github" ;
-    ewe:generatesEvent ewe:CommitPushed ;
+    ewe:providesAction ewe:CommitPushed ;
     ewe:hasCategory ewe-service:Service ;
     rdfs:subClassOf ewe:Channel .
 
@@ -34,13 +34,11 @@ ewe:CommitPushed a owl:Class ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:Github .
 
-
     
 ###################################
 # Actions definition
 ###################################
 # This channel has not actions
-
 
 
 ###################################

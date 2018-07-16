@@ -5,7 +5,7 @@
 @prefix ex: <http://example.org/ex#> .
 @prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
+@prefix ewe-service: <http://gsi.dit.upm.es/ontologies/ewe-service/ns/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix onyx: <http://gsi.dit.upm.es/ontologies/onyx/ns/> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
@@ -18,23 +18,23 @@ ewe:Senpy a owl:Class ;
     rdfs:label "Senpy" ;
     rdfs:comment "This channel represents Senpy, a framework for sentiment and emotion analysis services." ;
     foaf:logo "fa fa-comments" ;
-    ewe:generatesEvent ewe:EmotionDetected ;
-    ewe:generatesEvent ewe:SentimentDetected ;
-    ewe:hasCategory ewe-device:Device ;
+    ewe:generatesEvent ewe:EmotionDetectedSenpy ;
+    ewe:generatesEvent ewe:SentimentDetectedSenpy ;
+    ewe:hasCategory ewe-service:Service ;
     rdfs:subClassOf ewe:Channel .
 
 
 ###################################
 # Events definition
 ###################################
-ewe:EmotionDetected a owl:Class ;
+ewe:EmotionDetectedSenpy a owl:Class ;
     rdfs:label "Emotion detected" ;
     rdfs:comment "This event will be triggered when a certain emotion is detected." ;
     ewe:hasOutputParameter ewe:Emotion ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe:Senpy .
 
-ewe:SentimentDetected a owl:Class ;
+ewe:SentimentDetectedSenpy a owl:Class ;
     rdfs:label "Sentiment detected" ;
     rdfs:comment "This event will be triggered when a certain sentiment is detected." ;
     ewe:hasOutputParameter ewe:Sentiment ;

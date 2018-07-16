@@ -54,8 +54,8 @@ ewe:DoorClosed a owl:Class ;
 ewe:OpenDoor a owl:Class ;
     rdfs:label "Open door" ;
     rdfs:comment "This action will open the door." ;
-    ewe:hasInputParameter ewe:LocalIP ;
-    ewe:hasInputParameter ewe:PublicIP ;
+    ewe:hasInputParameter ewe:DoorLocalIP ;
+    ewe:hasInputParameter ewe:DoorPublicIP ;
     ewe:hasOutputParameter ewe:DoorID ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:SmartDoor .
@@ -65,14 +65,14 @@ ewe:OpenDoor a owl:Class ;
 # Parameters definition
 ###################################
 
-ewe:LocalIP a owl:Class ;
-    rdfs:label "Api token" ;
+ewe:DoorLocalIP a owl:Class ;
+    rdfs:label "Local IP" ;
     rdfs:comment "This parameter represents the local IP of the smart door." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartDoor .
 
-ewe:PublicIP a owl:Class ;
+ewe:DoorPublicIP a owl:Class ;
     rdfs:label "Public IP" ;
     rdfs:comment "This parameter represents the public IP of the smart door." ;
     rdf:datatype xsd:string ;

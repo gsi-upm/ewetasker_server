@@ -14,11 +14,11 @@
 ###################################
 # Channel definition
 ###################################
-ewe:EmpaticaBand a owl:Class ;    
+ewe:Empatica a owl:Class ;    
     rdfs:label "Empatica smart band" ;
     rdfs:comment "This channel represents a Empatica smart band." ;
     foaf:logo "fa fa-heartbeat" ;
-    ewe:generatesEvent ewe:EmotionDetected ;
+    ewe:generatesEvent ewe:EmotionDetectedEmpatica ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 
@@ -26,12 +26,12 @@ ewe:EmpaticaBand a owl:Class ;
 ###################################
 # Events definition
 ###################################
-ewe:EmotionDetected a owl:Class ;
-    rdfs:label "The emotion is the same than the specified parameter" ;
+ewe:EmotionDetectedEmpatica a owl:Class ;
+    rdfs:label "Emotion Detected" ;
     rdfs:comment "This event will be triggered when a determinate emotion is detected." ;
     ewe:hasOutputParameter ewe:Emotion ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe:EmpaticaBand .
+    rdfs:domain ewe:Empatica .
 
     
 ###################################
@@ -50,7 +50,7 @@ ewe:Emotion a owl:Class ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:subClassOf onyx:Emotion ;
-    rdfs:domain ewe:EmpaticaBand .
+    rdfs:domain ewe:Empatica .
 
 
 

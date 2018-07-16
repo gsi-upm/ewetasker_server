@@ -17,9 +17,9 @@ ewe:SmartTv a owl:Class ;
     rdfs:label "Connected smart tv" ;
     rdfs:comment "This channel represents a simplified smarttv with simple capabilities." ;
     foaf:logo "fa fa-tv" ;
-    ewe:providesAction ewe:SwitchOn ;
-    ewe:providesAction ewe:SwitchOff ;
-    ewe:providesAction ewe:DisplayImage ;
+    ewe:providesAction ewe:SwitchOnTv ;
+    ewe:providesAction ewe:SwitchOffTv ;
+    ewe:providesAction ewe:DisplayImageTv ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 
@@ -34,28 +34,28 @@ ewe:SmartTv a owl:Class ;
 # Actions definition
 ###################################
 
-ewe:SwitchOn a owl:Class ;
+ewe:SwitchOnTv a owl:Class ;
     rdfs:label "Switch on" ;
     rdfs:comment "This action will switch on the TV." ;
-    ewe:hasInputParameter ewe:LocalIP ;
-    ewe:hasInputParameter ewe:PublicIP ;
+    ewe:hasInputParameter ewe:TvLocalIP ;
+    ewe:hasInputParameter ewe:TvPublicIP ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:SmartTv .
 
-ewe:SwitchOff a owl:Class ;
+ewe:SwitchOffTv a owl:Class ;
     rdfs:label "Switch off" ;
     rdfs:comment "This action will switch off the TV." ;
-    ewe:hasInputParameter ewe:LocalIP ;
-    ewe:hasInputParameter ewe:PublicIP ;
+    ewe:hasInputParameter ewe:TvLocalIP ;
+    ewe:hasInputParameter ewe:TvPublicIP ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:SmartTv .
 
-ewe:DisplayImage a owl:Class ;
+ewe:DisplayImageTv a owl:Class ;
     rdfs:label "Display image" ;
     rdfs:comment "This action will display an image on the screen." ;
-    ewe:hasInputParameter ewe:LocalIP ;
-    ewe:hasInputParameter ewe:PublicIP ;
-    ewe:hasOutputParameter ewe:Image ;
+    ewe:hasInputParameter ewe:TvLocalIP ;
+    ewe:hasInputParameter ewe:TvPublicIP ;
+    ewe:hasOutputParameter ewe:TvImage ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:SmartTv .
 
@@ -63,21 +63,21 @@ ewe:DisplayImage a owl:Class ;
 # Parameters definition
 ###################################
 
-ewe:LocalIP a owl:Class ;
+ewe:TvLocalIP a owl:Class ;
     rdfs:label "Local IP" ;
     rdfs:comment "This parameter represents the local IP of the TV." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartTv .
 
-ewe:PublicIP a owl:Class ;
+ewe:TvPublicIP a owl:Class ;
     rdfs:label "Public IP" ;
     rdfs:comment "This parameter represents the public IP of the TV." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartTv .
 
-ewe:Image a owl:Class ;
+ewe:TvImage a owl:Class ;
     rdfs:label "Image to display" ;
     rdfs:comment "This parameter represents the image to display on the TV." ;
     rdf:datatype xsd:string ;
