@@ -13,7 +13,7 @@
 ###################################
 # Channel definition
 ###################################
-ewe:plantSensor a owl:Class ;    
+ewe:PlantSensor a owl:Class ;    
     rdfs:label "plant sensor" ;
     rdfs:comment "This channel represents a plant sensor." ;
     foaf:logo "fa fa-tree" ;

@@ -29,8 +29,8 @@ ewe:Github a owl:Class ;
 ewe:CommitPushed a owl:Class ;
     rdfs:label "Commit pushed" ;
     rdfs:comment "This event will be triggered when user push a commit on the specified repository." ;
-    ewe:hasInputParameter ewe:Username ;
-    ewe:hasOutputParameter ewe:Repository ;
+    ewe:hasInputParameter ewe:GithubUsername ;
+    ewe:hasOutputParameter ewe:GithubRepository ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:Github .
 
@@ -45,14 +45,14 @@ ewe:CommitPushed a owl:Class ;
 # Parameters definition
 ###################################
 
-ewe:Username a owl:Class ;
+ewe:GithubUsername a owl:Class ;
     rdfs:label "Github username" ;
     rdfs:comment "This parameter represents Github username." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:Github .
 
-ewe:Repository a owl:Class ;
+ewe:GithubRepository a owl:Class ;
     rdfs:label "Repository name" ;
     rdfs:comment "This parameter represents the repository name." ;
     rdf:datatype xsd:string ;

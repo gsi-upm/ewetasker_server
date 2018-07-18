@@ -35,7 +35,7 @@ ewe:Twitter a owl:Class ;
 ewe:PostTweet a owl:Class ;
     rdfs:label "Post tweet" ;
     rdfs:comment "This action will post a tweet." ;
-    ewe:hasInputParameter ewe:Username ;
+    ewe:hasInputParameter ewe:TwitterUsername ;
     ewe:hasOutputParameter ewe:Tweet ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:Twitter .
@@ -45,7 +45,7 @@ ewe:PostTweet a owl:Class ;
 # Parameters definition
 ###################################
 
-ewe:Username a owl:Class ;
+ewe:TwitterUsername a owl:Class ;
     rdfs:label "Twitter username" ;
     rdfs:comment "This parameter represents Twitter username." ;
     rdf:datatype xsd:string ;
