@@ -3,6 +3,7 @@ from delivery.channels import get_base_channels, get_custom_channels, get_custom
 from delivery.rules import create_rule
 from flask_cors import CORS
 from flask import request
+from data.database.users import *
 
 app = Flask(__name__)
 CORS(app)
@@ -44,5 +45,24 @@ def post_create_rule():
     rule = request.get_json()
     return create_rule(rule)
 
+@app.route("/users/new", methods=['POST'])
+def new_user():
+    username = request.form.get('username')
+    password= request.form.get('password')
+    return create_user(username, password)
+
+@app.route("/users/login", methods=['POST'])
+def login():
+    username = request.form.get('username')
+    password= request.form.get('password')
+    return login_user(username, password)
+
+@app.route("/users/delete", methods=['POST'])
+def delete_user():
+    username = request.form.get('username')
+    password= request.form.get('password')
+    return remove_user(username, password)
+
+
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=False)
+    app.run(host="0.0.0.0", port=5000, debug=True)
