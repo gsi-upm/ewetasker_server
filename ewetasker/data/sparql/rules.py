@@ -5,7 +5,7 @@ import configparser
 config = configparser.ConfigParser()
 config.read('config/config.ini')
 
-def create_new_rule(label, comment, events, actions):
+def create_new_rule(label, comment, events, actions, username):
 
     timestamp = str(int(round(time.time())))
     
@@ -66,9 +66,11 @@ def create_new_rule(label, comment, events, actions):
             ewe:%s rdf:type ewe:Rule ;
             rdfs:label '%s';
                 rdfs:comment '%s';
-                rdf:value "%s".
+                rdf:value "%s";
+            ewe:hasCreator '%s'.
+        
         }
-    """ % (label.replace(" ", "").lower() + timestamp, label, comment, rule)
+    """ % (label.replace(" ", "").lower() + timestamp, label, comment, rule, username)
     print(create_rule_query)
     rules = store.update(create_rule_query)
     store.close()

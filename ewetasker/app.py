@@ -5,6 +5,7 @@ from flask_cors import CORS
 from flask import request
 from data.database.users import *
 
+
 app = Flask(__name__)
 CORS(app)
 
@@ -58,10 +59,10 @@ def login():
     return login_user(username, password)
 
 @app.route("/users/delete", methods=['POST'])
-def delete_user():
+def eliminate_user():
     username = request.form.get('username')
     password= request.form.get('password')
-    return remove_user(username, password)
+    return drop_user(username, password)
 
 
 if __name__ == '__main__':

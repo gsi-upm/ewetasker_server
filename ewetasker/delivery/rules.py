@@ -8,5 +8,6 @@ def create_rule(rule_json):
     rule_comment = rule_json["rdfs:comment"]
     rule_events = rule_json["events"]
     rule_actions = rule_json["actions"]
+    rule_username = rule_json["ewe:hasCreator"]
 
-    return create_new_rule(rule_label, rule_comment, rule_events, rule_actions)
+    return create_new_rule(rule_label, rule_comment, rule_events, rule_actions, rule_username)

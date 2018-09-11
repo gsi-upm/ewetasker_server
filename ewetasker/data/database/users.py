@@ -6,6 +6,7 @@ from jwt import (
     jwk_from_pem,
 )
 import json
+from delivery.users import *
 
 config = configparser.ConfigParser()
 config.read('config/config.ini')
@@ -19,22 +20,25 @@ def create_user(username, password):
     if users.find({'user':username}).count()==0:
         new_user={
             'user': username,
-            'password': password,
-            'rules':[],
-            'channels':[]
+            'password': password
         }
         users.insert_one(new_user)
-        return jwt.encode({'username':username, 'rules':[],'channels':[]}, signing_key, 'RS256')
+        add_user(username)
+        data=get_user(username)
+        return jwt.encode({'username':username, 'data':data}, signing_key, 'RS256')
     return '0'
 
 def login_user(username, password):
     user = users.find_one({'user':username, 'password':password})
     if(user!=None):
-        return jwt.encode({'username':username, 'rules':user['rules'],'channels':user['channels']}, signing_key, 'RS256')
+        data=get_user(username)
+        return jwt.encode({'username':username, 'data':data}, signing_key, 'RS256')
     return '0'
 
-def remove_user(username, password):
+def drop_user(username, password):
     if users.find({'user':username, 'password':password}).count():
         users.delete_one({"user":username, "password":password})
+        remove_user(username)
         return '1'
     return '0'
+

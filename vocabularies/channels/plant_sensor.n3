@@ -14,7 +14,7 @@
 # Channel definition
 ###################################
 ewe:PlantSensor a owl:Class ;    
-    rdfs:label "plant sensor" ;
+    rdfs:label "Plant sensor" ;
     rdfs:comment "This channel represents a plant sensor." ;
     foaf:logo "fa fa-tree" ;
     ewe:generatesEvent ewe:PlantMoistureLowerThan ;
