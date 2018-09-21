@@ -6,3 +6,4 @@ sparqlwrapper
 rdflib-jsonld
 flask-cors
 configparser
+requests

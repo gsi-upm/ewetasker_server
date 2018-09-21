@@ -33,8 +33,8 @@ ewe:NewEmailMessageReceived a owl:Class ;
     rdfs:comment "This event will be triggered when a new email message is received." ;
     ewe:hasInputParameter ewe:EmailAddress ;
     ewe:hasOutputParameter ewe:RecipientAddress ;
-    ewe:hasOutputParameter ewe:Subject ;
-    ewe:hasOutputParameter ewe:Message ;
+    ewe:hasOutputParameter ewe:EmailSubject ;
+    ewe:hasOutputParameter ewe:EmailMessage ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe:Email .
 
@@ -42,7 +42,7 @@ ewe:EmailMessageReceivedAbout a owl:Class ;
     rdfs:label "New message received about a certain subject" ;
     rdfs:comment "This event will be triggered when a new email message about a certain subject is received." ;
     ewe:hasInputParameter ewe:EmailAddress ;
-    ewe:hasOutputParameter ewe:Subject ;
+    ewe:hasOutputParameter ewe:EmailSubject ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe:Email .
 
@@ -85,14 +85,14 @@ ewe:RecipientAddress a owl:Class ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:Email .
 
-ewe:Subject a owl:Class ;
+ewe:EmailSubject a owl:Class ;
     rdfs:label "Email subject" ;
     rdfs:comment "This parameter represents the subject of the email message." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:Email .
 
-ewe:Message a owl:Class ;
+ewe:EmailMessage a owl:Class ;
     rdfs:label "Message content" ;
     rdfs:comment "This parameter represents the content of the email message." ;
     rdf:datatype xsd:string ;

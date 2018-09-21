@@ -36,39 +36,39 @@ ewe:SmartLight a owl:Class ;
 ###################################
 
 ewe:SwitchOnLight a owl:Class ;
-    rdfs:label "Switch on" ;
+    rdfs:label "Switch on light" ;
     rdfs:comment "This action will switch on the light." ;
     ewe:hasInputParameter ewe:LightPublicIP ;
     ewe:hasInputParameter ewe:LightApiToken ;
-    ewe:hasOutputParameter ewe:LightID ;
+    ewe:hasInputParameter ewe:LightID ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:SmartLight .
 
 ewe:SwitchOffLight a owl:Class ;
-    rdfs:label "Switch off" ;
+    rdfs:label "Switch off light" ;
     rdfs:comment "This action will switch off the light." ;
     ewe:hasInputParameter ewe:LightPublicIP ;
     ewe:hasInputParameter ewe:LightApiToken ;
-    ewe:hasOutputParameter ewe:LightID ;
+    ewe:hasInputParameter ewe:LightID ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:SmartLight .
 
 ewe:SetBrightnessLight a owl:Class ;
-    rdfs:label "Set brightness" ;
+    rdfs:label "Set light brightness" ;
     rdfs:comment "This action will set the brightness level of the light." ;
     ewe:hasInputParameter ewe:LightPublicIP ;
     ewe:hasInputParameter ewe:LightApiToken ;
-    ewe:hasOutputParameter ewe:LightID ;
+    ewe:hasInputParameter ewe:LightID ;
     ewe:hasOutputParameter ewe:LightBrightness ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:SmartLight .
 
 ewe:SetRGBLight a owl:Class ;
-    rdfs:label "Set RGB" ;
+    rdfs:label "Set light RGB" ;
     rdfs:comment "This action will set the color of the light." ;
     ewe:hasInputParameter ewe:LightPublicIP ;
     ewe:hasInputParameter ewe:LightApiToken ;
-    ewe:hasOutputParameter ewe:LightID ;
+    ewe:hasInputParameter ewe:LightID ;
     ewe:hasOutputParameter ewe:LightColor ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:SmartLight .
@@ -78,7 +78,7 @@ ewe:SetRGBLight a owl:Class ;
 ###################################
 
 ewe:LightPublicIP a owl:Class ;
-    rdfs:label "Public IP" ;
+    rdfs:label "Light Public IP" ;
     rdfs:comment "This parameter represents the public IP of the smart light controller." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
@@ -92,21 +92,21 @@ ewe:LightID a owl:Class ;
     rdfs:domain ewe:SmartLight .
 
 ewe:LightApiToken a owl:Class ;
-    rdfs:label "Api Token" ;
+    rdfs:label "Light Api Token" ;
     rdfs:comment "This parameter represents the Api Token to control the smart light." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartLight .
 
 ewe:LightBrightness a owl:Class ;
-    rdfs:label "Brightness level" ;
+    rdfs:label "Light Brightness level" ;
     rdfs:comment "This parameter represents the brightness level of the smart light." ;
     rdf:datatype xsd:float ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartLight .
 
 ewe:LightColor a owl:Class ;
-    rdfs:label "Color" ;
+    rdfs:label "Light Color" ;
     rdfs:comment "This parameter represents the color of the smart light." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;

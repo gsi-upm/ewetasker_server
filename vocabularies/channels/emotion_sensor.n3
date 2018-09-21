@@ -27,9 +27,9 @@ ewe:EmotionSensor a owl:Class ;
 # Events definition
 ###################################
 ewe:EmotionDetectedSensor a owl:Class ;
-    rdfs:label "Emotion detected" ;
+    rdfs:label "Emotion detected by sensor" ;
     rdfs:comment "This event will be triggered when a certain emotion is detected." ;
-    ewe:hasOutputParameter ewe:Emotion ;
+    ewe:hasOutputParameter ewe:SensorEmotion ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe:EmotionSensor .
 
@@ -44,8 +44,8 @@ ewe:EmotionDetectedSensor a owl:Class ;
 # Parameters definition
 ###################################
 
-ewe:Emotion a owl:Class ;
-    rdfs:label "Detected emotion" ;
+ewe:SensorEmotion a owl:Class ;
+    rdfs:label "Detected emotion by sensor" ;
     rdfs:comment "This parameter represents the emotion detected." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;

@@ -28,16 +28,16 @@ ewe:Senpy a owl:Class ;
 # Events definition
 ###################################
 ewe:EmotionDetectedSenpy a owl:Class ;
-    rdfs:label "Emotion detected" ;
+    rdfs:label "Emotion detected by Senpy" ;
     rdfs:comment "This event will be triggered when a certain emotion is detected." ;
-    ewe:hasOutputParameter ewe:Emotion ;
+    ewe:hasOutputParameter ewe:SenpyEmotion ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe:Senpy .
 
 ewe:SentimentDetectedSenpy a owl:Class ;
-    rdfs:label "Sentiment detected" ;
+    rdfs:label "Sentiment detected by Senpy" ;
     rdfs:comment "This event will be triggered when a certain sentiment is detected." ;
-    ewe:hasOutputParameter ewe:Sentiment ;
+    ewe:hasOutputParameter ewe:SenpySentiment ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe:Senpy .
 
@@ -52,17 +52,17 @@ ewe:SentimentDetectedSenpy a owl:Class ;
 # Parameters definition
 ###################################
 
-ewe:Emotion a owl:Class ;
-    rdfs:label "Detected emotion" ;
-    rdfs:comment "This parameter represents the emotion detected." ;
+ewe:SenpyEmotion a owl:Class ;
+    rdfs:label "Senpy Detected emotion" ;
+    rdfs:comment "This parameter represents the emotion detected by Senpy." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:subClassOf onyx:Emotion ;
     rdfs:domain ewe:Senpy .
 
-ewe:Sentiment a owl:Class ;
-    rdfs:label "Detected sentiment" ;
-    rdfs:comment "This parameter represents the sentiment detected." ;
+ewe:SenpySentiment a owl:Class ;
+    rdfs:label "Senpy Detected sentiment" ;
+    rdfs:comment "This parameter represents the sentiment detected by Senpy." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:subClassOf onyx:Sentiment ;

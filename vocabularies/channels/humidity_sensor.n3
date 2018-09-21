@@ -30,8 +30,8 @@ ewe:HumiditySensor a owl:Class ;
 ewe:HumidityLowerThan a owl:Class ;
     rdfs:label "Humidity detected lower than the specified parameter" ;
     rdfs:comment "This event will be triggered when the humidity does not exceed the specified level." ;
-    ewe:hasOutputParameter ewe:SensorID ;
-    ewe:hasOutputParameter ewe:Level ;
+    ewe:hasInputParameter ewe:HumiditySensorID ;
+    ewe:hasOutputParameter ewe:HumidityLevel ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe:HumiditySensor .
 
@@ -39,8 +39,8 @@ ewe:HumidityLowerThan a owl:Class ;
 ewe:HumidityGreaterThan a owl:Class ;
     rdfs:label "Humidity detected greater than the specified parameter" ;
     rdfs:comment "This event will be triggered when the humidity exceeds the specified level." ;
-    ewe:hasOutputParameter ewe:SensorID ;
-    ewe:hasOutputParameter ewe:Level ;
+    ewe:hasInputParameter ewe:HumiditySensorID ;
+    ewe:hasOutputParameter ewe:HumidityLevel ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe:HumiditySensor .
 
@@ -55,14 +55,14 @@ ewe:HumidityGreaterThan a owl:Class ;
 # Parameters definition
 ###################################
 
-ewe:SensorID a owl:Class ;
-    rdfs:label "Sensor ID" ;
-    rdfs:comment "This parameter represents sensor ID." ;
+ewe:HumiditySensorID a owl:Class ;
+    rdfs:label "Humidity Sensor ID" ;
+    rdfs:comment "This parameter represents the humidity sensor ID." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:HumiditySensor .
 
-ewe:Level a owl:Class ;
+ewe:HumidityLevel a owl:Class ;
     rdfs:label "Humidity level measured" ;
     rdfs:comment "This parameter represents the humidity level measured by the sensor." ;
     rdf:datatype xsd:math ;

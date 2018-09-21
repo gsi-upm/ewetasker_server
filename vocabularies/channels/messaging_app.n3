@@ -35,8 +35,8 @@ ewe:MessagingApp a owl:Class ;
 ewe:SendAppMessage a owl:Class ;
     rdfs:label "Send message" ;
     rdfs:comment "This action will send a text message to user's messaging app." ;
-    ewe:hasInputParameter ewe:UserID ;
-    ewe:hasOutputParameter ewe:Message ;
+    ewe:hasInputParameter ewe:MessagingAppUserID ;
+    ewe:hasOutputParameter ewe:MessagingAppMessage ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:MessagingApp .
 
@@ -45,14 +45,14 @@ ewe:SendAppMessage a owl:Class ;
 # Parameters definition
 ###################################
 
-ewe:UserID a owl:Class ;
+ewe:MessagingAppUserID a owl:Class ;
     rdfs:label "User's messaging app ID" ;
     rdfs:comment "This parameter represents user's messaging app ID." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:MessagingApp .
 
-ewe:Message a owl:Class ;
+ewe:MessagingAppMessage a owl:Class ;
     rdfs:label "Message content" ;
     rdfs:comment "This parameter represents the content of the text message." ;
     rdf:datatype xsd:string ;

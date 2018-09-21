@@ -66,14 +66,14 @@ ewe:OpenDoor a owl:Class ;
 ###################################
 
 ewe:DoorLocalIP a owl:Class ;
-    rdfs:label "Local IP" ;
+    rdfs:label "Door Local IP" ;
     rdfs:comment "This parameter represents the local IP of the smart door." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartDoor .
 
 ewe:DoorPublicIP a owl:Class ;
-    rdfs:label "Public IP" ;
+    rdfs:label "Door Public IP" ;
     rdfs:comment "This parameter represents the public IP of the smart door." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;

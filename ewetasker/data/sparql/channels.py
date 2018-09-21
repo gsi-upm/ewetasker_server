@@ -244,3 +244,65 @@ def delete_custom_channel(uri):
     store.close()
 
     return ""
+
+
+def get_channel_by_action(action_uri):
+    #Define the SparQL store
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    store = sparqlstore.SPARQLUpdateStore()
+    store.open((endpoint, endpoint))
+
+    action_uri = action_uri[40:]
+    # Get channels
+    get_channel_query = """
+        PREFIX ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+        SELECT ?uri ?label ?logo ?comment 
+        WHERE {
+            ?uri rdfs:subClassOf ewe:Channel ;
+                rdfs:label ?label ;
+                foaf:logo ?logo ;
+                ewe:providesAction  ewe:%s ;
+                rdfs:comment ?comment .
+        
+        }
+    """ % (action_uri)
+    
+    channel = store.query(get_channel_query)
+    store.close()
+    return channel
+    
+
+def get_channel_by_event(event_uri):
+    #Define the SparQL store
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    store = sparqlstore.SPARQLUpdateStore()
+    store.open((endpoint, endpoint))
+
+    event_uri = event_uri[40:]
+    # Get channels
+    get_channel_query = """
+        PREFIX ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+        SELECT ?uri ?label ?logo ?comment 
+        WHERE {
+            ?uri rdfs:subClassOf ewe:Channel ;
+                rdfs:label ?label ;
+                foaf:logo ?logo ;
+                ewe:generatesEvent  ewe:%s ;
+                rdfs:comment ?comment .
+        
+        }
+    """ % (event_uri)
+    
+    channel = store.query(get_channel_query)
+    store.close()
+    return channel

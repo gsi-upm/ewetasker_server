@@ -36,66 +36,66 @@ ewe:PlantSensor a owl:Class ;
 ewe:PlantMoistureLowerThan a owl:Class ;
     rdfs:label "Plant moisture detected lower than the specified parameter" ;
     rdfs:comment "This event will be triggered when the plant does not exceed the specified moisture." ;
-    ewe:hasOutputParameter ewe:SensorID ;
-    ewe:hasOutputParameter ewe:Moisture ;
+    ewe:hasInputParameter ewe:PlantSensorID ;
+    ewe:hasOutputParameter ewe:PlantMoisture ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe:plantSensor .
+    rdfs:domain ewe:PlantSensor .
 
 ewe:PlantMoistureGreaterThan a owl:Class ;
     rdfs:label "Plant moisture detected greater than the specified parameter" ;
     rdfs:comment "This event will be triggered when the plant exceeds the specified moisture." ;
-    ewe:hasOutputParameter ewe:SensorID ;
-    ewe:hasOutputParameter ewe:Moisture ;
+    ewe:hasInputParameter ewe:PlantSensorID ;
+    ewe:hasOutputParameter ewe:PlantMoisture ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe:plantSensor .
+    rdfs:domain ewe:PlantSensor .
 
 ewe:PlantLightLowerThan a owl:Class ;
     rdfs:label "Plant luminosity detected lower than the specified parameter" ;
     rdfs:comment "This event will be triggered when the plant does not exceed the specified luminosity." ;
-    ewe:hasOutputParameter ewe:SensorID ;
-    ewe:hasOutputParameter ewe:Light ;
+    ewe:hasInputParameter ewe:PlantSensorID ;
+    ewe:hasOutputParameter ewe:PlantLight ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe:plantSensor .
+    rdfs:domain ewe:PlantSensor .
 
 ewe:PlantLightGreaterThan a owl:Class ;
     rdfs:label "Plant luminosity detected greater than the specified parameter" ;
     rdfs:comment "This event will be triggered when the plant exceeds the specified luminosity." ;
-    ewe:hasOutputParameter ewe:SensorID ;
-    ewe:hasOutputParameter ewe:Light ;
+    ewe:hasInputParameter ewe:PlantSensorID ;
+    ewe:hasOutputParameter ewe:PlantLight ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe:plantSensor .
+    rdfs:domain ewe:PlantSensor .
 
 ewe:PlantTemperatureLowerThan a owl:Class ;
     rdfs:label "Plant temperature detected lower than the specified parameter" ;
     rdfs:comment "This event will be triggered when the plant does not exceed the specified temperature." ;
-    ewe:hasOutputParameter ewe:SensorID ;
-    ewe:hasOutputParameter ewe:Temperature ;
+    ewe:hasInputParameter ewe:PlantSensorID ;
+    ewe:hasOutputParameter ewe:PlantTemperature ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe:plantSensor .
+    rdfs:domain ewe:PlantSensor .
 
 ewe:PlantTemperatureGreaterThan a owl:Class ;
     rdfs:label "Plant temperature detected greater than the specified parameter" ;
     rdfs:comment "This event will be triggered when the plant exceeds the specified temperature." ;
-    ewe:hasOutputParameter ewe:SensorID ;
-    ewe:hasOutputParameter ewe:Temperature ;
+    ewe:hasInputParameter ewe:PlantSensorID ;
+    ewe:hasOutputParameter ewe:PlantTemperature ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe:plantSensor .
+    rdfs:domain ewe:PlantSensor .
 
 ewe:PlantConductivityLowerThan a owl:Class ;
     rdfs:label "Plant soil conductivity detected lower than the specified parameter" ;
     rdfs:comment "This event will be triggered when the plant does not exceed the specified soil conductivity." ;
-    ewe:hasOutputParameter ewe:SensorID ;
-    ewe:hasOutputParameter ewe:Conductivity ;
+    ewe:hasInputParameter ewe:PlantSensorID ;
+    ewe:hasOutputParameter ewe:PlantConductivity ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe:plantSensor .
+    rdfs:domain ewe:PlantSensor .
 
 ewe:PlantConductivityGreaterThan a owl:Class ;
     rdfs:label "Plant soil conductivity detected greater than the specified parameter" ;
     rdfs:comment "This event will be triggered when the plant exceeds the specified soil conductivity." ;
-    ewe:hasOutputParameter ewe:SensorID ;
-    ewe:hasOutputParameter ewe:Conductivity ;
+    ewe:hasInputParameter ewe:PlantSensorID ;
+    ewe:hasOutputParameter ewe:PlantConductivity ;
     rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe:plantSensor .
+    rdfs:domain ewe:PlantSensor .
     
 ###################################
 # Actions definition
@@ -107,40 +107,40 @@ ewe:PlantConductivityGreaterThan a owl:Class ;
 # Parameters definition
 ###################################
 
-ewe:SensorID a owl:Class ;
-    rdfs:label "Sensor ID" ;
+ewe:PlantSensorID a owl:Class ;
+    rdfs:label "Plant Sensor ID" ;
     rdfs:comment "This parameter represents sensor ID." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe:plantSensor .
+    rdfs:domain ewe:PlantSensor .
 
-ewe:Moisture a owl:Class ;
+ewe:PlantMoisture a owl:Class ;
     rdfs:label "Plant moisture measured" ;
     rdfs:comment "This parameter represents the moisture measured by the sensor." ;
     rdf:datatype xsd:math ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe:plantSensor .
+    rdfs:domain ewe:PlantSensor .
 
-ewe:Light a owl:Class ;
+ewe:PlantLight a owl:Class ;
     rdfs:label "Plant luminosity measured" ;
     rdfs:comment "This parameter represents the luminosity measured by the sensor." ;
     rdf:datatype xsd:math ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe:plantSensor .
+    rdfs:domain ewe:PlantSensor .
 
-ewe:Temperature a owl:Class ;
+ewe:PlantTemperature a owl:Class ;
     rdfs:label "Plant temperature measured" ;
     rdfs:comment "This parameter represents the temperature measured by the sensor." ;
     rdf:datatype xsd:math ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe:plantSensor .
+    rdfs:domain ewe:PlantSensor .
 
-ewe:Conductivity a owl:Class ;
+ewe:PlantConductivity a owl:Class ;
     rdfs:label "Plant soil conductivity measured" ;
     rdfs:comment "This parameter represents the soil conductivity measured by the sensor." ;
     rdf:datatype xsd:math ;
     rdfs:subClassOf ewe:Parameter ;
-    rdfs:domain ewe:plantSensor .
+    rdfs:domain ewe:PlantSensor .
 
 
 ###################################

@@ -30,7 +30,7 @@ ewe:TemperatureSensor a owl:Class ;
 ewe:TemperatureLowerThan a owl:Class ;
     rdfs:label "Temperature detected lower than the specified parameter" ;
     rdfs:comment "This event will be triggered when the temperature does not exceed the specified degrees." ;
-    ewe:hasOutputParameter ewe:SensorID ;
+    ewe:hasInputParameter ewe:TemperatureSensorID ;
     ewe:hasOutputParameter ewe:Degrees ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe:TemperatureSensor .
@@ -39,7 +39,7 @@ ewe:TemperatureLowerThan a owl:Class ;
 ewe:TemperatureGreaterThan a owl:Class ;
     rdfs:label "Temperature detected greater than the specified parameter" ;
     rdfs:comment "This event will be triggered when the temperature exceeds the specified degrees." ;
-    ewe:hasOutputParameter ewe:SensorID ;
+    ewe:hasInputParameter ewe:TemperatureSensorID ;
     ewe:hasOutputParameter ewe:Degrees ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe:TemperatureSensor .
@@ -55,9 +55,9 @@ ewe:TemperatureGreaterThan a owl:Class ;
 # Parameters definition
 ###################################
 
-ewe:SensorID a owl:Class ;
-    rdfs:label "Sensor ID" ;
-    rdfs:comment "This parameter represents sensor ID." ;
+ewe:TemperatureSensorID a owl:Class ;
+    rdfs:label "Temperature Sensor ID" ;
+    rdfs:comment "This parameter represents the temperature sensor ID." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:TemperatureSensor .

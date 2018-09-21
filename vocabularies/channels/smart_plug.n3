@@ -34,20 +34,20 @@ ewe:SmartPlug a owl:Class ;
 ###################################
 
 ewe:SwitchOnPlug a owl:Class ;
-    rdfs:label "Switch on" ;
+    rdfs:label "Switch on plug" ;
     rdfs:comment "This action will switch on the plug." ;
     ewe:hasInputParameter ewe:PlugApiToken ;
     ewe:hasInputParameter ewe:PlugPublicIP ;
-    ewe:hasOutputParameter ewe:PlugID ;
+    ewe:hasInputParameter ewe:PlugID ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:SmartPlug .
 
 ewe:SwitchOffPlug a owl:Class ;
-    rdfs:label "Switch off" ;
+    rdfs:label "Switch off plug" ;
     rdfs:comment "This action will switch off the plug." ;
     ewe:hasInputParameter ewe:PlugApiToken ;
     ewe:hasInputParameter ewe:PlugPublicIP ;
-    ewe:hasOutputParameter ewe:PlugID ;
+    ewe:hasInputParameter ewe:PlugID ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:SmartPlug .
 
@@ -57,21 +57,21 @@ ewe:SwitchOffPlug a owl:Class ;
 ###################################
 
 ewe:PlugApiToken a owl:Class ;
-    rdfs:label "Api token" ;
+    rdfs:label "Plug Api token" ;
     rdfs:comment "This parameter represents the Api token of the smart plug." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartPlug .
 
 ewe:PlugPublicIP a owl:Class ;
-    rdfs:label "Public IP" ;
+    rdfs:label "Plug Public IP" ;
     rdfs:comment "This parameter represents the public IP of the smart plug." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartPlug .
 
 ewe:PlugID a owl:Class ;
-    rdfs:label "plug ID" ;
+    rdfs:label "Plug ID" ;
     rdfs:comment "This parameter represents the smart plug ID." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;

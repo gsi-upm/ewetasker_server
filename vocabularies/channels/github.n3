@@ -17,7 +17,7 @@ ewe:Github a owl:Class ;
     rdfs:label "Github" ;
     rdfs:comment "This channel represents Github service." ;
     foaf:logo "fa fa-github" ;
-    ewe:providesAction ewe:CommitPushed ;
+    ewe:generatesEvent ewe:CommitPushed ;
     ewe:hasCategory ewe-service:Service ;
     rdfs:subClassOf ewe:Channel .
 
@@ -31,7 +31,7 @@ ewe:CommitPushed a owl:Class ;
     rdfs:comment "This event will be triggered when user push a commit on the specified repository." ;
     ewe:hasInputParameter ewe:GithubUsername ;
     ewe:hasOutputParameter ewe:GithubRepository ;
-    rdfs:subClassOf ewe:Action ;
+    rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe:Github .
 
     
@@ -53,7 +53,7 @@ ewe:GithubUsername a owl:Class ;
     rdfs:domain ewe:Github .
 
 ewe:GithubRepository a owl:Class ;
-    rdfs:label "Repository name" ;
+    rdfs:label "Github repository name" ;
     rdfs:comment "This parameter represents the repository name." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;

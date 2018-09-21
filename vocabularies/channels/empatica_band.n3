@@ -27,9 +27,9 @@ ewe:Empatica a owl:Class ;
 # Events definition
 ###################################
 ewe:EmotionDetectedEmpatica a owl:Class ;
-    rdfs:label "Emotion Detected" ;
+    rdfs:label "Emotion Detected by Empatica" ;
     rdfs:comment "This event will be triggered when a determinate emotion is detected." ;
-    ewe:hasOutputParameter ewe:Emotion ;
+    ewe:hasOutputParameter ewe:EmpaticaEmotion ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe:Empatica .
 
@@ -44,8 +44,8 @@ ewe:EmotionDetectedEmpatica a owl:Class ;
 # Parameters definition
 ###################################
 
-ewe:Emotion a owl:Class ;
-    rdfs:label "Detected emotion" ;
+ewe:EmpaticaEmotion a owl:Class ;
+    rdfs:label "Detected emotion by Empatica" ;
     rdfs:comment "This parameter represents the emotion detected." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;

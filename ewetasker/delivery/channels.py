@@ -194,3 +194,15 @@ def import_new_channel(channel_json):
 
 def delete_custom_channel_with_uri(uri):
     return delete_custom_channel(uri)
+
+def get_channel_with_action_uri(action_uri):
+    channel_result = get_channel_by_action(action_uri)
+    for uri, label, logo, comment in channel_result:
+        channel = {"@id" : uri, "rdfs:label" : label.n3(), "foaf:logo" : logo.n3(), "rdfs:comment" : comment.n3()}
+    return channel
+
+def get_channel_with_event_uri(event_uri):
+    channel_result = get_channel_by_event(event_uri)
+    for uri, label, logo, comment in channel_result:
+        channel = {"@id" : uri, "rdfs:label" : label.n3(), "foaf:logo" : logo.n3(), "rdfs:comment" : comment.n3()}
+    return channel

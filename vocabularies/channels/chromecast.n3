@@ -34,7 +34,7 @@ ewe:Chromecast a owl:Class ;
 
 ewe:PlayVideoChromecast a owl:Class ;
     rdfs:label "Play video" ;
-    rdfs:comment "This action will play a video on chromecast." ;
+    rdfs:comment "This action will play a video on Chromecast." ;
     ewe:hasInputParameter ewe:ChromecastLocalIP ;
     ewe:hasInputParameter ewe:ChromecastPublicIP ;
     ewe:hasOutputParameter ewe:ChromecastVideoUrl ;
@@ -46,14 +46,14 @@ ewe:PlayVideoChromecast a owl:Class ;
 ###################################
 
 ewe:ChromecastLocalIP a owl:Class ;
-    rdfs:label "Local IP" ;
+    rdfs:label "Chromecast Local IP" ;
     rdfs:comment "This parameter represents the local IP of the Chromecast." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:Chromecast .
 
 ewe:ChromecastPublicIP a owl:Class ;
-    rdfs:label "Public IP" ;
+    rdfs:label "Chromecast Public IP" ;
     rdfs:comment "This parameter represents the public IP of the Chromecast." ;
     rdf:datatype xsd:string ;
     rdfs:subClassOf ewe:Parameter ;
