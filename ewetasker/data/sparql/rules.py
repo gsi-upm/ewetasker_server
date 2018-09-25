@@ -21,7 +21,7 @@ def create_new_rule(label, comment, events, actions, user_uri):
     for event in events:
 
         # Event
-        event_triples += "?event%d rdf:type <%s>. " % (event_counter, event["@id"])
+        event_triples += "?event%d rdf:type <%s>; rdf:type ewe:Event. " % (event_counter, event["@id"])
         event_ids += "ewe:triggeredBy <%s> ; " % (event["@id"])
         # Param
         param_triples = ""
@@ -39,7 +39,7 @@ def create_new_rule(label, comment, events, actions, user_uri):
     for action in actions:
 
         # Action
-        action_triples += "ewe:action_%s%d rdf:type <%s>. " % (action["rdfs:label"].replace(" ", "").lower(), action_counter, action["@id"])
+        action_triples += "ewe:action_%s%d rdf:type <%s>;  rdf:type ewe:Action. " % (action["rdfs:label"].replace(" ", "").lower(), action_counter, action["@id"])
         action_ids += "ewe:executes <%s> ; " % (action["@id"])
         # Param
         param_triples = ""
