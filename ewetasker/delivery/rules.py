@@ -4,11 +4,10 @@ from delivery.channels import get_channel_with_action_uri, get_channel_with_even
 import logging
 from rdflib import URIRef
 log = logging.getLogger('tester.sub')
-log.warning('warning test')
+#log.warning('warning test')
 
 # create rule
 def create_rule(rule_json):
-    print(rule_json)
     rule_label = rule_json["rdfs:label"]
     rule_comment = rule_json["rdfs:comment"]
     rule_events = rule_json["events"]

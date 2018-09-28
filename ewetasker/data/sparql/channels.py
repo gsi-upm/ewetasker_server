@@ -8,7 +8,7 @@ config.read('config/config.ini')
 def get_all_base_channels():
 
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -36,7 +36,7 @@ def get_all_base_channels():
 
 def get_all_custom_channels():
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -65,7 +65,7 @@ def get_all_custom_channels():
 
 def get_all_custom_category_channels(category_uri):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -95,7 +95,7 @@ def get_all_custom_category_channels(category_uri):
 
 def get_all_category_channels(category_uri):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -123,7 +123,7 @@ def get_all_category_channels(category_uri):
 
 def get_all_subchannels(channel_uri):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -153,7 +153,7 @@ def create_channel(base, name, c_type, label, comment, parameters):
 
     timestamp = str(int(round(time.time())))
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/update'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/update'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -188,7 +188,7 @@ def create_channel(base, name, c_type, label, comment, parameters):
 
 def create_channel_with_triples(triples):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/update'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/update'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -216,7 +216,7 @@ def create_channel_with_triples(triples):
 def delete_custom_channel(uri):
 
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/update'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/update'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -248,7 +248,7 @@ def delete_custom_channel(uri):
 
 def get_channel_by_action(action_uri):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -279,7 +279,7 @@ def get_channel_by_action(action_uri):
 
 def get_channel_by_event(event_uri):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 

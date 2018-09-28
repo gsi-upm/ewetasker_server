@@ -113,7 +113,7 @@ def get_subchannels_of_channel(channel_uri):
     index = 0
     for uri, label, comment in channels_result:
 
-        channels["channels"].append({"@id" : uri, "rdfs:label" : label.n3(), "rdfs:comment" : comment.n3(), "parameters" : []})
+        channels["channels"].append({"@id" : uri, "rdfs:label" : label.n3(), "rdfs:comment" : comment.n3(), "parameters" : [], "rdf:type" : channel_uri})
 
         parameters_result = get_custom_channel_parameters(uri)
         for param_uri, param_label, param_value, param_datatype, param_base in parameters_result:

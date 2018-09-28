@@ -9,7 +9,7 @@ def get_channel_actions(uri_channel):
 
 
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 

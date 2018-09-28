@@ -8,7 +8,7 @@ config.read('config/config.ini')
 def get_input_parameters(actionevent_uri, uri):
 
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -38,7 +38,7 @@ def get_input_parameters(actionevent_uri, uri):
 def get_output_parameters(actionevent_uri, uri):
 
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -67,7 +67,7 @@ def get_output_parameters(actionevent_uri, uri):
 
 def get_channel_parameters(uri):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -103,7 +103,7 @@ def get_channel_parameters(uri):
 
 def get_custom_channel_parameters(uri):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 

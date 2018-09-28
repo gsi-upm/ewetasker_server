@@ -7,7 +7,7 @@ config.read('config/config.ini')
 def create_new_user(username):
 
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/update'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/update'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -30,7 +30,7 @@ def create_new_user(username):
 
 def query_user(username):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -54,7 +54,7 @@ def query_user(username):
 
 def delete_user(username):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/update'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/update'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 

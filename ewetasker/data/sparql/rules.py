@@ -10,7 +10,7 @@ def create_new_rule(label, comment, events, actions, user_uri):
     timestamp = str(int(round(time.time())))
     
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/update'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/update'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -21,7 +21,7 @@ def create_new_rule(label, comment, events, actions, user_uri):
     for event in events:
 
         # Event
-        event_triples += "?event%d rdf:type <%s>; rdf:type ewe:Event. " % (event_counter, event["@id"])
+        event_triples += "?event%d rdf:type <%s>; rdf:type ewe:Event; rdfs:domain <%s>. " % (event_counter, event["@id"], event["rdfs:domain"])
         event_ids += "ewe:triggeredBy <%s> ; " % (event["@id"])
         # Param
         param_triples = ""
@@ -39,7 +39,7 @@ def create_new_rule(label, comment, events, actions, user_uri):
     for action in actions:
 
         # Action
-        action_triples += "ewe:action_%s%d rdf:type <%s>;  rdf:type ewe:Action. " % (action["rdfs:label"].replace(" ", "").lower(), action_counter, action["@id"])
+        action_triples += "ewe:action_%s%d rdf:type <%s>;  rdf:type ewe:Action; rdfs:domain <%s>. " % (action["rdfs:label"].replace(" ", "").lower(), action_counter, action["@id"], action["rdfs:domain"])
         action_ids += "ewe:executes <%s> ; " % (action["@id"])
         # Param
         param_triples = ""
@@ -79,7 +79,6 @@ def create_new_rule(label, comment, events, actions, user_uri):
         
         }
     """ % (label.replace(" ", "").lower() + timestamp, label, comment, rule, event_ids, action_ids, user_uri)
-    print(create_rule_query)
     rules = store.update(create_rule_query)
     store.close()
 
@@ -88,7 +87,7 @@ def create_new_rule(label, comment, events, actions, user_uri):
 def get_all_user_rules(user_uri):
 
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -114,10 +113,10 @@ def get_all_user_rules(user_uri):
 def get_rule_by_uri(rule_uri):
     
         #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/query'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
-    rule_uri = rule_uri[40:]
+    rule_uri = rule_uri.split("/")[-1]
     get_rule_query = """
                 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
                 PREFIX ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/>
@@ -143,7 +142,7 @@ def get_rule_by_uri(rule_uri):
 def delete_rule(uri):
 
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + ':3030/ewetasker/update'
+    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/update'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
