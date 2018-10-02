@@ -1,20 +1,80 @@
 # EWE Tasker Server
 
-This repository contains EWE Tasker Server module, written in Golang.
+This repository contains EWE Tasker Server module, written in Python.
+
+## INSTALLATION
+
+### REQUIREMENTS
+In order to install Ewetasker server, it is needed to have installed docker-compose. Follow this [link](https://docs.docker.com/compose/install/) if you need more information about it.
+
+### STEP BY STEP
+
+First of all, clone the git project locally and access to Ewetasker server directory.
+
+```
+$ git clone https://lab.cluster.gsi.dit.upm.es/ewe/ewetasker_server.git ewetasker_server
+```
+
+Once made it, access to ewetasker_server directory.
+
+```
+$ cd ewetasker_server
+```
+
+Ewetasker communicates with the web application using jwt tokens, so it is needed to encode the data with a .pem file. If you have your own .key and .csr files, you only need to create a .pem file; otherwise, you need to install openssl and follow the next steps:
+
+```
+$ cd ewetasker
+$ mkdir certs
+$ cd certs
+$ openssl genrsa -out ewetasker.pem 2048
+```
+
+Then you must modify the config.ini file, to change the path to the .pem file with the name you have choosen.
+
+```
+[CERTS]
+
+BASE_PATH = certs/ewetasker.pem
+```
+
+Once made it, go back to /ewetasker_server and launch docker-compose.
+
+```
+$ docker-compose up --build
+```
+
+When build process finishes, access to Fuseki service in localhost:3030 to upload the .n3 files. Fuseki credentials are "admin" and "ewefuseki".
+
+Click on "manage datasets" and then "add new dataset". You must name the dataset as "ewetasker", and choose "persistent" option.
+
+![fuseki_1](./img/fuseki_1.png)
+
+Then, click on "upload data" and select .n3 files contained in "vocabularies" folder. To finish click on "upload all".
+
+![fuseki_2](./img/fuseki_2.png)
+
+At this point, you can access localhost:5000 to register and start to use Ewetasker.
+
+![login](./img/login.png)
 
 ## API CALLS
 
 | Route | Method | Description |
 |---|---|---|
-| /channels  | GET  | Get a list of base channels available at the platform  |
-| /channels/user/{userID}  | GET  |  Get a list of channels available for the specified user |
-| /channels/place/{placeID}  | GET  | Get a list of channels available at the platform associated to a certain place |
-| /channels/new  | POST  | Create a new channel |
-| /rules  | GET  | Get a list of rules available at the platform  |
-| /rules/user/{userID}  | GET  | Get a list of rules available at the platform for the specified user |
-| /rules/new | POST  | Create a new rule |
-| /rules/place/{placeID}  | GET  | Get a list of rules available at the platform associated to a certain place |
-| /event/evaluate  | POST  | Evaluate an event |
+| /channels/base  | GET  | Get a list of base channels available at the platform  |
+| /channels/category/{categoryUri}  | GET  | Get a list by category (Services or Devices) of channels available at the platform  |
+| /channels/custom  | GET  | Get a list of custom channels available at the platform  |
+| /channels/custom/category/{categoryUri}  | GET  | Get a list by category (Services or Devices) of custom channels available at the platform  |
+| /channels/import  | POST  | Import a new custom channel from a json |
+| /channels/custom/delete/{customChannelUri}  | DELETE  | Delete a custom channel |
+| /rules/new | POST  | Create a new rule from a json|
+| /rules/user/{userUri}  | GET  | Get a list of rules available at the platform for the specified user |
+| /rules/delete/{ruleUri}  | DELETE  | Delete a custom channel |
+| /users/new | POST  | Create a new user|
+| /users/login | POST  | Login at platform|
+| /users/delete  | DELETE  | Delete a user |
+| /evaluate  | POST  | Evaluate an event |
 
 ## Get Channels
 
@@ -104,3 +164,18 @@ This repository contains EWE Tasker Server module, written in Golang.
    }
 ]
 ```
+
+# License
+   Copyright 2018 Sergio Muñoz López and Carlos A. Iglesias Fernández.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.

@@ -48,7 +48,7 @@ def post_create_rule():
     rule = request.get_json()
     return create_rule(rule)
 
-@app.route("/rules/get_user/<path:uri>")
+@app.route("/rules/user/<path:uri>")
 def get_rules_user(uri):
     return get_user_rules(uri)
 

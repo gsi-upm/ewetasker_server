@@ -1,0 +1,52 @@
+version: '2'
+services:
+  api:
+    build: ./ewetasker
+    container_name: api
+    ports:
+      - "5050:5000"
+    networks:
+      - ewetasker
+    depends_on:
+      - fuseki
+      - mongo
+
+  fuseki:
+    image: stain/jena-fuseki
+    container_name: fuseki
+    ports: 
+      - "3030:3030"
+    volumes: 
+      - fuseki:/fuseki
+    environment:
+      - ADMIN_PASSWORD="ewefuseki"
+    networks:
+      - ewetasker
+
+  mongo:
+    image: mongo:latest
+    container_name: ewemongodb
+    ports: 
+      - "27017:27017"
+    volumes:
+      - ./mongodb:/data/db
+    environment:
+      - MONGODB_USER="ewemongo"
+      - MONGODB_PASS="gsimongodb2018"
+    networks:
+      - ewetasker
+
+  eye:
+    image: bdevloed/eyeserver
+    container_name: eye
+    ports:
+      - "4040:8000"
+    networks:
+      - ewetasker
+
+networks:
+  ewetasker:
+    driver: bridge
+
+volumes:
+  fuseki:

@@ -8,11 +8,12 @@ from jwt import (
 import json
 from delivery.users import *
 
+
 config = configparser.ConfigParser()
 config.read('config/config.ini')
 users = MongoClient('mongodb://'+ config['MONGODB']['BASE_URL'] +'/').ewetaskerdb.users
 
-with open('certs/lab.cluster.gsi.dit.upm.es.pem', 'rb') as fh:
+with open(config['CERTS']['BASE_PATH'], 'rb') as fh:
     signing_key = jwk_from_pem(fh.read())
 jwt = JWT()
 
