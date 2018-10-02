@@ -54,9 +54,19 @@ Then, click on "upload data" and select .n3 files contained in "vocabularies" fo
 
 ![fuseki_2](./img/fuseki_2.png)
 
-At this point, you can access localhost:5000 to register and start to use Ewetasker.
+At this point, you can test your installation by making a GET Request to localhost:5050.
 
-![login](./img/login.png)
+```
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:5050/channels/base
+```
+
+The response must be like this:
+
+```
+{"@context": {"@vocab": "http://www.gsi.dit.upm.es/ontologies/ewe#"}, "channels": [{"@id": "http://gsi.dit.upm.es/ontologies/ewe/ns/CMS", "rdfs:label": "Content Management System", "rdfs:comment": "This channel represents a Content Management System.", "foaf:logo": "fa fa-newspaper-o", "events": [], "actions": [{"@id": "http://gsi.dit.upm.es/ontologies/ewe/ns/ShowContent", "rdfs:label": "Show content generated", "rdfs:comment": "This action will show the content page created.", "input_parameters": [], "output_parameters": [{"@id": "http://gsi.dit.upm.es/ontologies/ewe/ns/ContentID", "rdfs:label": "Content ID", "rdfs:comment": "This parameter represents the content ID.", "rdf:datatype": "http://www.w3.org/2001/XMLSchema#string"}]}], "parameters": []}, ...
+```
+
+In order to interact with Ewetasker server in a simple way, you can install Ewetasker web application in this [link](https://lab.cluster.gsi.dit.upm.es/ewe/ewetasker_webclient).
 
 ## API CALLS
 
