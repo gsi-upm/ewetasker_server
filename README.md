@@ -1,6 +1,9 @@
-# EWE Tasker Server
+# EWE Tasker
+EWE Tasker is an emotion aware automation platform based on semantic ECA (Event-Condition-Action) rules. It is capable of enable semantic automation rules in a smart environment allowing the user to configure his own automation rules in an easy way. This platform is divided in two modules: [Ewetasker Server](https://lab.cluster.gsi.dit.upm.es/ewe/ewetasker_server.git) module, and [Ewetasker Web Client](https://lab.cluster.gsi.dit.upm.es/ewe/ewetasker_webclient.git) module.
 
-This repository contains EWE Tasker Server module, written in Python.
+## EWE Tasker Server
+
+This repository contains EWE Tasker Server module, written in Python. It provides an API REST to manage and evaluate semantic rules in order to automate tasks for services or smart devices.
 
 ## INSTALLATION
 
@@ -24,13 +27,13 @@ $ cd ewetasker_server
 Ewetasker communicates with the web application using jwt tokens, so it is needed to encode the data with a .pem file. If you have your own .key and .csr files, you only need to create a .pem file; otherwise, you need to install openssl and follow the next steps:
 
 ```
-$ cd ewetasker
+$ cd ewetasker 
 $ mkdir certs
 $ cd certs
 $ openssl genrsa -out ewetasker.pem 2048
 ```
 
-Then you must modify the config.ini file, to change the path to the .pem file with the name you have choosen.
+Then you must modify the config.ini file located in /ewetasker/config/, to change the path to the .pem file with the name you have choosen.
 
 ```
 [CERTS]
