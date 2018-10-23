@@ -13,7 +13,6 @@ def create_rule(rule_json):
     rule_events = rule_json["events"]
     rule_actions = rule_json["actions"]
     rule_user_uri = rule_json["ewe:hasCreator"]
-
     return create_new_rule(rule_label, rule_comment, rule_events, rule_actions, rule_user_uri)
 
 def get_user_rules(user_uri):

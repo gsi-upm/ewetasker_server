@@ -7,3 +7,5 @@ rdflib-jsonld
 flask-cors
 configparser
 requests
+elasticsearch
+twisted

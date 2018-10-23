@@ -7,9 +7,13 @@ services:
       - "5050:5000"
     networks:
       - ewetasker
+    environment:
+      - ES_ENDPOINT=elasticsearch
+      - ES_ENDPOINT_PORT=9200
     depends_on:
       - fuseki
       - mongo
+      - elasticsearch
 
   fuseki:
     image: stain/jena-fuseki
@@ -43,6 +47,41 @@ services:
       - "4040:8000"
     networks:
       - ewetasker
+  elasticsearch:
+    image: "docker.elastic.co/elasticsearch/elasticsearch:5.5.2"
+    container_name: elasticsearch
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "xpack.security.enabled=false"
+      - "http.cors.enabled=true"
+      - 'http.cors.allow-origin=*'
+    volumes:
+      - esdata:/usr/share/elasticsearch/data/
+    ports:
+      - 19200:9200
+      - 19300:9300
+    networks:
+      - ewetasker
+  
+  crossbar:
+    build: ./ewe-crossbar
+    container_name: crossbar
+    environment:
+      - API=api:5000
+    ports:
+      - "8081:8081"
+      - "8082:8082"
+      - "1883:1883"
+    depends_on:
+      - api
+    networks:
+      - ewetasker
 
 networks:
   ewetasker:
@@ -50,3 +89,4 @@ networks:
 
 volumes:
   fuseki:
+  esdata:

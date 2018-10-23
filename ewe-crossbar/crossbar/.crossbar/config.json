@@ -1,0 +1,176 @@
+{
+    "version": 2,
+    "workers": [
+        {
+            "type": "router",
+            "options": {
+                "pythonpath": [".."]
+            },
+            "realms": [
+                {
+                    "name": "realm1",
+                    "roles": [
+                        {
+                            "name": "anonymous",
+                            "permissions": [
+                                {
+                                    "uri": "com.",
+                                    "match": "prefix",
+                                    "allow": {
+                                        "call": true,
+                                        "register": true,
+                                        "publish": true,
+                                        "subscribe": true
+                                    },
+                                    "disclose": {
+                                        "caller": false,
+                                        "publisher": false
+                                    },
+                                    "cache": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "codec",
+                    "roles": [
+                        {
+                            "name": "codec",
+                            "permissions": [
+                                {
+                                    "uri": "",
+                                    "match": "prefix",
+                                    "allow": {
+                                        "call": false,
+                                        "register": true,
+                                        "publish": false,
+                                        "subscribe": false
+                                    },
+                                    "disclose": {
+                                        "caller": false,
+                                        "publisher": false
+                                    },
+                                    "cache": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "transports": [
+                {
+                    "type": "mqtt",
+                    "endpoint": {
+                        "type": "tcp",
+                        "port": 1883
+                    },
+                    "options": {
+                        "realm": "realm1",
+                        "role": "anonymous",
+                        "payload_mapping": {
+                            "": {
+                                "type": "dynamic",
+                                "realm": "codec",
+                                "encoder": "com.example.mqtt.encode",
+                                "decoder": "com.example.mqtt.decode"
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "universal",
+                    "endpoint": {
+                        "type": "tcp",
+                        "port": 8080
+                    },
+                    "mqtt": {
+                        "options": {
+                            "realm": "realm1",
+                            "role": "anonymous",
+                            "payload_mapping": {
+                                "": {
+                                    "type": "dynamic",
+                                    "realm": "codec",
+                                    "encoder": "com.example.mqtt.encode",
+                                    "decoder": "com.example.mqtt.decode"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "web",
+                    "endpoint": {
+                        "type": "tcp",
+                        "port": 8081
+                    },
+                    "paths": {
+                        "/": {
+                            "type": "static",
+                            "directory": "../web"
+                        },
+                        "ws": {
+                            "type": "websocket"
+                        }
+                    }
+                },
+                {
+                    "type": "web",
+                    "endpoint": {
+                        "type": "tcp",
+                        "port": 8082
+                    },
+                    "paths": {
+                        "publish": {
+                            "type": "publisher",
+                            "realm": "realm1",
+                            "role": "anonymous",
+                            "options": {
+                                "debug": true
+                            }
+                        },
+                        "call":{
+                            "type": "caller",
+                            "realm": "realm1",
+                            "role": "anonymous"
+                        }
+                    }
+                }
+            ],
+            "components": [
+                {
+                    "type": "class",
+                    "classname": "codec.MyCodec",
+                    "realm": "codec",
+                    "role": "codec"
+                }
+            ]
+
+        },
+        {
+            "type": "container",
+            "options": {
+                "pythonpath": [
+                    ".."
+                ]
+            },
+            "components": [
+                {
+                    "type": "class",
+                    "classname": "crossbarHelper.AppSession",
+                    "realm": "realm1",
+                    "transport": {
+                        "type": "websocket",
+                        "endpoint": {
+                            "type": "tcp",
+                            "host": "127.0.0.1",
+                            "port": 8081
+                        },
+                        "url": "ws://127.0.0.1:8081/ws"
+                    }
+                }
+            ]
+        }
+    ]
+}

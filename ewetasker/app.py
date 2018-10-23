@@ -5,7 +5,7 @@ from delivery.eye import evaluate_event
 from flask_cors import CORS
 from flask import request
 from data.database.users import *
-
+from data.elasticsearch.ewe_es import upload_event_to_es 
 
 app = Flask(__name__)
 CORS(app)
@@ -74,6 +74,7 @@ def eliminate_user():
 def evaluate():
     username = request.form.get('username')
     event = request.form.get('event')
+    upload_event_to_es(username, event)
     return evaluate_event(username, event)
 
 

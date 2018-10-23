@@ -5,6 +5,7 @@ import configparser
 import logging
 import json
 import requests
+from data.elasticsearch.ewe_es import upload_action_to_es 
 config = configparser.ConfigParser()
 config.read('config/config.ini')
 log = logging.getLogger('tester.sub')
@@ -22,7 +23,7 @@ def evaluate_event(username, event_evaluated):
             for label, comment, event, action, rule in rule_query:
                 rules += " " + rule
                 break
-    return parse_result(post_to_eye_server(event_evaluated, rules))
+    return parse_result(username,post_to_eye_server(event_evaluated, rules))
     
 
 
@@ -33,7 +34,7 @@ def post_to_eye_server(event, rules):
     return response.text
     #return response.text, response.status_code, response.headers.items())
 
-def parse_result(result):
+def parse_result(username, result):
     result = result.replace("PREFIX", "@prefix", 3)
     result = result.replace(">", "> .", 3)
     query = """
@@ -74,5 +75,6 @@ def parse_result(result):
             lastChannel = channel
     actions["actions"].append({"@id" : lastUri, "parameters": parameters, "action": lastAction.split("/")[-1], "channel": lastChannel.split("/")[-1]})
     actions_json = json.dumps(actions).replace('\\"', "")
+    upload_action_to_es(username, actions_json)
     select_performer(actions_json)
     return actions_json

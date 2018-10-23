@@ -1,0 +1,37 @@
+version: '2'
+services:
+  elasticsearch:
+    image: "docker.elastic.co/elasticsearch/elasticsearch:5.5.2"
+    container_name: ewetasker_elasticsearch
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "xpack.security.enabled=false"
+      - "http.cors.enabled=true"
+      - 'http.cors.allow-origin=*'
+    volumes:
+      - esdata:/usr/share/elasticsearch/data/
+
+    ports:
+      - 19200:9200
+      - 19300:9300
+
+  crossbar:
+    build: ./
+    container_name: crossbar
+    environment:
+    - API="api:5050"
+    ports:
+      - "8081:8081"
+      - "8082:8082"
+      - "1883:1883"
+    network_mode:
+      - "host"
+
+volumes:
+  esdata:

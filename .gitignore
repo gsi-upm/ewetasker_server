@@ -7,7 +7,9 @@
 _obj
 _test
 ewetasker/certs
-
+k8s
+node_modules
+mongodb
 # Architecture specific extensions/prefixes
 *.[568vq]
 [568vq].out
@@ -72,6 +74,8 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
+unit_testing
+manual_testing
 
 # Translations
 *.mo
@@ -130,3 +134,7 @@ venv.bak/
 .mypy_cache/
 
 *.pyc
+*.priv
+*.pub
+start.sh
+tester.py
