@@ -4,7 +4,7 @@ import importlib
 from voluptuous import Schema, Required, In, Exclusive, Inclusive, ALLOW_EXTRA
 from twisted.logger import Logger
 import time
-time.sleep(22)
+time.sleep(30)
 url = 'http://' + os.environ['API'] + "/channels/base"
 log = Logger()
 log.info(url)

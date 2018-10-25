@@ -12,16 +12,16 @@ log = logging.getLogger('tester.sub')
 ID_events=0
 ID_actions=0
 try:
-    time.sleep(20)
+    time.sleep(30)
     es = Elasticsearch(hosts=[{'host': os.environ['ES_ENDPOINT'], 'port': os.environ['ES_ENDPOINT_PORT']}])
     connected = es.ping()
-    log.warning("Correctly connected to elasticsearch:"+ connected+"")
+    log.warning("Correctly connected to elasticsearch:"+ str(connected)+"")
     count = es.count("ewetasker", doc_type="events")
     ID_events = count["count"]
-    log.warning("Number of events already registered:"+ ID_events+"")
+    log.warning("Number of events already registered:"+ str(ID_events)+"")
     count = es.count("ewetasker", doc_type="actions")
     ID_actions = count["count"]
-    log.warning("Number of events already registered:"+ ID_actions+"")
+    log.warning("Number of events already registered:"+ str(ID_actions)+"")
 except Exception as e:
     log.warning("Error connecting to elasticsearch")
     log.warning(e)
@@ -50,7 +50,6 @@ def upload_event_to_es(username, event):
     events = []
     parameters = {}
     lastEvent = ""
-    lastUri = ""
     lastChannel = ""
     try:
         g.parse(format="n3", data=event)
@@ -62,7 +61,6 @@ def upload_event_to_es(username, event):
                     parameters = {}
                 parameters[paramType.split("/")[-1]] = value
                 lastEvent = eventType
-                lastUri = uri
                 lastChannel = channel
         events.append({"param": parameters, "event": lastEvent.split("/")[-1], "channel": lastChannel.split("/")[-1]})
     except Exception as e:

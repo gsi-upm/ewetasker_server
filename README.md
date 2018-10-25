@@ -40,6 +40,14 @@ Then you must modify the config.ini file located in /ewetasker/config/, to chang
 
 BASE_PATH = certs/ewetasker.pem
 ```
+To continue, go to /etc folder in your computer path and change your configuration to enable enough memory to use Elasticsearch:
+
+```
+$ cd etc
+$ sudo chmod 666 sysctl.conf
+$ sudo sed -i -e '$a\ vm.max_map_count=262144' sysctl.conf
+$ sudo sysctl -p
+```
 
 Once made it, go back to /ewetasker_server and launch docker-compose.
 
@@ -56,6 +64,13 @@ Click on "manage datasets" and then "add new dataset". You must name the dataset
 Then, click on "upload data" and select .n3 files contained in "vocabularies" folder. To finish click on "upload all".
 
 ![fuseki_2](./img/fuseki_2.png)
+
+Once finished this, stop docker-compose and launch it again in order to start crossbar container successfully.
+
+```
+$ docker-compose down
+$ docker-compose up
+```
 
 At this point, you can test your installation by making a GET Request to localhost:5050.
 
