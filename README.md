@@ -33,12 +33,15 @@ $ cd certs
 $ openssl genrsa -out ewetasker.pem 2048
 ```
 
-Then you must modify the config.ini file located in /ewetasker/config/, to change the path to the .pem file with the name you have choosen.
+Then you must modify the docker-compose.yaml file, to change the path to the .pem file with the name you have choosen.
 
 ```
-[CERTS]
-
-BASE_PATH = certs/ewetasker.pem
+version: '2'
+services:
+  api:
+  ...
+    - CERTS_PATH=certs/ewetasker.pem
+  ...
 ```
 To continue, go to /etc folder in your computer path and change your configuration to enable enough memory to use Elasticsearch:
 
@@ -81,7 +84,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET
 The response must be like this:
 
 ```
-{"@context": {"@vocab": "http://www.gsi.dit.upm.es/ontologies/ewe#"}, "channels": [{"@id": "http://gsi.dit.upm.es/ontologies/ewe/ns/CMS", "rdfs:label": "Content Management System", "rdfs:comment": "This channel represents a Content Management System.", "foaf:logo": "fa fa-newspaper-o", "events": [], "actions": [{"@id": "http://gsi.dit.upm.es/ontologies/ewe/ns/ShowContent", "rdfs:label": "Show content generated", "rdfs:comment": "This action will show the content page created.", "input_parameters": [], "output_parameters": [{"@id": "http://gsi.dit.upm.es/ontologies/ewe/ns/ContentID", "rdfs:label": "Content ID", "rdfs:comment": "This parameter represents the content ID.", "rdf:datatype": "http://www.w3.org/2001/XMLSchema#string"}]}], "parameters": []}, ...
+{"@context": {"@vocab": "http://www.gsi.dit.upm.es/ontologies/ewe#"}, "channels": [{"@id": "http://gsi.dit.upm.es/ontologies/ewe/ns/Chromecast", "rdfs:label": "Chromecast", "rdfs:comment": "This channel represents a chromecast device with simple capabilities.", "foaf:logo": "fa fa-chrome", "color": "#ea4335", "events": [], "actions": [{"@id": "http://gsi.dit.upm.es/ontologies/ewe/ns/PlayVideoChromecast", "rdfs:label": "Play video", "rdfs:comment": "This action will play a video on Chromecast.", "input_parameters": [{"@id": "http://gsi.dit.upm.es/ontologies/ewe/ns/ChromecastLocalIP", "rdfs:label": "Chromecast Local IP", "rdfs:comment": "This parameter represents the local IP of the Chromecast.", "rdf:datatype": "http://www.w3.org/2001/XMLSchema#string"}, {"@id": "http://gsi.dit.upm.es/ontologies/ewe/ns/ChromecastPublicIP", "rdfs:label": "Chromecast Public IP", "rdfs:comment": "This parameter represents the public IP of the Chromecast.", "rdf:datatype": "http://www.w3.org/2001/XMLSchema#string"}], "output_parameters": [{"@id": "http://gsi.dit.upm.es/ontologies/ewe/ns/ChromecastVideoUrl", "rdfs:label": "Youtube video url", "rdfs:comment": "This parameter represents the youtube video url to be reproduced.", "rdf:datatype": "http://www.w3.org/2001/XMLSchema#string"}]}], "parameters": [{"@id": "http://gsi.dit.upm.es/ontologies/ewe/ns/ChromecastLocalIP", "rdfs:label": "Chromecast Local IP", "rdfs:comment": "This parameter represents the local IP of the Chromecast.", "rdf:datatype": "http://www.w3.org/2001/XMLSchema#string"}, {"@id": "http://gsi.dit.upm.es/ontologies/ewe/ns/ChromecastPublicIP", "rdfs:label": "Chromecast Public IP", "rdfs:comment": "This parameter represents the public IP of the Chromecast.", "rdf:datatype": "http://www.w3.org/2001/XMLSchema#string"}]}, ...
 ```
 
 In order to interact with Ewetasker server in a simple way, you can install Ewetasker web application in this [link](https://lab.cluster.gsi.dit.upm.es/ewe/ewetasker_webclient).
