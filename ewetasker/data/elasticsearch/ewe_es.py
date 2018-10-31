@@ -21,7 +21,7 @@ try:
     log.warning("Number of events already registered:"+ str(ID_events)+"")
     count = es.count("ewetasker", doc_type="actions")
     ID_actions = count["count"]
-    log.warning("Number of events already registered:"+ str(ID_actions)+"")
+    log.warning("Number of actions already registered:"+ str(ID_actions)+"")
 except Exception as e:
     log.warning("Error connecting to elasticsearch")
     log.warning(e)

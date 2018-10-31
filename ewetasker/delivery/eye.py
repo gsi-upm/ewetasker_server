@@ -6,8 +6,7 @@ import logging
 import json
 import requests
 from data.elasticsearch.ewe_es import upload_action_to_es 
-config = configparser.ConfigParser()
-config.read('config/config.ini')
+import os
 log = logging.getLogger('tester.sub')
 
 
@@ -29,7 +28,7 @@ def evaluate_event(username, event_evaluated):
 
 def post_to_eye_server(event, rules):
     payload = {'data': event, 'query':rules}
-    url = 'http://' + config['EYE']['BASE_URL']+'/'
+    url = 'http://' + os.environ['EYE_URL']+'/'
     response = requests.post(url, data=payload)
     return response.text
     #return response.text, response.status_code, response.headers.items())

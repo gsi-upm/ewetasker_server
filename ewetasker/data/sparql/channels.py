@@ -1,14 +1,11 @@
 from rdflib.plugins.stores import sparqlstore
 import time
-import configparser
-
-config = configparser.ConfigParser()
-config.read('config/config.ini')
+import os
 
 def get_all_base_channels():
 
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
+    endpoint = 'http://' + os.environ['SPARQL_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -18,14 +15,15 @@ def get_all_base_channels():
         PREFIX ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        PREFIX dbo: <http://dbpedia.org/ontology/>
 
-
-        SELECT ?channel ?label ?comment ?logo
+        SELECT ?channel ?label ?comment ?logo ?color
         WHERE {
             ?channel rdfs:subClassOf ewe:Channel ;
                     rdfs:label ?label ;
                     foaf:logo ?logo ;
-                    rdfs:comment ?comment .
+                    rdfs:comment ?comment ;
+                    dbo:colour ?color .
         
         }
     """
@@ -36,7 +34,7 @@ def get_all_base_channels():
 
 def get_all_custom_channels():
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
+    endpoint = 'http://' + os.environ['SPARQL_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -46,11 +44,12 @@ def get_all_custom_channels():
         PREFIX ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        PREFIX dbo: <http://dbpedia.org/ontology/>
 
-
-        SELECT ?channel ?label ?comment ?baseChannel ?logo
+        SELECT ?channel ?label ?comment ?baseChannel ?logo ?color
         WHERE {
             ?baseChannel rdfs:subClassOf ewe:Channel ;
+                    dbo:colour ?color ;
                     foaf:logo ?logo .
             ?channel rdf:type ?baseChannel ;
                     rdfs:label ?label ;
@@ -65,7 +64,7 @@ def get_all_custom_channels():
 
 def get_all_custom_category_channels(category_uri):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
+    endpoint = 'http://' + os.environ['SPARQL_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -75,12 +74,13 @@ def get_all_custom_category_channels(category_uri):
         PREFIX ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        PREFIX dbo: <http://dbpedia.org/ontology/>
 
-
-        SELECT ?channel ?label ?comment ?baseChannel ?logo
+        SELECT ?channel ?label ?comment ?baseChannel ?logo ?color
         WHERE {
             ?baseChannel rdfs:subClassOf ewe:Channel ;
                     foaf:logo ?logo ;
+                    dbo:colour ?color ;
                     ewe:hasCategory <%s> .
             ?channel rdf:type ?baseChannel ;
                     rdfs:label ?label ;
@@ -95,7 +95,7 @@ def get_all_custom_category_channels(category_uri):
 
 def get_all_category_channels(category_uri):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
+    endpoint = 'http://' + os.environ['SPARQL_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -106,13 +106,15 @@ def get_all_category_channels(category_uri):
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        PREFIX dbo: <http://dbpedia.org/ontology/>
 
-        SELECT ?channel ?label ?comment ?logo
+        SELECT ?channel ?label ?comment ?logo ?color
         WHERE {
             ?channel rdfs:subClassOf ewe:Channel ;
                 rdfs:label ?label ;
                 rdfs:comment ?comment ;
                 foaf:logo ?logo ;
+                dbo:colour ?color ;
                 ewe:hasCategory <%s> .
         }
     """ % (category_uri)
@@ -123,7 +125,7 @@ def get_all_category_channels(category_uri):
 
 def get_all_subchannels(channel_uri):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
+    endpoint = 'http://' + os.environ['SPARQL_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -134,7 +136,6 @@ def get_all_subchannels(channel_uri):
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-		PREFIX ewe-smarttv: <http://gsi.dit.upm.es/ontologies/ewe-connected-home-smarttv/ns/>
 
         SELECT ?channel ?label ?comment
         WHERE {
@@ -153,7 +154,7 @@ def create_channel(base, name, c_type, label, comment, parameters):
 
     timestamp = str(int(round(time.time())))
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/update'
+    endpoint = 'http://' + os.environ['SPARQL_URL'] + '/update'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -188,7 +189,7 @@ def create_channel(base, name, c_type, label, comment, parameters):
 
 def create_channel_with_triples(triples):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/update'
+    endpoint = 'http://' + os.environ['SPARQL_URL'] + '/update'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -216,7 +217,7 @@ def create_channel_with_triples(triples):
 def delete_custom_channel(uri):
 
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/update'
+    endpoint = 'http://' + os.environ['SPARQL_URL'] + '/update'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -239,6 +240,23 @@ def delete_custom_channel(uri):
             ?param ?d ?e
         }
     """ % (uri, uri)
+    channels = store.update(delete_channels_query)
+        # Delete channel
+    delete_channels_query = """
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+        DELETE
+        {
+            <%s> ?b ?c .
+        }
+        WHERE
+        {
+            <%s> ?b ?c.
+        }
+    """ % (uri, uri)
 
     channels = store.update(delete_channels_query)
     store.close()
@@ -248,7 +266,7 @@ def delete_custom_channel(uri):
 
 def get_channel_by_action(action_uri):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
+    endpoint = 'http://' + os.environ['SPARQL_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -260,12 +278,14 @@ def get_channel_by_action(action_uri):
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        PREFIX dbo: <http://dbpedia.org/ontology/>
 
-        SELECT ?uri ?label ?logo ?comment 
+        SELECT ?uri ?label ?logo ?comment ?color
         WHERE {
             ?uri rdfs:subClassOf ewe:Channel ;
                 rdfs:label ?label ;
                 foaf:logo ?logo ;
+                dbo:colour ?color ;
                 ewe:providesAction  ewe:%s ;
                 rdfs:comment ?comment .
         
@@ -279,7 +299,7 @@ def get_channel_by_action(action_uri):
 
 def get_channel_by_event(event_uri):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
+    endpoint = 'http://' + os.environ['SPARQL_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -291,12 +311,14 @@ def get_channel_by_event(event_uri):
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        PREFIX dbo: <http://dbpedia.org/ontology/>
 
-        SELECT ?uri ?label ?logo ?comment 
+        SELECT ?uri ?label ?logo ?comment ?color
         WHERE {
             ?uri rdfs:subClassOf ewe:Channel ;
                 rdfs:label ?label ;
                 foaf:logo ?logo ;
+                dbo:colour ?color ;
                 ewe:generatesEvent  ewe:%s ;
                 rdfs:comment ?comment .
         
@@ -306,3 +328,30 @@ def get_channel_by_event(event_uri):
     channel = store.query(get_channel_query)
     store.close()
     return channel
+
+def get_channel_colour(color_uri):
+
+    #Define the SparQL store
+    endpoint = 'http://' + os.environ['SPARQL_URL'] + '/query'
+    store = sparqlstore.SPARQLUpdateStore()
+    store.open((endpoint, endpoint))
+
+    # Get color
+    get_color_query = """
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        PREFIX dbo: <http://dbpedia.org/ontology/>
+
+
+        SELECT ?color
+        WHERE {
+            dbo:%s a dbo:Colour ;
+				dbo:colourHexCode ?color .
+        }
+    """% (color_uri.split("/")[-1])
+    
+    color = store.query(get_color_query)
+    store.close()
+    return color

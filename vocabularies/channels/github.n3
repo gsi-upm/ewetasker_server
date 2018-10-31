@@ -6,6 +6,7 @@
 @prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix ewe-service: <http://gsi.dit.upm.es/ontologies/ewe-service/ns/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
@@ -17,6 +18,7 @@ ewe:Github a owl:Class ;
     rdfs:label "Github" ;
     rdfs:comment "This channel represents Github service." ;
     foaf:logo "fa fa-github" ;
+    dbo:colour dbo:Black ;
     ewe:generatesEvent ewe:CommitPushed ;
     ewe:hasCategory ewe-service:Service ;
     rdfs:subClassOf ewe:Channel .

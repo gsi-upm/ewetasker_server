@@ -6,6 +6,7 @@
 @prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
@@ -17,6 +18,7 @@ ewe:SmartTv a owl:Class ;
     rdfs:label "Connected smart tv" ;
     rdfs:comment "This channel represents a simplified smarttv with simple capabilities." ;
     foaf:logo "fa fa-tv" ;
+    dbo:colour dbo:Red ;
     ewe:providesAction ewe:SwitchOnTv ;
     ewe:providesAction ewe:SwitchOffTv ;
     ewe:providesAction ewe:DisplayImageTv ;

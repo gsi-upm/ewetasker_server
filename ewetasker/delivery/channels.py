@@ -2,9 +2,11 @@ from data.sparql.channels import *
 from data.sparql.actions import *
 from data.sparql.parameters import *
 from data.sparql.events import *
-from rdflib import Graph
+from rdflib import Graph, URIRef, Literal
 import json
-
+import logging
+log = logging.getLogger('tester.sub')
+#log.warning('warning test')
 # get base channels
 def get_base_channels():
 
@@ -12,9 +14,13 @@ def get_base_channels():
     channels_result = get_all_base_channels()
 
     index = 0
-    for uri, label, comment, logo in channels_result:
-
-        channels["channels"].append({"@id" : uri, "rdfs:label" : label.n3(), "rdfs:comment" : comment.n3(), "foaf:logo" : logo.n3(), "events" : [], "actions" : [], "parameters" : []})
+    for uri, label, comment, logo, color_uri in channels_result:
+        color_result = get_channel_colour(color_uri)
+        color=""
+        for color_hex in color_result:
+            color = color_hex[0]
+        
+        channels["channels"].append({"@id" : uri, "rdfs:label" : label.n3(), "rdfs:comment" : comment.n3(), "foaf:logo" : logo.n3(), "color" : color, "events" : [], "actions" : [], "parameters" : []})
 
         actions_result = get_channel_actions(uri)  
         action_index = 0
@@ -71,9 +77,12 @@ def get_custom_channels():
     channels_result = get_all_custom_channels()
 
     index = 0
-    for uri, label, comment, baseChannel, logo in channels_result:
-
-        channels["channels"].append({"@id" : uri, "rdfs:label" : label.n3(), "rdfs:comment" : comment.n3(), "foaf:logo" : logo.n3(), "rdf:type" : baseChannel, "parameters" : []})
+    for uri, label, comment, baseChannel, logo, color_uri in channels_result:
+        color_result = get_channel_colour(color_uri)
+        color=""
+        for color_hex in color_result:
+            color = color_hex[0]
+        channels["channels"].append({"@id" : uri, "rdfs:label" : label.n3(), "rdfs:comment" : comment.n3(), "foaf:logo" : logo.n3(), "color" : color, "rdf:type" : baseChannel, "parameters" : []})
 
         parameters_result = get_custom_channel_parameters(uri)
         for param_uri, param_label, param_value, param_datatype in parameters_result:
@@ -91,9 +100,12 @@ def get_custom_category_channels(category_uri):
     channels_result = get_all_custom_category_channels(category_uri)
 
     index = 0
-    for uri, label, comment, baseChannel, logo in channels_result:
-
-        channels["channels"].append({"@id" : uri, "rdfs:label" : label.n3(), "rdfs:comment" : comment.n3(), "foaf:logo" : logo.n3(), "rdf:type" : baseChannel, "parameters" : []})
+    for uri, label, comment, baseChannel, logo, color_uri in channels_result:
+        color_result = get_channel_colour(color_uri)
+        color=""
+        for color_hex in color_result:
+            color = color_hex[0]
+        channels["channels"].append({"@id" : uri, "rdfs:label" : label.n3(), "rdfs:comment" : comment.n3(), "foaf:logo" : logo.n3(), "color" : color, "rdf:type" : baseChannel, "parameters" : []})
 
         parameters_result = get_custom_channel_parameters(uri)
         for param_uri, param_label, param_value, param_datatype, param_base in parameters_result:
@@ -131,9 +143,13 @@ def get_category_channels(category_uri):
     channels_result = get_all_category_channels(category_uri)
 
     index = 0
-    for uri, label, comment, logo in channels_result:
+    for uri, label, comment, logo, color_uri in channels_result:
+        color_result = get_channel_colour(color_uri)
+        color=""
+        for color_hex in color_result:
+            color = color_hex[0]
 
-        channels["channels"].append({"@id" : uri, "rdfs:label" : label.n3(), "rdfs:comment" : comment.n3(), "foaf:logo" : logo.n3(), "events" : [], "actions" : [], "parameters" : []})
+        channels["channels"].append({"@id" : uri, "rdfs:label" : label.n3(), "rdfs:comment" : comment.n3(), "foaf:logo" : logo.n3(), "color" : color, "events" : [], "actions" : [], "parameters" : []})
 
         actions_result = get_channel_actions(uri)  
         action_index = 0
@@ -197,12 +213,20 @@ def delete_custom_channel_with_uri(uri):
 
 def get_channel_with_action_uri(action_uri):
     channel_result = get_channel_by_action(action_uri)
-    for uri, label, logo, comment in channel_result:
-        channel = {"@id" : uri, "rdfs:label" : label.n3(), "foaf:logo" : logo.n3(), "rdfs:comment" : comment.n3()}
+    for uri, label, logo, comment, color_uri in channel_result:
+        color_result = get_channel_colour(color_uri)
+        color=""
+        for color_hex in color_result:
+            color = color_hex[0]
+        channel = {"@id" : uri, "rdfs:label" : label.n3(), "foaf:logo" : logo.n3(), "rdfs:comment" : comment.n3(), "color" : color}
     return channel
 
 def get_channel_with_event_uri(event_uri):
     channel_result = get_channel_by_event(event_uri)
-    for uri, label, logo, comment in channel_result:
-        channel = {"@id" : uri, "rdfs:label" : label.n3(), "foaf:logo" : logo.n3(), "rdfs:comment" : comment.n3()}
+    for uri, label, logo, comment, color_uri in channel_result:
+        color_result = get_channel_colour(color_uri)
+        color=""
+        for color_hex in color_result:
+            color = color_hex[0]
+        channel = {"@id" : uri, "rdfs:label" : label.n3(), "foaf:logo" : logo.n3(), "rdfs:comment" : comment.n3(), "color" : color}
     return channel

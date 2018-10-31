@@ -10,6 +10,10 @@ services:
     environment:
       - ES_ENDPOINT=elasticsearch
       - ES_ENDPOINT_PORT=9200
+      - SPARQL_URL=fuseki:3030/ewetasker
+      - MONGODB_URL=mongo:27017
+      - EYE_URL=eye:8000
+      - CERTS_PATH=certs/lab.cluster.gsi.dit.upm.es.pem
     depends_on:
       - fuseki
       - mongo

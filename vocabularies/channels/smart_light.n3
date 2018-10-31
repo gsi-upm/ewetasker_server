@@ -6,6 +6,7 @@
 @prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
@@ -17,6 +18,7 @@ ewe:SmartLight a owl:Class ;
     rdfs:label "Smart light" ;
     rdfs:comment "This channel represents a smart light." ;
     foaf:logo "fa fa-lightbulb-o" ;
+    dbo:colour dbo:Yellow ;
     ewe:providesAction ewe:SwitchOnLight ;
     ewe:providesAction ewe:SwitchOffLight ;
     ewe:providesAction ewe:SetBrightnessLight ;

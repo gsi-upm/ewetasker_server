@@ -6,6 +6,7 @@
 @prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix ewe-service: <http://gsi.dit.upm.es/ontologies/ewe-service/ns/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
@@ -17,6 +18,7 @@ ewe:Email a owl:Class ;
     rdfs:label "Email service" ;
     rdfs:comment "This channel represents an email service with basic functions." ;
     foaf:logo "fa fa-envelope" ;
+    dbo:colour dbo:GoogleRed ;
     ewe:providesAction ewe:SendEmailMessage ;
     ewe:generatesEvent ewe:NewEmailMessageReceived ;
     ewe:generatesEvent ewe:EmailMessageAbout ;

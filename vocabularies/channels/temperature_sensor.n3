@@ -6,6 +6,7 @@
 @prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
@@ -17,6 +18,7 @@ ewe:TemperatureSensor a owl:Class ;
     rdfs:label "Temperature sensor" ;
     rdfs:comment "This channel represents a temperature sensor." ;
     foaf:logo "fa fa-thermometer-three-quarters" ;
+    dbo:colour dbo:DarkOrange ;
     ewe:generatesEvent ewe:TemperatureLowerThan ;
     ewe:generatesEvent ewe:TemperatureGreaterThan ;
     ewe:hasCategory ewe-device:Device ;
