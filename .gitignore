@@ -7,7 +7,6 @@
 _obj
 _test
 ewetasker/certs
-k8s
 node_modules
 mongodb
 # Architecture specific extensions/prefixes
