@@ -32,7 +32,7 @@ docker-run: ## Build a generic docker image
 	docker run $(DOCKER_FLAGS) $(IMAGEWTAG) $(DOCKER_CMD)
 
 docker-build: ## Build a generic docker image
-	docker build . -t $(IMAGEWTAG)
+	docker build $(DOCKERFILEPATH) -t $(IMAGEWTAG)
 
 docker-push: docker-login ## Push a generic docker image
 	docker push $(IMAGEWTAG)
