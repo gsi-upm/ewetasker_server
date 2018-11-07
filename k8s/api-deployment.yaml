@@ -1,0 +1,40 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${NAME}-config
+data:
+    ES_ENDPOINT: "$ES_ENDPOINT"
+    ES_ENDPOINT_PORT: "$ES_ENDPOINT_PORT"
+    SPARQL_URL: "$SPARQL_URL"
+    MONGODB_URL: "$MONGODB_URL"
+    EYE_URL: "$EYE_URL"
+    CERTS_PATH: "$CERTS_PATH"
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ${NAME}-api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        role: ${NAME}-api
+        app: ${NAME}
+    spec:
+      containers:
+        - name: ${NAME}
+          image: ${IMAGEWTAG}
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          ports:
+            - name: api
+              containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: ${NAME}-config
+---

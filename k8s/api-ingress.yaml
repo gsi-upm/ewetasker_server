@@ -1,0 +1,15 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ${NAME}-ingress
+spec:
+  rules:
+  - host: ewetasker.cluster.gsi.dit.upm.es
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ${NAME}
+          servicePort: 5050
+---
