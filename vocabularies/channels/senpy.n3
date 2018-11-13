@@ -9,6 +9,8 @@
 @prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix onyx: <http://gsi.dit.upm.es/ontologies/onyx/ns/> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
@@ -58,6 +60,7 @@ ewe:SenpyEmotion a owl:Class ;
     rdfs:label "Senpy Detected emotion" ;
     rdfs:comment "This parameter represents the emotion detected by Senpy." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:subClassOf onyx:Emotion ;
     rdfs:domain ewe:Senpy .
@@ -66,6 +69,7 @@ ewe:SenpySentiment a owl:Class ;
     rdfs:label "Senpy Detected sentiment" ;
     rdfs:comment "This parameter represents the sentiment detected by Senpy." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:subClassOf onyx:Sentiment ;
     rdfs:domain ewe:Senpy .

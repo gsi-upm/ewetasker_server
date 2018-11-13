@@ -8,6 +8,8 @@
 @prefix ewe-service: <http://gsi.dit.upm.es/ontologies/ewe-service/ns/> .
 @prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
@@ -65,6 +67,9 @@ ewe:SendEmailMessage a owl:Class ;
     rdfs:label "Send message" ;
     rdfs:comment "This action will send a email message." ;
     ewe:hasInputParameter ewe:EmailAddress ;
+    ewe:hasOutputParameter ewe:RecipientAddress ;
+    ewe:hasOutputParameter ewe:EmailSubject ;
+    ewe:hasOutputParameter ewe:EmailMessage ;
     rdfs:subClassOf ewe:Action ;
     rdfs:domain ewe:Email .
 
@@ -77,6 +82,7 @@ ewe:EmailAddress a owl:Class ;
     rdfs:label "User email address" ;
     rdfs:comment "This parameter represents user's email address." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:Email .
 
@@ -84,6 +90,7 @@ ewe:RecipientAddress a owl:Class ;
     rdfs:label "Recipient email address" ;
     rdfs:comment "This parameter represents recipient's email address." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:Email .
 
@@ -91,6 +98,7 @@ ewe:EmailSubject a owl:Class ;
     rdfs:label "Email subject" ;
     rdfs:comment "This parameter represents the subject of the email message." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:Email .
 
@@ -98,6 +106,7 @@ ewe:EmailMessage a owl:Class ;
     rdfs:label "Message content" ;
     rdfs:comment "This parameter represents the content of the email message." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:Email .
 

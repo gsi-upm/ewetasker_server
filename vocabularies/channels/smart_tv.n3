@@ -8,6 +8,8 @@
 @prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
 @prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
@@ -69,6 +71,7 @@ ewe:TvLocalIP a owl:Class ;
     rdfs:label "Tv Local IP" ;
     rdfs:comment "This parameter represents the local IP of the TV." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartTv .
 
@@ -76,6 +79,7 @@ ewe:TvPublicIP a owl:Class ;
     rdfs:label "Tv Public IP" ;
     rdfs:comment "This parameter represents the public IP of the TV." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartTv .
 
@@ -83,6 +87,7 @@ ewe:TvImage a owl:Class ;
     rdfs:label "Image to display on Tv" ;
     rdfs:comment "This parameter represents the image to display on the TV." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartTv .
 

@@ -8,6 +8,8 @@
 @prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
 @prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
@@ -71,6 +73,7 @@ ewe:DoorLocalIP a owl:Class ;
     rdfs:label "Door Local IP" ;
     rdfs:comment "This parameter represents the local IP of the smart door." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartDoor .
 
@@ -78,6 +81,7 @@ ewe:DoorPublicIP a owl:Class ;
     rdfs:label "Door Public IP" ;
     rdfs:comment "This parameter represents the public IP of the smart door." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartDoor .
 
@@ -85,6 +89,7 @@ ewe:DoorID a owl:Class ;
     rdfs:label "Door ID" ;
     rdfs:comment "This parameter represents the smart door ID." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:Smartdoor .
 

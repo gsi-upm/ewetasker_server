@@ -8,6 +8,8 @@
 @prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
 @prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
@@ -19,8 +21,7 @@ ewe:HumiditySensor a owl:Class ;
     rdfs:comment "This channel represents a humidity sensor." ;
     foaf:logo "fa fa-thermometer-three-quarters" ;
     dbo:colour dbo:LightBlue ;
-    ewe:generatesEvent ewe:HumidityLowerThan ;
-    ewe:generatesEvent ewe:HumidityGreaterThan ;
+    ewe:generatesEvent ewe:HumidityMeasured ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 
@@ -29,22 +30,14 @@ ewe:HumiditySensor a owl:Class ;
 # Events definition
 ###################################
 
-ewe:HumidityLowerThan a owl:Class ;
-    rdfs:label "Humidity detected lower than the specified parameter" ;
-    rdfs:comment "This event will be triggered when the humidity does not exceed the specified level." ;
+ewe:HumidityMeasured a owl:Class ;
+    rdfs:label "Humidity detected greater or lower than the specified parameter" ;
+    rdfs:comment "This event will be triggered when the humidity exceed the specified level." ;
     ewe:hasInputParameter ewe:HumiditySensorID ;
     ewe:hasOutputParameter ewe:HumidityLevel ;
     rdfs:subClassOf ewe:Event ;
     rdfs:domain ewe:HumiditySensor .
 
-
-ewe:HumidityGreaterThan a owl:Class ;
-    rdfs:label "Humidity detected greater than the specified parameter" ;
-    rdfs:comment "This event will be triggered when the humidity exceeds the specified level." ;
-    ewe:hasInputParameter ewe:HumiditySensorID ;
-    ewe:hasOutputParameter ewe:HumidityLevel ;
-    rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe:HumiditySensor .
 
     
 ###################################
@@ -61,6 +54,7 @@ ewe:HumiditySensorID a owl:Class ;
     rdfs:label "Humidity Sensor ID" ;
     rdfs:comment "This parameter represents the humidity sensor ID." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:HumiditySensor .
 
@@ -68,6 +62,8 @@ ewe:HumidityLevel a owl:Class ;
     rdfs:label "Humidity level measured" ;
     rdfs:comment "This parameter represents the humidity level measured by the sensor." ;
     rdf:datatype xsd:math ;
+    ewe:operation math:lessThan ;
+    ewe:operation math:greaterThan ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:HumiditySensor .
 

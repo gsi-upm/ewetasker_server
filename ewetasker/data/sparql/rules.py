@@ -26,7 +26,7 @@ def create_new_rule(label, comment, events, actions, user_uri):
         param_triples = ""
         param_counter = 1
         for param in event["parameters"]:
-            param_triples += "?event%d ewe:hasParameter ?eparam%d. ?eparam%d rdf:type <%s> . ?eparam%d!rdf:value %s '%s' . " % (event_counter, param_counter, param_counter, param["rdf:type"], param_counter, param["operation"], param["rdf:value"])
+            param_triples += "?event%d ewe:hasParameter ?eparam%d. ?eparam%d rdf:type <%s> . ?eparam%d!rdf:value <%s> '%s' . " % (event_counter, param_counter, param_counter, param["rdf:type"], param_counter, param["ewe:operation"], param["rdf:value"])
             param_counter += 1
         event_counter +=1
         event_triples += param_triples

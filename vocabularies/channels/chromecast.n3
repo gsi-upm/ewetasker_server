@@ -8,6 +8,8 @@
 @prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
 @prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
@@ -51,6 +53,7 @@ ewe:ChromecastLocalIP a owl:Class ;
     rdfs:label "Chromecast Local IP" ;
     rdfs:comment "This parameter represents the local IP of the Chromecast." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:Chromecast .
 
@@ -58,6 +61,7 @@ ewe:ChromecastPublicIP a owl:Class ;
     rdfs:label "Chromecast Public IP" ;
     rdfs:comment "This parameter represents the public IP of the Chromecast." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:Chromecast .
 
@@ -65,6 +69,7 @@ ewe:ChromecastVideoUrl a owl:Class ;
     rdfs:label "Youtube video url" ;
     rdfs:comment "This parameter represents the youtube video url to be reproduced." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:Chromecast .
 

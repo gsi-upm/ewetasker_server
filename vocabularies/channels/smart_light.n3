@@ -8,6 +8,8 @@
 @prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
 @prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
@@ -83,6 +85,7 @@ ewe:LightPublicIP a owl:Class ;
     rdfs:label "Light Public IP" ;
     rdfs:comment "This parameter represents the public IP of the smart light controller." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartLight .
 
@@ -90,6 +93,7 @@ ewe:LightID a owl:Class ;
     rdfs:label "Light ID" ;
     rdfs:comment "This parameter represents the light ID of the smart light." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartLight .
 
@@ -97,6 +101,7 @@ ewe:LightApiToken a owl:Class ;
     rdfs:label "Light Api Token" ;
     rdfs:comment "This parameter represents the Api Token to control the smart light." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartLight .
 
@@ -104,6 +109,7 @@ ewe:LightBrightness a owl:Class ;
     rdfs:label "Light Brightness level" ;
     rdfs:comment "This parameter represents the brightness level of the smart light." ;
     rdf:datatype xsd:float ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartLight .
 
@@ -111,6 +117,7 @@ ewe:LightColor a owl:Class ;
     rdfs:label "Light Color" ;
     rdfs:comment "This parameter represents the color of the smart light." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartLight .
 

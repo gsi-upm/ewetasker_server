@@ -16,15 +16,18 @@ def get_input_parameters(actionevent_uri, uri):
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX math: <http://www.w3.org/2000/10/swap/math#> 
+        PREFIX string: <http://www.w3.org/2000/10/swap/string#>
         
-        SELECT ?parameter ?label ?comment ?datatype
+        SELECT ?parameter ?label ?comment ?datatype ?operation
         WHERE {
             %s ewe:hasInputParameter ?parameter .
             ?parameter rdfs:subClassOf ewe:Parameter ;
                 rdfs:domain %s;
                 rdfs:label ?label ;
                 rdfs:comment ?comment ;
-                rdf:datatype ?datatype .
+                rdf:datatype ?datatype ;
+                ewe:operation ?operation .
             }
     """ % (actionevent_uri.n3(), uri.n3())
     
@@ -40,21 +43,24 @@ def get_output_parameters(actionevent_uri, uri):
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
-    # get input parameters
+    # get output parameters
     get_output_parameters_query = """
         PREFIX ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX math: <http://www.w3.org/2000/10/swap/math#> 
+        PREFIX string: <http://www.w3.org/2000/10/swap/string#>
 
-        SELECT ?parameter ?label ?comment ?datatype
+        SELECT ?parameter ?label ?comment ?datatype ?operation
         WHERE {
             %s ewe:hasOutputParameter ?parameter .
             ?parameter rdfs:subClassOf ewe:Parameter ;
                 rdfs:domain %s;
                 rdfs:label ?label ;
                 rdfs:comment ?comment ;
-                rdf:datatype ?datatype .
+                rdf:datatype ?datatype ;
+                ewe:operation ?operation .
             }
     """ % (actionevent_uri.n3(), uri.n3())
     

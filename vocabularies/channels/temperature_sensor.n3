@@ -8,6 +8,8 @@
 @prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
 @prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
@@ -19,8 +21,7 @@ ewe:TemperatureSensor a owl:Class ;
     rdfs:comment "This channel represents a temperature sensor." ;
     foaf:logo "fa fa-thermometer-three-quarters" ;
     dbo:colour dbo:DarkOrange ;
-    ewe:generatesEvent ewe:TemperatureLowerThan ;
-    ewe:generatesEvent ewe:TemperatureGreaterThan ;
+    ewe:generatesEvent ewe:TemperatureMeasured ;
     ewe:hasCategory ewe-device:Device ;
     rdfs:subClassOf ewe:Channel .
 
@@ -29,18 +30,9 @@ ewe:TemperatureSensor a owl:Class ;
 # Events definition
 ###################################
 
-ewe:TemperatureLowerThan a owl:Class ;
-    rdfs:label "Temperature detected lower than the specified parameter" ;
-    rdfs:comment "This event will be triggered when the temperature does not exceed the specified degrees." ;
-    ewe:hasInputParameter ewe:TemperatureSensorID ;
-    ewe:hasOutputParameter ewe:Degrees ;
-    rdfs:subClassOf ewe:Event ;
-    rdfs:domain ewe:TemperatureSensor .
-
-
-ewe:TemperatureGreaterThan a owl:Class ;
-    rdfs:label "Temperature detected greater than the specified parameter" ;
-    rdfs:comment "This event will be triggered when the temperature exceeds the specified degrees." ;
+ewe:TemperatureMeasured a owl:Class ;
+    rdfs:label "Temperature measured greater or lower than the specified parameter" ;
+    rdfs:comment "This event will be triggered when the temperature exceed the specified degrees." ;
     ewe:hasInputParameter ewe:TemperatureSensorID ;
     ewe:hasOutputParameter ewe:Degrees ;
     rdfs:subClassOf ewe:Event ;
@@ -61,6 +53,7 @@ ewe:TemperatureSensorID a owl:Class ;
     rdfs:label "Temperature Sensor ID" ;
     rdfs:comment "This parameter represents the temperature sensor ID." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:TemperatureSensor .
 
@@ -68,6 +61,8 @@ ewe:Degrees a owl:Class ;
     rdfs:label "Degrees measured" ;
     rdfs:comment "This parameter represents the degrees measured by the sensor." ;
     rdf:datatype xsd:math ;
+    ewe:operation math:lessThan ;
+    ewe:operation math:greaterThan ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:TemperatureSensor .
 

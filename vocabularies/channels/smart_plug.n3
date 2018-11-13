@@ -8,6 +8,8 @@
 @prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
 @prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
@@ -62,6 +64,7 @@ ewe:PlugApiToken a owl:Class ;
     rdfs:label "Plug Api token" ;
     rdfs:comment "This parameter represents the Api token of the smart plug." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartPlug .
 
@@ -69,6 +72,7 @@ ewe:PlugPublicIP a owl:Class ;
     rdfs:label "Plug Public IP" ;
     rdfs:comment "This parameter represents the public IP of the smart plug." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartPlug .
 
@@ -76,6 +80,7 @@ ewe:PlugID a owl:Class ;
     rdfs:label "Plug ID" ;
     rdfs:comment "This parameter represents the smart plug ID." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartPlug .
 

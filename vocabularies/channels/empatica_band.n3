@@ -9,6 +9,8 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix onyx: <http://gsi.dit.upm.es/ontologies/onyx/ns/> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
@@ -50,6 +52,7 @@ ewe:EmpaticaEmotion a owl:Class ;
     rdfs:label "Detected emotion by Empatica" ;
     rdfs:comment "This parameter represents the emotion detected." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:subClassOf onyx:Emotion ;
     rdfs:domain ewe:Empatica .

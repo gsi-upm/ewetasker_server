@@ -8,6 +8,8 @@
 @prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
 @prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
 
 
@@ -128,6 +130,7 @@ ewe:EventCalendar a owl:Class ;
     rdfs:label "Event calendar" ;
     rdfs:comment "This parameter represents the event name." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartPhone .
 
@@ -135,6 +138,7 @@ ewe:ToastNotification a owl:Class ;
     rdfs:label "Toast notification" ;
     rdfs:comment "This parameter represents a toast notification." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartPhone .
 
@@ -142,6 +146,7 @@ ewe:NavbarNotification a owl:Class ;
     rdfs:label "Navbar notification" ;
     rdfs:comment "This parameter represents a navbar notification." ;
     rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
     rdfs:domain ewe:SmartPhone .
 

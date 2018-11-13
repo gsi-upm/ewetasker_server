@@ -10,8 +10,11 @@ import os
 
 users = MongoClient('mongodb://'+ os.environ['MONGODB_URL'] +'/').ewetaskerdb.users
 
-with open(os.environ['CERTS_PATH'], 'rb') as fh:
-    signing_key = jwk_from_pem(fh.read())
+if os.environ.get('EWE_PEM') is not None:
+    signing_key=os.environ.get('EWE_PEM')
+else:
+    with open(os.environ['CERTS_PATH'], 'rb') as fh:
+        signing_key = jwk_from_pem(fh.read())
 jwt = JWT()
 
 def create_user(username, password):
