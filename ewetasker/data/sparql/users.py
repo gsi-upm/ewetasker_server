@@ -1,13 +1,10 @@
 from rdflib.plugins.stores import sparqlstore
-import configparser
-
-config = configparser.ConfigParser()
-config.read('config/config.ini')
+import os
 
 def create_new_user(username):
 
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/update'
+    endpoint = 'http://' + os.environ['SPARQL_URL'] + '/update'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -30,7 +27,7 @@ def create_new_user(username):
 
 def query_user(username):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/query'
+    endpoint = 'http://' + os.environ['SPARQL_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
@@ -54,7 +51,7 @@ def query_user(username):
 
 def delete_user(username):
     #Define the SparQL store
-    endpoint = 'http://' + config['SPARQL']['BASE_URL'] + '/update'
+    endpoint = 'http://' + os.environ['SPARQL_URL'] + '/update'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 
