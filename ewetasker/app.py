@@ -6,6 +6,7 @@ from flask_cors import CORS
 from flask import request
 from data.database.users import *
 from data.elasticsearch.ewe_es import upload_event_to_es 
+from delivery.connections import select_service, auth_twitter
 
 app = Flask(__name__)
 CORS(app)
@@ -77,6 +78,15 @@ def evaluate():
     upload_event_to_es(username, event)
     return evaluate_event(username, event)
 
+@app.route("/connect/<path:service>/<path:username>")
+def connect(service,username):
+    return select_service(service,username)
+
+@app.route("/connect/twitter", methods=['GET'])
+def connect_twitter():
+    oauth_token = request.form.get('oauth_token')
+    oauth_verifier= request.form.get('oauth_verifier')
+    return auth_twitter(oauth_token, oauth_verifier)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)

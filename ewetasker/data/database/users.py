@@ -47,3 +47,11 @@ def drop_user(username, password):
         return '1'
     return '0'
 
+def add_user_field(username, key, value):
+    if users.find({'user':username}).count()==1:
+        users.update_one({'user':username}, {"$set": {key: value}}, upsert=False)
+        return '1'
+    return '0'
+
+def get_user_by_field(key, value):
+    return users.find_one({key:value})
