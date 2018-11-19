@@ -75,5 +75,5 @@ def parse_result(username, result):
     actions["actions"].append({"@id" : lastUri, "parameters": parameters, "action": lastAction.split("/")[-1], "channel": lastChannel.split("/")[-1]})
     actions_json = json.dumps(actions).replace('\\"', "")
     upload_action_to_es(username, actions_json)
-    select_performer(actions_json)
+    select_performer(actions_json,username)
     return actions_json

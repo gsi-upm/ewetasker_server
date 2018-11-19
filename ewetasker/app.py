@@ -78,14 +78,14 @@ def evaluate():
     upload_event_to_es(username, event)
     return evaluate_event(username, event)
 
-@app.route("/connect/<path:service>/<path:username>")
-def connect(service,username):
-    return select_service(service,username)
+@app.route("/connect/<path:service>/<path:username>/<path:service_user>")
+def connect(service,username,service_user):
+    return select_service(service,username,service_user)
 
-@app.route("/connect/twitter", methods=['GET'])
+@app.route("/connect/twitter/", methods=['GET'])
 def connect_twitter():
-    oauth_token = request.form.get('oauth_token')
-    oauth_verifier= request.form.get('oauth_verifier')
+    oauth_token = request.args.get('oauth_token')
+    oauth_verifier= request.args.get('oauth_verifier')
     return auth_twitter(oauth_token, oauth_verifier)
 
 if __name__ == '__main__':

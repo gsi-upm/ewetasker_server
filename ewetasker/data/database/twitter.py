@@ -1,4 +1,3 @@
-from pymongo import *
 import json
 import os
 import tweepy
@@ -13,32 +12,33 @@ else:
     consumer_token = ""
     consumer_secret = ""
 
-def get_request_token(username):
+def get_request_token(username,twitter_username):
     
     auth = tweepy.OAuthHandler(consumer_token, consumer_secret)
     try:
         redirect_url = auth.get_authorization_url()
         log.warning(redirect_url)
-        add_user_field(username, "oauth_token", auth.request_token["oauth_token"])
-        return redirect_url
+        add_user_field(username, "twitter_oauth_token", auth.request_token["oauth_token"])
+        add_user_field(username, "twitter_user", twitter_username)
+        return '<a href="'+redirect_url+'">Connect with Twitter</a>'
     except tweepy.TweepError:
         log.warning('Error! Failed to get request token.')
         return 'Error! Failed to get request token.'
 
 def set_user_token(oauth_token, oauth_verifier):
-    user=get_user_by_field("oauth_token",oauth_token)
+    user=get_user_by_field("twitter_oauth_token",oauth_token)
     if (user!=None):
         auth = tweepy.OAuthHandler(consumer_token, consumer_secret)
         auth.request_token = { 'oauth_token' : oauth_token,
                                 'oauth_token_secret' : oauth_verifier }
         try:
             auth.get_access_token(oauth_verifier)
-            add_user_field(user["user"], "access_token", auth.access_token)
-            add_user_field(user["user"], "access_token_secret", auth.access_token_secret)
+            add_user_field(user["user"], "twitter_access_token", auth.access_token)
+            add_user_field(user["user"], "twitter_access_token_secret", auth.access_token_secret)
             log.warning(auth.access_token)
             log.warning(auth.access_token_secret)
             return "Twitter authentication successful"
         except tweepy.TweepError:
-            log.warning('Error! Failed to get access token.')
+            log.warning(tweepy.TweepError)
             return 'Error! Failed to get access token.'
     return 'Error! Failed to get access token, request token not found'
