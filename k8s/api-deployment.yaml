@@ -23,6 +23,8 @@ spec:
         role: ${NAME}-api
         app: ${NAME}
     spec:
+      imagePullSecrets:
+      - name: registry.cluster.gsi.dit.upm.es
       containers:
         - name: ${NAME}
           image: ${IMAGEWTAG}
