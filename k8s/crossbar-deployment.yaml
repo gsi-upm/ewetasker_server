@@ -34,5 +34,5 @@ spec:
           - containerPort: 1883
           envFrom:
             - configMapRef:
-              name: ${NAME}-crossbar-config
+                name: ${NAME}-crossbar-config
 ---
