@@ -37,7 +37,8 @@ docker-build: ## Build a generic docker image
 	docker build $(DOCKERFILEPATHCROSSBAR) -t $(IMAGEWTAGCROSSBAR)
 
 docker-push: docker-login ## Push a generic docker image
-	docker push $(IMAGEWTAG)
+	docker push $(IMAGEWTAGAPI)
+	docker push $(IMAGEWTAGCROSSBAR)
 
 docker-latest-push: docker-login ## Push the latest image
 	docker tag $(IMAGEWTAG) $(IMAGENAME)
@@ -48,6 +49,7 @@ login:: docker-login
 clean:: docker-clean
 
 docker-info:
-	@echo IMAGEWTAG=${IMAGEWTAG}
+	@echo IMAGEWTAGAPI=${IMAGEWTAGAPI}
+	@echo IMAGEWTAGCROSSBAR=${IMAGEWTAGCROSSBAR}
 
 .PHONY:: docker-login docker-clean login clean
