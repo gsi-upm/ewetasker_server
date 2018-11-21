@@ -6,7 +6,8 @@ ifndef IMAGENAME
 	endif
 endif
 
-IMAGEWTAG?=$(IMAGENAME):$(VERSION)
+IMAGEWTAGAPI?=$(IMAGENAMEAPI):$(VERSION)
+IMAGEWTAGCROSSBAR?=$(IMAGENAMECROSSBAR):$(VERSION)
 DOCKER_FLAGS?=$(-ti)
 DOCKER_CMD?=
 
@@ -32,7 +33,8 @@ docker-run: ## Build a generic docker image
 	docker run $(DOCKER_FLAGS) $(IMAGEWTAG) $(DOCKER_CMD)
 
 docker-build: ## Build a generic docker image
-	docker build $(DOCKERFILEPATH) -t $(IMAGEWTAG)
+	docker build $(DOCKERFILEPATHAPI) -t $(IMAGEWTAGAPI)
+	docker build $(DOCKERFILEPATHCROSSBAR) -t $(IMAGEWTAGCROSSBAR)
 
 docker-push: docker-login ## Push a generic docker image
 	docker push $(IMAGEWTAG)

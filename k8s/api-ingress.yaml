@@ -5,11 +5,23 @@ metadata:
   name: ${NAME}-ingress
 spec:
   rules:
-  - host: ewetasker.cluster.gsi.dit.upm.es
+  - host: api.ewetasker.cluster.gsi.dit.upm.es
     http:
       paths:
       - path: /
         backend:
           serviceName: ${NAME}
           servicePort: 5050
+      - path: /wamp
+        backend:
+          serviceName: ${NAME}-crossbar-wamp
+          servicePort: 8081
+      - path: /http
+        backend:
+          serviceName: ${NAME}-crossbar-http
+          servicePort: 8082
+      - path: /mqtt
+        backend:
+          serviceName: ${NAME}-crossbar-mqtt
+          servicePort: 1883
 ---
