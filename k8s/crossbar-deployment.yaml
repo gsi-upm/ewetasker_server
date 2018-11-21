@@ -29,9 +29,12 @@ spec:
               memory: "512Mi"
               cpu: "500m"
           ports:
-          - containerPort: 8081
-          - containerPort: 8082
-          - containerPort: 1883
+          - name: wamp
+            containerPort: 8081
+          - name: http
+            containerPort: 8082
+          - name: mqtt
+            containerPort: 1883
           envFrom:
             - configMapRef:
                 name: ${NAME}-crossbar-config
