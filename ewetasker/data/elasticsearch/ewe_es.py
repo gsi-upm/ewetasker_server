@@ -87,6 +87,7 @@ def upload_event_to_es(username, event):
         res = es.index(index='ewetasker', doc_type='events', id=ID_events, body=kwargsJson)
         log.warning("  ")
         log.warning("Event Loaded to ElasticSearch:")
+        log.warning(event["event"])
         pprint.PrettyPrinter(indent=2).pprint(kwargs)
     return ""
 

@@ -80,7 +80,7 @@ ewe:SendEmailMessage a owl:Class ;
 
 ewe:EmailAddress a owl:Class ;
     rdfs:label "User email address" ;
-    rdfs:comment "This parameter represents user's email address." ;
+    rdfs:comment "This parameter represents users email address." ;
     rdf:datatype xsd:string ;
     ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;
@@ -88,7 +88,7 @@ ewe:EmailAddress a owl:Class ;
 
 ewe:RecipientAddress a owl:Class ;
     rdfs:label "Recipient email address" ;
-    rdfs:comment "This parameter represents recipient's email address." ;
+    rdfs:comment "This parameter represents recipients email address." ;
     rdf:datatype xsd:string ;
     ewe:operation string:equalIgnoringCase ;
     rdfs:subClassOf ewe:Parameter ;

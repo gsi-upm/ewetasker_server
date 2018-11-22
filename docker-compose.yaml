@@ -15,6 +15,9 @@ services:
       - EYE_URL=eye:8000
       - TWITTER_TOKEN=token
       - TWITTER_SECRET=secret
+      - GMAIL_CLIENT_ID=token
+      - GMAIL_CLIENT_SECRET=secret
+      - GMAIL_REDIRECT_URI=api.ewetasker.cluster.gsi.dit.upm.es
       - CERTS_PATH=certs/lab.cluster.gsi.dit.upm.es.pem
     depends_on:
       - fuseki

@@ -10,3 +10,6 @@ requests
 elasticsearch
 twisted
 tweepy
+oauth2client
+google-api-python-client
+google_auth_oauthlib

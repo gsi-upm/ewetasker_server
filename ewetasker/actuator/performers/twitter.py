@@ -25,9 +25,9 @@ def select_twitter_action(action,username):
 
 def post_tweet(username,parameters):
     user=get_user_by_field("user",username)
-    if(user["twitter_user"]==parameters["TwitterUsername"]):
+    if(user["twitter"]["user"]==parameters["TwitterUsername"]):
         auth = tweepy.OAuthHandler(consumer_token, consumer_secret)
-        auth.set_access_token(user["twitter_access_token"], user["twitter_access_token_secret"])
+        auth.set_access_token(user["twitter"]["access_token"], user["twitter"]["access_token_secret"])
         api = tweepy.API(auth)
         api.update_status(parameters["Tweet"])
     else:
