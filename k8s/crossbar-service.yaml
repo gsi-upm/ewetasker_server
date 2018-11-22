@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${NAME}-crossbar
+spec:
+  type: ClusterIP
+  ports:
+  - name: wamp
+    port: 8081
+    targetPort: 8081
+  - name: http
+    port: 8082
+    targetPort: 8082
+  - name: mqtt
+    port: 1883
+    targetPort: 1883
+  selector:
+    role: ${NAME}-crossbar
+---
