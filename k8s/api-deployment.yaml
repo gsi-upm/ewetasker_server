@@ -9,7 +9,7 @@ data:
     SPARQL_URL: "$SPARQL_URL"
     MONGODB_URL: "$MONGODB_URL"
     EYE_URL: "$EYE_URL"
-    CERTS_PATH: "$CERTS_PATH"
+    EWE_PEM: "$EWE_PEM"
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
