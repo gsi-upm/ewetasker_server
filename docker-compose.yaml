@@ -18,7 +18,7 @@ services:
       - GMAIL_CLIENT_ID=token
       - GMAIL_CLIENT_SECRET=secret
       - GMAIL_REDIRECT_URI=api.ewetasker.cluster.gsi.dit.upm.es
-      - CERTS_PATH=certs/lab.cluster.gsi.dit.upm.es.pem
+      - EWE_PEM=ewetasker.pem
     depends_on:
       - fuseki
       - mongo

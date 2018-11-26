@@ -7,5 +7,5 @@ ADD requirements.txt /usr/src/app/
 RUN pip install -r /usr/src/app/requirements.txt
 
 ADD . /usr/src/app
-
+RUN openssl genrsa -out ewetasker.pem 2048
 CMD ["python", "app.py"]

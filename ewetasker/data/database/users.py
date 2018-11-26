@@ -7,14 +7,12 @@ from jwt import (
 import json
 from delivery.users import *
 import os
-
+import logging
+log = logging.getLogger('tester.sub')
 users = MongoClient('mongodb://'+ os.environ['MONGODB_URL'] +'/').ewetaskerdb.users
-
-if os.environ.get('EWE_PEM') is not None:
-    signing_key=os.environ.get('EWE_PEM')
-else:
-    with open(os.environ['CERTS_PATH'], 'rb') as fh:
-        signing_key = jwk_from_pem(fh.read())
+    
+with open(os.environ['EWE_PEM'], 'rb') as fh:
+    signing_key = jwk_from_pem(fh.read())
 jwt = JWT()
 
 def create_user(username, password):

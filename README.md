@@ -18,31 +18,6 @@ First of all, clone the git project locally and access to Ewetasker server direc
 $ git clone https://lab.cluster.gsi.dit.upm.es/ewe/ewetasker_server.git ewetasker_server
 ```
 
-Once made it, access to ewetasker_server directory.
-
-```
-$ cd ewetasker_server
-```
-
-Ewetasker communicates with the web application using jwt tokens, so it is needed to encode the data with a .pem file. If you have your own .key and .csr files, you only need to create a .pem file; otherwise, you need to install openssl and follow the next steps:
-
-```
-$ cd ewetasker 
-$ mkdir certs
-$ cd certs
-$ openssl genrsa -out ewetasker.pem 2048
-```
-
-Then you must modify the docker-compose.yaml file, to change the path to the .pem file with the name you have choosen.
-
-```
-version: '2'
-services:
-  api:
-  ...
-    - CERTS_PATH=certs/ewetasker.pem
-  ...
-```
 To continue, go to /etc folder in your computer path and change your configuration to enable enough memory to use Elasticsearch:
 
 ```
