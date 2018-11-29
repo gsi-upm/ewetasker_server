@@ -17,7 +17,9 @@ services:
       - TWITTER_SECRET=secret
       - GMAIL_CLIENT_ID=token
       - GMAIL_CLIENT_SECRET=secret
-      - GMAIL_REDIRECT_URI=api.ewetasker.cluster.gsi.dit.upm.es
+      - API_REDIRECT_URI=api
+      - SPOTIFY_CLIENT_ID=id
+      - SPOTIFY_CLIENT_SECRET=secret
       - EWE_PEM=ewetasker.pem
     depends_on:
       - fuseki

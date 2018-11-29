@@ -4,7 +4,7 @@ import importlib
 from voluptuous import Schema, Required, In, Exclusive, Inclusive, ALLOW_EXTRA
 from twisted.logger import Logger
 import time
-time.sleep(30)
+time.sleep(35)
 url = 'http://' + os.environ['API'] + "/channels/base"
 log = Logger()
 log.info(url)
@@ -26,10 +26,12 @@ for i in range(len(channels)):
 
 print(channels)
 
+def upcase_first_letter(s):
+    return s[0].upper() + s[1:]
 
 def verify(params):
     validate(params)
-    class_for_name(params["channel"]+"Validator", params["channel"].capitalize()).validate(params)
+    class_for_name(params["channel"]+"Validator", upcase_first_letter(params["channel"])).validate(params)
     
 
 validate = Schema({

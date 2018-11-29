@@ -63,16 +63,36 @@ def parse_result(username, result):
     lastAction = ""
     lastUri = ""
     lastChannel = ""
+    actions_added=[]
     for uri, param, value, actionType, paramType, channel in rule_query:
         if(actionType.n3()!="<http://gsi.dit.upm.es/ontologies/ewe/ns/Action>"):
             if(lastAction!=actionType)&(lastAction!=""):
                 actions["actions"].append({"@id" : lastUri, "parameters": parameters, "action": lastAction.split("/")[-1], "channel": lastChannel.split("/")[-1]})
+                actions_added.append(lastAction)
                 parameters = {}
             parameters[paramType.split("/")[-1]] = value
             lastAction = actionType
             lastUri = uri
             lastChannel = channel
-    actions["actions"].append({"@id" : lastUri, "parameters": parameters, "action": lastAction.split("/")[-1], "channel": lastChannel.split("/")[-1]})
+    if(lastAction!=""):
+        actions["actions"].append({"@id" : lastUri, "parameters": parameters, "action": lastAction.split("/")[-1], "channel": lastChannel.split("/")[-1]})
+        actions_added.append(lastAction)
+    query = """
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            PREFIX ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/>
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            
+            SELECT ?uri ?actionType ?channel
+            WHERE {
+                ?uri rdf:type ewe:Action ;
+                    rdf:type ?actionType ;
+                    rdfs:domain ?channel .
+            }
+    """
+    rule_query = g.query(query)
+    for uri, actionType, channel in rule_query:
+        if((actionType.n3()!="<http://gsi.dit.upm.es/ontologies/ewe/ns/Action>")and(actionType not in actions_added)):
+            actions["actions"].append({"@id" : uri, "parameters": {}, "action": actionType.split("/")[-1], "channel": channel.split("/")[-1]})
     actions_json = json.dumps(actions).replace('\\"', "")
     upload_action_to_es(username, actions_json)
     select_performer(actions_json,username)
