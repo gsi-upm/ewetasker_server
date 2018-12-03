@@ -6,7 +6,7 @@ from flask_cors import CORS
 from flask import request
 from data.database.users import *
 from data.elasticsearch.ewe_es import upload_event_to_es 
-from delivery.connections import select_service, auth_twitter, auth_gmail
+from delivery.connections import select_service, auth_twitter, auth_gmail, auth_spotify, get_spotify_devices
 
 app = Flask(__name__)
 CORS(app)
@@ -92,6 +92,17 @@ def connect_twitter():
 def connect_gmail():
     state = request.args.get('state')
     return auth_gmail(request.url, state)
+
+@app.route("/connect/spotify", methods=['GET'])
+def connect_spotify():
+    code = request.args.get('code')
+    state = request.args.get('state')
+    return auth_spotify(code, state)
+
+@app.route("/spotify/<path:username>/devices", methods=['GET'])
+def get_spotify_user_devices(username):
+    return get_spotify_devices(username)
+
 
 @app.route("/test", methods=['GET'])
 def test():

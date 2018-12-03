@@ -137,3 +137,4 @@ venv.bak/
 *.pub
 start.sh
 tester.py
+.mongodb
