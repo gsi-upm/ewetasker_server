@@ -1,3 +1,4 @@
+![Ewe Tasker Logo](./img/ewetasker.png)
 # EWE Tasker
 EWE Tasker is an emotion aware automation platform based on semantic ECA (Event-Condition-Action) rules. It is capable of enable semantic automation rules in a smart environment allowing the user to configure his own automation rules in an easy way. This platform is divided in two modules: [Ewetasker Server](https://lab.cluster.gsi.dit.upm.es/ewe/ewetasker_server.git) module, and [Ewetasker Web Client](https://lab.cluster.gsi.dit.upm.es/ewe/ewetasker_webclient.git) module.
 

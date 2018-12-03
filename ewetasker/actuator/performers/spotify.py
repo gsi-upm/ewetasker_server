@@ -17,7 +17,6 @@ if (os.environ.get('SPOTIFY_CLIENT_ID')!=None)and(os.environ.get('SPOTIFY_CLIENT
     client_secret=os.environ.get('SPOTIFY_CLIENT_SECRET')
     redirect_uri = "http://"+os.environ.get('API_REDIRECT_URI') + "/connect/spotify"
 
-redirect_uri='http://localhost:5050/connect/spotify'
 secrets=""+client_id+":"+client_secret+""
 secrets=base64.standard_b64encode(secrets.encode('UTF-8')).decode('ascii')
 auth="Basic "+secrets+""
