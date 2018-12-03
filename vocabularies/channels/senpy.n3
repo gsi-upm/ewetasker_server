@@ -1,0 +1,90 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ex: <http://example.org/ex#> .
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ewe-service: <http://gsi.dit.upm.es/ontologies/ewe-service/ns/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix onyx: <http://gsi.dit.upm.es/ontologies/onyx/ns/> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe:Senpy a owl:Class ;    
+    rdfs:label "Senpy" ;
+    rdfs:comment "This channel represents Senpy, a framework for sentiment and emotion analysis services." ;
+    foaf:logo "fa fa-comments" ;
+    dbo:colour dbo:GsiBlue ;
+    ewe:generatesEvent ewe:EmotionDetectedSenpy ;
+    ewe:generatesEvent ewe:SentimentDetectedSenpy ;
+    ewe:hasCategory ewe-service:Service ;
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+ewe:EmotionDetectedSenpy a owl:Class ;
+    rdfs:label "Emotion detected by Senpy" ;
+    rdfs:comment "This event will be triggered when a certain emotion is detected." ;
+    ewe:hasOutputParameter ewe:SenpyEmotion ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe:Senpy .
+
+ewe:SentimentDetectedSenpy a owl:Class ;
+    rdfs:label "Sentiment detected by Senpy" ;
+    rdfs:comment "This event will be triggered when a certain sentiment is detected." ;
+    ewe:hasOutputParameter ewe:SenpySentiment ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe:Senpy .
+
+    
+###################################
+# Actions definition
+###################################
+# This channel has not actions
+
+
+###################################
+# Parameters definition
+###################################
+
+ewe:SenpyEmotion a owl:Class ;
+    rdfs:label "Senpy Detected emotion" ;
+    rdfs:comment "This parameter represents the emotion detected by Senpy." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:subClassOf onyx:Emotion ;
+    rdfs:domain ewe:Senpy .
+
+ewe:SenpySentiment a owl:Class ;
+    rdfs:label "Senpy Detected sentiment" ;
+    rdfs:comment "This parameter represents the sentiment detected by Senpy." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:subClassOf onyx:Sentiment ;
+    rdfs:domain ewe:Senpy .
+
+
+###################################
+# Example of instances
+###################################
+
+#ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+
+#ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+#    ewe:generatedBy ex:samsungtv ;
+#    ewe:time "2016-01-19T15:10:00Z" .
+
+# Generated facts 
+
+#ex:labdoor1 rdf:type dogont:DoorActuator .

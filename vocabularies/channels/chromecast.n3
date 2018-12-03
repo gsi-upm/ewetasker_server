@@ -1,0 +1,88 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ex: <http://example.org/ex#> .
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe:Chromecast a owl:Class ;    
+    rdfs:label "Chromecast" ;
+    rdfs:comment "This channel represents a chromecast device with simple capabilities." ;
+    foaf:logo "fa fa-chrome" ;
+    dbo:colour dbo:GoogleRed ;
+    ewe:providesAction ewe:PlayVideoChromecast ;
+    ewe:hasCategory ewe-device:Device ;
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+# This channel has not events
+
+    
+###################################
+# Actions definition
+###################################
+
+ewe:PlayVideoChromecast a owl:Class ;
+    rdfs:label "Play video" ;
+    rdfs:comment "This action will play a video on Chromecast." ;
+    ewe:hasInputParameter ewe:ChromecastLocalIP ;
+    ewe:hasInputParameter ewe:ChromecastPublicIP ;
+    ewe:hasOutputParameter ewe:ChromecastVideoUrl ;
+    rdfs:subClassOf ewe:Action ;
+    rdfs:domain ewe:Chromecast .
+
+###################################
+# Parameters definition
+###################################
+
+ewe:ChromecastLocalIP a owl:Class ;
+    rdfs:label "Chromecast Local IP" ;
+    rdfs:comment "This parameter represents the local IP of the Chromecast." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:Chromecast .
+
+ewe:ChromecastPublicIP a owl:Class ;
+    rdfs:label "Chromecast Public IP" ;
+    rdfs:comment "This parameter represents the public IP of the Chromecast." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:Chromecast .
+
+ewe:ChromecastVideoUrl a owl:Class ;
+    rdfs:label "Youtube video url" ;
+    rdfs:comment "This parameter represents the youtube video url to be reproduced." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:Chromecast .
+
+###################################
+# Example of instances
+###################################
+
+#ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+
+#ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+#    ewe:generatedBy ex:samsungtv ;
+#    ewe:time "2016-01-19T15:10:00Z" .
+
+# Generated facts 
+
+#ex:labdoor1 rdf:type dogont:DoorActuator .

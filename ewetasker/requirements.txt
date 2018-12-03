@@ -1,0 +1,15 @@
+Flask>=0.10.1
+rdflib>=4.2.2
+pymongo>=3.5.1
+jwt>=0.5.4
+sparqlwrapper
+rdflib-jsonld
+flask-cors
+configparser
+requests
+elasticsearch
+twisted
+tweepy
+oauth2client
+google-api-python-client
+google_auth_oauthlib

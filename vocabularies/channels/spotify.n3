@@ -1,0 +1,99 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ex: <http://example.org/ex#> .
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ewe-service: <http://gsi.dit.upm.es/ontologies/ewe-service/ns/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe:Spotify a owl:Class ;    
+    rdfs:label "Music streaming service" ;
+    rdfs:comment "This channel represents Spotify, a music streaming platform." ;
+    foaf:logo "fa fa-spotify" ;
+    dbo:colour dbo:Green ;
+    ewe:providesAction ewe:PlaySong ;
+    ewe:hasCategory ewe-service:Service ;
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+# This channel has not events
+
+    
+###################################
+# Actions definition
+###################################
+
+ewe:PlaySong a owl:Class ;
+    rdfs:label "Play a song" ;
+    rdfs:comment "This action will play a song on a music player." ;
+    ewe:hasInputParameter ewe:MusicPlayerName ;
+    ewe:hasOutputParameter ewe:Song ;
+    ewe:hasOutputParameter ewe:Artist ;
+    ewe:hasOutputParameter ewe:Album ;
+    rdfs:subClassOf ewe:Action ;
+    rdfs:domain ewe:Spotify .
+
+
+###################################
+# Parameters definition
+###################################
+
+ewe:MusicPlayerName a owl:Class ;
+    rdfs:label "Music player name" ;
+    rdfs:comment "This parameter represents the music player name." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:Spotify .
+
+ewe:Artist a owl:Class ;
+    rdfs:label "Track" ;
+    rdfs:comment "This parameter represents the name of the artist." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:Spotify .
+
+ewe:Song a owl:Class ;
+    rdfs:label "Track" ;
+    rdfs:comment "This parameter represents the name of the song." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:Spotify .
+
+ewe:Album a owl:Class ;
+    rdfs:label "Track" ;
+    rdfs:comment "This parameter represents the name of the song." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:Spotify .
+
+
+###################################
+# Example of instances
+###################################
+
+#ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+
+#ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+#    ewe:generatedBy ex:samsungtv ;
+#    ewe:time "2016-01-19T15:10:00Z" .
+
+# Generated facts 
+
+#ex:labdoor1 rdf:type dogont:DoorActuator .

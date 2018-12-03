@@ -1,0 +1,106 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ex: <http://example.org/ex#> .
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe:SmartTv a owl:Class ;    
+    rdfs:label "Connected smart tv" ;
+    rdfs:comment "This channel represents a simplified smarttv with simple capabilities." ;
+    foaf:logo "fa fa-tv" ;
+    dbo:colour dbo:Red ;
+    ewe:providesAction ewe:SwitchOnTv ;
+    ewe:providesAction ewe:SwitchOffTv ;
+    ewe:providesAction ewe:DisplayImageTv ;
+    ewe:hasCategory ewe-device:Device ;
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+# This channel has not events
+
+    
+###################################
+# Actions definition
+###################################
+
+ewe:SwitchOnTv a owl:Class ;
+    rdfs:label "Switch on Tv" ;
+    rdfs:comment "This action will switch on the TV." ;
+    ewe:hasInputParameter ewe:TvLocalIP ;
+    ewe:hasInputParameter ewe:TvPublicIP ;
+    rdfs:subClassOf ewe:Action ;
+    rdfs:domain ewe:SmartTv .
+
+ewe:SwitchOffTv a owl:Class ;
+    rdfs:label "Switch off Tv" ;
+    rdfs:comment "This action will switch off the TV." ;
+    ewe:hasInputParameter ewe:TvLocalIP ;
+    ewe:hasInputParameter ewe:TvPublicIP ;
+    rdfs:subClassOf ewe:Action ;
+    rdfs:domain ewe:SmartTv .
+
+ewe:DisplayImageTv a owl:Class ;
+    rdfs:label "Display image on Tv" ;
+    rdfs:comment "This action will display an image on the screen." ;
+    ewe:hasInputParameter ewe:TvLocalIP ;
+    ewe:hasInputParameter ewe:TvPublicIP ;
+    ewe:hasOutputParameter ewe:TvImage ;
+    rdfs:subClassOf ewe:Action ;
+    rdfs:domain ewe:SmartTv .
+
+###################################
+# Parameters definition
+###################################
+
+ewe:TvLocalIP a owl:Class ;
+    rdfs:label "Tv Local IP" ;
+    rdfs:comment "This parameter represents the local IP of the TV." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:SmartTv .
+
+ewe:TvPublicIP a owl:Class ;
+    rdfs:label "Tv Public IP" ;
+    rdfs:comment "This parameter represents the public IP of the TV." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:SmartTv .
+
+ewe:TvImage a owl:Class ;
+    rdfs:label "Image to display on Tv" ;
+    rdfs:comment "This parameter represents the image to display on the TV." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:SmartTv .
+
+###################################
+# Example of instances
+###################################
+
+#ex:samsungtv rdf:type ewe:SmartTv .
+
+#ex:showimg1 rdf:type ewe:DisplayImage ;
+#    ewe:generatedBy ex:samsungtv ;
+#    ewe:time "2016-01-19T15:10:00Z" .
+
+# Generated facts 
+
+#ex:labdoor1 rdf:type dogont:DoorActuator .

@@ -1,0 +1,126 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ex: <http://example.org/ex#> .
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ewe-service: <http://gsi.dit.upm.es/ontologies/ewe-service/ns/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe:Email a owl:Class ;    
+    rdfs:label "Email service" ;
+    rdfs:comment "This channel represents an email service with basic functions." ;
+    foaf:logo "fa fa-envelope" ;
+    dbo:colour dbo:GoogleRed ;
+    ewe:providesAction ewe:SendEmailMessage ;
+    ewe:generatesEvent ewe:NewEmailMessageReceived ;
+    ewe:generatesEvent ewe:EmailMessageAbout ;
+    ewe:generatesEvent ewe:EmailMessageReceivedFrom ;
+    ewe:hasCategory ewe-service:Service ;
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+ewe:NewEmailMessageReceived a owl:Class ;
+    rdfs:label "New message received" ;
+    rdfs:comment "This event will be triggered when a new email message is received." ;
+    ewe:hasInputParameter ewe:EmailAddress ;
+    ewe:hasOutputParameter ewe:RecipientAddress ;
+    ewe:hasOutputParameter ewe:EmailSubject ;
+    ewe:hasOutputParameter ewe:EmailMessage ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe:Email .
+
+ewe:EmailMessageReceivedAbout a owl:Class ;
+    rdfs:label "New message received about a certain subject" ;
+    rdfs:comment "This event will be triggered when a new email message about a certain subject is received." ;
+    ewe:hasInputParameter ewe:EmailAddress ;
+    ewe:hasOutputParameter ewe:EmailSubject ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe:Email .
+
+ewe:EmailMessageReceivedFrom a owl:Class ;
+    rdfs:label "New message received from a certain contact" ;
+    rdfs:comment "This event will be triggered when a new email message from a certain contact is received." ;
+    ewe:hasInputParameter ewe:EmailAddress ;
+    ewe:hasOutputParameter ewe:RecipientAddress ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe:Email .
+
+    
+###################################
+# Actions definition
+###################################
+
+ewe:SendEmailMessage a owl:Class ;
+    rdfs:label "Send message" ;
+    rdfs:comment "This action will send a email message." ;
+    ewe:hasInputParameter ewe:EmailAddress ;
+    ewe:hasOutputParameter ewe:RecipientAddress ;
+    ewe:hasOutputParameter ewe:EmailSubject ;
+    ewe:hasOutputParameter ewe:EmailMessage ;
+    rdfs:subClassOf ewe:Action ;
+    rdfs:domain ewe:Email .
+
+
+###################################
+# Parameters definition
+###################################
+
+ewe:EmailAddress a owl:Class ;
+    rdfs:label "User email address" ;
+    rdfs:comment "This parameter represents users email address." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:Email .
+
+ewe:RecipientAddress a owl:Class ;
+    rdfs:label "Recipient email address" ;
+    rdfs:comment "This parameter represents recipients email address." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:Email .
+
+ewe:EmailSubject a owl:Class ;
+    rdfs:label "Email subject" ;
+    rdfs:comment "This parameter represents the subject of the email message." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:Email .
+
+ewe:EmailMessage a owl:Class ;
+    rdfs:label "Message content" ;
+    rdfs:comment "This parameter represents the content of the email message." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:Email .
+
+
+###################################
+# Example of instances
+###################################
+
+#ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+
+#ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+#    ewe:generatedBy ex:samsungtv ;
+#    ewe:time "2016-01-19T15:10:00Z" .
+
+# Generated facts 
+
+#ex:labdoor1 rdf:type dogont:DoorActuator .

@@ -1,0 +1,81 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ex: <http://example.org/ex#> .
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ewe-service: <http://gsi.dit.upm.es/ontologies/ewe-service/ns/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe:Github a owl:Class ;    
+    rdfs:label "Github" ;
+    rdfs:comment "This channel represents Github service." ;
+    foaf:logo "fa fa-github" ;
+    dbo:colour dbo:Black ;
+    ewe:generatesEvent ewe:CommitPushed ;
+    ewe:hasCategory ewe-service:Service ;
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+
+ewe:CommitPushed a owl:Class ;
+    rdfs:label "Commit pushed" ;
+    rdfs:comment "This event will be triggered when user push a commit on the specified repository." ;
+    ewe:hasInputParameter ewe:GithubUsername ;
+    ewe:hasOutputParameter ewe:GithubRepository ;
+    rdfs:subClassOf ewe:Event ;
+    rdfs:domain ewe:Github .
+
+    
+###################################
+# Actions definition
+###################################
+# This channel has not actions
+
+
+###################################
+# Parameters definition
+###################################
+
+ewe:GithubUsername a owl:Class ;
+    rdfs:label "Github username" ;
+    rdfs:comment "This parameter represents Github username." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:Github .
+
+ewe:GithubRepository a owl:Class ;
+    rdfs:label "Github repository name" ;
+    rdfs:comment "This parameter represents the repository name." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:Github .
+
+
+###################################
+# Example of instances
+###################################
+
+#ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+
+#ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+#    ewe:generatedBy ex:samsungtv ;
+#    ewe:time "2016-01-19T15:10:00Z" .
+
+# Generated facts 
+
+#ex:labdoor1 rdf:type dogont:DoorActuator .

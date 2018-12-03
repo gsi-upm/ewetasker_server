@@ -1,0 +1,32 @@
+stages:
+  - build
+  - push
+  - deploy
+
+before_script:
+  - make -e login
+
+build:
+  stage: build
+  script:
+    - make -e docker-build
+  only:
+    - tags
+    - triggers
+
+push:
+  stage: push
+  script:
+    - make -e docker-push
+  only:
+    - tags
+    - triggers
+
+deploy:
+  stage: deploy
+  environment: production
+  script:
+    - make -e deploy
+  only:
+    - tags
+    - triggers

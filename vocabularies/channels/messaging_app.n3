@@ -1,0 +1,81 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ex: <http://example.org/ex#> .
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ewe-service: <http://gsi.dit.upm.es/ontologies/ewe-service/ns/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe:MessagingApp a owl:Class ;    
+    rdfs:label "Messaging app" ;
+    rdfs:comment "This channel represents a messaging app with basic functions." ;
+    foaf:logo "fa fa-whatsapp" ;
+    dbo:colour dbo:WhatsappGreen ;
+    ewe:providesAction ewe:SendAppMessage ;
+    ewe:hasCategory ewe-service:Service ;
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+# This channel has not events
+
+    
+###################################
+# Actions definition
+###################################
+
+ewe:SendAppMessage a owl:Class ;
+    rdfs:label "Send message" ;
+    rdfs:comment "This action will send a text message to user's messaging app." ;
+    ewe:hasInputParameter ewe:MessagingAppUserID ;
+    ewe:hasOutputParameter ewe:MessagingAppMessage ;
+    rdfs:subClassOf ewe:Action ;
+    rdfs:domain ewe:MessagingApp .
+
+
+###################################
+# Parameters definition
+###################################
+
+ewe:MessagingAppUserID a owl:Class ;
+    rdfs:label "User messaging app ID" ;
+    rdfs:comment "This parameter represents user's messaging app ID." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:MessagingApp .
+
+ewe:MessagingAppMessage a owl:Class ;
+    rdfs:label "Message content" ;
+    rdfs:comment "This parameter represents the content of the text message." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:MessagingApp .
+
+
+###################################
+# Example of instances
+###################################
+
+#ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+
+#ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+#    ewe:generatedBy ex:samsungtv ;
+#    ewe:time "2016-01-19T15:10:00Z" .
+
+# Generated facts 
+
+#ex:labdoor1 rdf:type dogont:DoorActuator .

@@ -1,9 +1,12 @@
 from rdflib.plugins.stores import sparqlstore
+import os
 
 def get_channel_actions(uri_channel):
 
+
+
     #Define the SparQL store
-    endpoint = 'http://localhost:3030/ewetasker/query'
+    endpoint = 'http://' + os.environ['SPARQL_URL'] + '/query'
     store = sparqlstore.SPARQLUpdateStore()
     store.open((endpoint, endpoint))
 

@@ -1,0 +1,103 @@
+version: '2'
+services:
+  api:
+    build: ./ewetasker
+    container_name: api
+    ports:
+      - "5050:5000"
+    networks:
+      - ewetasker
+    environment:
+      - ES_ENDPOINT=elasticsearch
+      - ES_ENDPOINT_PORT=9200
+      - SPARQL_URL=fuseki:3030/ewetasker
+      - MONGODB_URL=mongo:27017
+      - EYE_URL=eye:8000
+      - TWITTER_TOKEN=token
+      - TWITTER_SECRET=secret
+      - GMAIL_CLIENT_ID=token
+      - GMAIL_CLIENT_SECRET=secret
+      - API_REDIRECT_URI=api
+      - SPOTIFY_CLIENT_ID=id
+      - SPOTIFY_CLIENT_SECRET=secret
+      - EWE_PEM=ewetasker.pem
+    depends_on:
+      - fuseki
+      - mongo
+      - elasticsearch
+
+  fuseki:
+    image: stain/jena-fuseki
+    container_name: fuseki
+    ports: 
+      - "3030:3030"
+    volumes: 
+      - fuseki:/fuseki
+    environment:
+      - ADMIN_PASSWORD="ewefuseki"
+    networks:
+      - ewetasker
+
+  mongo:
+    image: mongo:latest
+    container_name: ewemongodb
+    ports: 
+      - "27017:27017"
+    volumes:
+      - ./mongodb:/data/db
+    environment:
+      - MONGODB_USER="ewemongo"
+      - MONGODB_PASS="gsimongodb2018"
+    networks:
+      - ewetasker
+
+  eye:
+    image: bdevloed/eyeserver
+    container_name: eye
+    ports:
+      - "4040:8000"
+    networks:
+      - ewetasker
+  elasticsearch:
+    image: "docker.elastic.co/elasticsearch/elasticsearch:5.5.2"
+    container_name: elasticsearch
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "xpack.security.enabled=false"
+      - "http.cors.enabled=true"
+      - 'http.cors.allow-origin=*'
+    volumes:
+      - esdata:/usr/share/elasticsearch/data/
+    ports:
+      - 19200:9200
+      - 19300:9300
+    networks:
+      - ewetasker
+  
+  crossbar:
+    build: ./ewe-crossbar
+    container_name: crossbar
+    environment:
+      - API=api:5000
+    ports:
+      - "8081:8081"
+      - "8082:8082"
+      - "1883:1883"
+    depends_on:
+      - api
+    networks:
+      - ewetasker
+
+networks:
+  ewetasker:
+    driver: bridge
+
+volumes:
+  fuseki:
+  esdata:

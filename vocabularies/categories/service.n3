@@ -1,0 +1,13 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+
+###################################
+# Category definition
+###################################
+ewe:InternetService a owl:Class ;
+    rdfs:label "Internet service" ;
+    rdfs:comment "This category represents any internet service." ;
+    rdfs:subClassOf ewe:Category .

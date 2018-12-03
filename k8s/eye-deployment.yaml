@@ -1,0 +1,24 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ${NAME}-eye
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        role: ${NAME}-eye
+    spec:
+      containers:
+        - name: eye
+          image: bdevloed/eyeserver
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          ports:
+            - name: eye
+              containerPort: 4040
+---

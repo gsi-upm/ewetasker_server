@@ -1,0 +1,100 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ex: <http://example.org/ex#> .
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ewe-device: <http://gsi.dit.upm.es/ontologies/ewe-device/ns/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe:SmartPlug a owl:Class ;    
+    rdfs:label "Connected smart plug" ;
+    rdfs:comment "This channel represents a simplified smart plug with simple capabilities." ;
+    foaf:logo "fa fa-plug" ;
+    dbo:colour dbo:Blue ;
+    ewe:providesAction ewe:SwitchOnPlug ;
+    ewe:providesAction ewe:SwitchOffPlug ;
+    ewe:hasCategory ewe-device:Device ;
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+# This channel has not events
+
+    
+###################################
+# Actions definition
+###################################
+
+ewe:SwitchOnPlug a owl:Class ;
+    rdfs:label "Switch on plug" ;
+    rdfs:comment "This action will switch on the plug." ;
+    ewe:hasInputParameter ewe:PlugApiToken ;
+    ewe:hasInputParameter ewe:PlugPublicIP ;
+    ewe:hasInputParameter ewe:PlugID ;
+    rdfs:subClassOf ewe:Action ;
+    rdfs:domain ewe:SmartPlug .
+
+ewe:SwitchOffPlug a owl:Class ;
+    rdfs:label "Switch off plug" ;
+    rdfs:comment "This action will switch off the plug." ;
+    ewe:hasInputParameter ewe:PlugApiToken ;
+    ewe:hasInputParameter ewe:PlugPublicIP ;
+    ewe:hasInputParameter ewe:PlugID ;
+    rdfs:subClassOf ewe:Action ;
+    rdfs:domain ewe:SmartPlug .
+
+
+###################################
+# Parameters definition
+###################################
+
+ewe:PlugApiToken a owl:Class ;
+    rdfs:label "Plug Api token" ;
+    rdfs:comment "This parameter represents the Api token of the smart plug." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:SmartPlug .
+
+ewe:PlugPublicIP a owl:Class ;
+    rdfs:label "Plug Public IP" ;
+    rdfs:comment "This parameter represents the public IP of the smart plug." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:SmartPlug .
+
+ewe:PlugID a owl:Class ;
+    rdfs:label "Plug ID" ;
+    rdfs:comment "This parameter represents the smart plug ID." ;
+    rdf:datatype xsd:string ;
+    ewe:operation string:equalIgnoringCase ;
+    rdfs:subClassOf ewe:Parameter ;
+    rdfs:domain ewe:SmartPlug .
+
+
+###################################
+# Example of instances
+###################################
+
+#ex:samsungtv rdf:type ewe-smarttv:SmartTv .
+
+#ex:showimg1 rdf:type ewe-smarttv:DisplayImage ;
+#    ewe:generatedBy ex:samsungtv ;
+#    ewe:time "2016-01-19T15:10:00Z" .
+
+# Generated facts 
+
+#ex:labdoor1 rdf:type dogont:DoorActuator .
